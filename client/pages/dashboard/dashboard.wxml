@@ -1,0 +1,29 @@
+<!--pages/dashboard/dashboard.wxml-->
+<view class="button_area">
+<button class="weui-btn" type="primary" bindtap="createProject">New Project</button>
+</view>
+ <view class="weui-panel">
+    <view class="weui-panel__hd">Project List</view>
+          <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">Project 1</view>
+                    <view class="weui-media-box__desc">This is the introduction of project 1</view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">Type</view>
+                        <view class="weui-media-box__info__meta">End Date</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">Other Info</view>
+                     </view>
+                </view>
+                       <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">Project 2</view>
+                    <view class="weui-media-box__desc">This is the introduction of project 2</view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">Type</view>
+                        <view class="weui-media-box__info__meta">End Date</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">Other Info</view>
+                </view>
+                
+          </view>
+          
+    </view>
+</view>

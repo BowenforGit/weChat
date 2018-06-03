@@ -1,0 +1,17 @@
+/* pages/dashboard/dashboard.wxss */
+
+.placeholder{
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 2.3em;
+    line-height: 2.3em;
+    color: #cfcfcf;
+}
+
+.button_area{
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 1rem;
+}

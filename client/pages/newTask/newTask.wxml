@@ -1,0 +1,117 @@
+<!--pages/projectForm/projectForm.wxml-->
+<view class="page">
+<view class="page__bd">
+<view class="weui-cells__title">Task Name</view>
+    <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" bindinput="bindNameChange" placeholder="Initial Report" />
+            </view>
+    </view>
+</view>
+ <view class="weui-cells__title">Task Type</view>
+        <view class="weui-cells weui-cells_after-title">
+            <radio-group bindchange="radioChange">
+                <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
+                    <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+                        <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+                    </view>
+                </label>
+            </radio-group>
+  </view>
+
+<view class="weui-cells__title">Task Description</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                  <textarea class="weui-textarea" placeholder="Some information of this task" style="height: 3.3em" />
+            <view class="weui-textarea-counter">0/50</view>
+        </view>
+   </view>
+</view>
+
+        <view class="weui-cells__title">Deadline</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">Date</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{date}}"  bindchange="bindDateChange1">
+                        <view class="weui-input">{{date}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">Time</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+                        <view class="weui-input">{{time}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+ <view class="weui-cells__title">Detailed Allocation</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_switch">
+                <view class="weui-cell__bd">Assign task to each person</view>
+                <view class="weui-cell__ft">
+                    <switch checked="{{showDetail}}" bindchange="bindSwitchChange" />
+                </view>
+            </view>
+</view>
+
+ <view class="weui-cells__title">Who Takes Charge</view>
+      <view class="weui-cells weui-cells_after-title">
+       <block wx:if="{{allotDetail}}">
+            <include src='allocation.wxml'/>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd" style="width:30%">
+                    <picker bindchange="bindMemberChange" value="{{memberIndex}}" range="{{members}}">
+                        <view class="weui-select">{{members[memberIndex]}}</view>
+                    </picker>
+                </view>
+                <view class="weui-cell__bd weui-cell__bd_in-select-before">
+                <input class="weui-input" value="{{input}}" placeholder="Task for each person" bindinput="taskChangeHandle" bindconfirm="addTodoHandle"/>   
+                </view>
+            </view> 
+        </block>
+        <block wx:else>
+            <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+                    <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+
+                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                </label>
+            </checkbox-group>
+        </block>
+      </view>
+  
+         <checkbox-group bindchange="bindAgreeChange">
+            <label class="weui-agree" for="weuiAgree">
+                <view class="weui-agree__text">
+                    <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+                    <view class="weui-agree__checkbox-icon">
+                        <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+                    </view>
+                     I agree to the <navigator url="" class="weui-agree__link">Terms and Conditions</navigator>
+                </view>
+            </label>
+        </checkbox-group>
+
+        <view class="weui-btn-area">
+        <button wx:if="{{canIUse}}" class="weui-btn" type="primary" bindgetuserinfo="bindGetUserInfo" bindtap="openToast" open-type="getUserInfo" >create</button>
+        <view wx:else>请升级微信版本</view>
+        </view>
+  </view>
+</view>

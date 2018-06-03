@@ -1,0 +1,33 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">Project Name</view>
+        <view class="page__desc">This is the project Information</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-flex">
+            <view class="weui-flex__item"><view class="placeholder">
+             <button class="weui-btn" bindtap="createTask" type="primary" >Add Task</button>
+            </view>
+        </view>
+            <view class="weui-flex__item"><view class="placeholder">
+                   <button class="weui-btn" type="default" >Invite</button>
+            </view>
+            </view>
+        </view>
+
+         <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">Timeline</view>
+            <view class="weui-panel__bd">
+            <navigator class="weui-media-box weui-media-box_text" url="{{'/pages/project/task/task?id_t='+item.taskID+'&id_p='+projectID}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
+                <view>
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.taskName}}</view>
+                    <view class="weui-media-box__desc">
+                    <text>{{item.taskDate + ' | '}}</text>
+                    <text wx:for="{{item.taskMembers}}" wx:for-item="member" wx:for-index="idx" wx:key="{{idx}}">{{member.name+' '}}</text>
+                    </view>
+               </view>
+            </navigator>
+          </view>
+          </view>
+    </view>
+</view>

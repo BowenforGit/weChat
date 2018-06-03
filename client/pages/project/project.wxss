@@ -1,0 +1,58 @@
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+
+.placeholder{
+    margin: 0 5px;
+    text-align: center;
+}
+
+
+.logs {
+  border: 1rpx solid #e0e0e0;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5rpx #e0e0e0;
+}
+
+.item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  font-size: 30rpx;
+  color: #888;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.timestamp {
+  display: block;
+  margin-top: 20rpx;
+}
+
+.name {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+}
+
+.action {
+  display: inline-block;
+  width: 70%;
+  color: #aa0;
+
+}
+
+.list {
+  width: 80%;
+  border-bottom: 1rpx solid;
+}
+
+.list:last-child {
+  border-bottom: 0;
+}

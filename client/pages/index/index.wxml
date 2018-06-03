@@ -10,4 +10,16 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+<open-data type="userNickName"></open-data>
+<!-- 需要使用 button 来授权登录 -->
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view>
+  <view>
+<navigator url="../dashboard/dashboard" hover-class="navigator-hover">dashboard</navigator>
+<navigator url="../logs/logs" hover-class="navigator-hover">logs</navigator>
+<navigator url="../newProject/newProject" hover-class="navigator-hover">newProject</navigator>
+<navigator url="../project/project" hover-class="navigator-hover">project</navigator>
+<navigator url="../newTask/newTask" hover-class="navigator-hover">newTask</navigator>
+ <navigator url="../project/task/task" hover-class="navigator-hover">Task</navigator>
+ </view>
 </view>
