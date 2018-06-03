@@ -5,7 +5,7 @@
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder=CSCI 3100" />
+                    <input class="weui-input" bindinput="bindNameChange" placeholder="CSCI 3100" />
             </view>
     </view>
 </view>
@@ -28,7 +28,7 @@
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
             <view class="weui-cell__bd">
-                  <textarea class="weui-textarea" placeholder="Some information of this project" style="height: 3.3em" />
+                  <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="Some information of this project" style="height: 3.3em" />
             <view class="weui-textarea-counter">0/50</view>
         </view>
    </view>
@@ -41,8 +41,8 @@
                     <view class="weui-label">Start Date</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker mode="date" value="{{date1}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange1">
-                        <view class="weui-input">{{date1}}</view>
+                    <picker mode="date" value="{{project.proStartDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange1">
+                        <view class="weui-input">{{project.proStartDate}}</view>
                     </picker>
                 </view>
             </view>
@@ -51,8 +51,8 @@
                     <view class="weui-label">End Date</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker mode="date" value="{{date2}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange2">
-                        <view class="weui-input">{{date2}}</view>
+                    <picker mode="date" value="{{project.proEtartDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange2">
+                        <view class="weui-input">{{project.proEndDate}}</view>
                     </picker>
                 </view>
             </view>
