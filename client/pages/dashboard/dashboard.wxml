@@ -5,25 +5,22 @@
  <view class="weui-panel">
     <view class="weui-panel__hd">Project List</view>
           <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">Project 1</view>
-                    <view class="weui-media-box__desc">This is the introduction of project 1</view>
+
+                <navigator class="weui-media-box weui-media-box_text" url="{{'/pages/project/task/task?id='+projectID}}"  hover-class="weui-cell_active" wx:for="{{user.projects}}" wx:key="{{index}}">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.proName}}</view>
+                    <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
-                        <view class="weui-media-box__info__meta">Type</view>
-                        <view class="weui-media-box__info__meta">End Date</view>
-                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">Other Info</view>
+                        <view class="weui-media-box__info__meta">{{item.proType}}</view>
+                        <view class="weui-media-box__info__meta">{{item.proEndDate}}</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                        <block wx:if="{{item.proMembers.length >= 1}}">
+                            {{item.proMembers.length+' Member(s)'}}
+                        </block>
+                        <block wx:else>
+                            No Members Yet
+                        </block>
+                        </view>
                      </view>
-                </view>
-                       <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">Project 2</view>
-                    <view class="weui-media-box__desc">This is the introduction of project 2</view>
-                    <view class="weui-media-box__info">
-                        <view class="weui-media-box__info__meta">Type</view>
-                        <view class="weui-media-box__info__meta">End Date</view>
-                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">Other Info</view>
-                </view>
-                
-          </view>
-          
+                </navigator>
     </view>
 </view>
