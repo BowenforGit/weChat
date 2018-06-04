@@ -10,7 +10,7 @@
             </view>
         </view>
             <view class="weui-flex__item"><view class="placeholder">
-                   <button class="weui-btn" type="default" >Invite</button>
+                   <button class="weui-btn" open-type="share" type="default" >Invite</button>
             </view>
             </view>
         </view>

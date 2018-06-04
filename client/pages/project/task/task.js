@@ -74,7 +74,8 @@ Page({
           that.setData({
             logs: logs
           })
-          that.save()      
+          that.save()   
+          wx.navigateBack()
         } else {
           console.log('user click cancel')
         }

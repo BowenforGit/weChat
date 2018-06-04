@@ -13,5 +13,25 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#626567",
+    "selectedColor": "#32CD32",
+    "backgroundColor": "#FBFBFB",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/dashboard/dashboard",
+        "text": "Dashboard",
+        "iconPath": "assets/logs.png",
+        "selectedIconPath": "assets/logs-active.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "Todos",
+        "iconPath": "assets/todos.png",
+        "selectedIconPath": "assets/todos-active.png"
+      }
+    ]
   }
 }

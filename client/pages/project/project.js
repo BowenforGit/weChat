@@ -1,5 +1,6 @@
 var sliderWidth = 108; // 需要设置slider的宽度，用于计算中间位置
 const util = require('../../utils/util.js')
+const app = getApp() //获得小程序实例
 
 Page({
   data: {
@@ -11,6 +12,7 @@ Page({
 
     logs: [],
     projectID:1,
+    proMembers:[],
     tasks:[
       {
         taskID: 1,
@@ -52,7 +54,18 @@ Page({
         ]
       }
     ],
-    leftCount: 0
+    leftCount: 0,
+
+  },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: 'Invite some people',
+      path: '/page/project/project?id='+ this.data.projectID 
+    }
   },
 
   save: function () {
@@ -78,8 +91,35 @@ Page({
     }
   },
   
-  onLoad: function () {
+  onLoad: function (opt) {
     this.load()
+    //get the project id from the router
+    this.data.projectID = opt.id
+    //get project info by local storage or wx request 
+
+    var isMember = false
+    for(item in this.data.proMembers)
+    {
+      if(item.name == app.globalData.userInfo.nickName)
+        isMember = true
+    }
+    if(!isMember)
+    {
+      var members = this.data.proMembers 
+      members.push(app.globalData.userInfo.nickName)
+      this.setData({
+          proMembers: members
+      })
+      console.log('Add Member '+app.globalData.userInfo.nickName)
+      var logs = this.data.logs
+      logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo:'', userInfo: app.globalData.userInfo})
+      this.setData({
+        logs: logs
+      })
+      this.save()
+    }
+      
+
     var that = this
     wx.getSystemInfo({
       success: function (res) {
@@ -113,41 +153,46 @@ Page({
     })
   },
 
-  chooseFile: function (e) {
-    var that = this;
-    wx.chooseImage({
-      success: function (res) {
-        var tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-          url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'user': 'test'
-          },
-          success: function (res) {
-            var data = res.data
-            //do something
-          }
-        })
-      }
-    })
-    /*
-    wx.getSavedFileList({
-      success: function (res) {
-        console.log(res.fileList)
-      }
-    })
+  chooseImage: function (e) {
+        var that = this;
+        wx.chooseImage({
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                that.setData({
+                    files: that.data.files.concat(res.tempFilePaths)
+                });
+                //上传图片至服务器
+                var tempFilePaths = res.tempFilePaths
+                wx.uploadFile({
+                  url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+                  filePath: tempFilePaths[0],
+                  name: 'file',
+                  formData: {
+                    'user': 'test'
+                  },
+                  success: function (res) {
+                    var data = res.data
+                    //do something
+                  }
+                })
 
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        that.setData({
-          files: that.data.files.concat(res.tempFilePaths)
-        });
+            }
+        })
+    },
+    previewImage: function(e){
+        wx.previewImage({
+            current: e.currentTarget.id, // 当前显示图片的http链接
+            urls: this.data.files // 需要预览的图片http链接列表
+        })
+    },
+  onShareAppMessage: function () {
+    return {
+      path: 'pages/project/project?id=' + this.data.projectID,
+      success: res => {
+        console.log(res)
       }
-    })*/
+    }
   },
 });
