@@ -56,3 +56,8 @@ page,
 .list:last-child {
   border-bottom: 0;
 }
+.page__title
+{
+  font-size: 70rpx;
+  text-align: center;
+}

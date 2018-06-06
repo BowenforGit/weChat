@@ -6,7 +6,10 @@
     <view class="page__bd page__bd_spacing">
         <view class="weui-flex">
             <view class="weui-flex__item"><view class="placeholder">
-             <button class="weui-btn" bindtap="createTask" type="primary" >Add Task</button>
+             <button class="weui-btn" bindtap="createTask" type="primary" >
+             
+             <text>Add Task</text>
+             </button>
             </view>
         </view>
             <view class="weui-flex__item"><view class="placeholder">

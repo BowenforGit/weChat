@@ -165,6 +165,7 @@ Page({
                 });
                 //上传图片至服务器
                 var tempFilePaths = res.tempFilePaths
+                /* 上传图片接口
                 wx.uploadFile({
                   url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
                   filePath: tempFilePaths[0],
@@ -176,16 +177,40 @@ Page({
                     var data = res.data
                     //do something
                   }
-                })
+                }) */
 
             }
         })
     },
     previewImage: function(e){
-        wx.previewImage({
-            current: e.currentTarget.id, // 当前显示图片的http链接
-            urls: this.data.files // 需要预览的图片http链接列表
-        })
+      var that = this
+      var file_id = e.currentTarget.id
+      var file_index = file_id.lastIndexOf('.')
+      file_id = file_id.substring(file_index+1)
+      console.log(file_id)
+      console.log(e.currentTarget)
+      wx.getImageInfo({
+        src: e.currentTarget.id,
+        success: function(res){
+          //The file is an Image 
+            console.log(res.type)
+            wx.previewImage({
+              current: e.currentTarget.id, // 当前显示图片的http链接
+              urls: that.data.files // 需要预览的图片http链接列表
+            })
+        },
+        fail: function(){
+            wx.openDocument({
+              filePath: e.currentTarget.id,
+              success: function(res){
+                console.log("打开文件成功")
+              },
+              fail: function(){
+                console.log("不支持打开该文件")
+              }
+            })
+        }
+      })
     },
   onShareAppMessage: function () {
     return {
@@ -195,4 +220,9 @@ Page({
       }
     }
   },
+
+  showDelete: function(e)
+  {
+    console.log(e.currentTarget)
+  }
 });

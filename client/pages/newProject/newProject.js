@@ -44,7 +44,7 @@ Page({
     var index
     for (var i = 0, len = radioItems.length; i < len; ++i) {
       radioItems[i].checked = radioItems[i].value == e.detail.value;
-      if(radioItem[i].checked)
+      if(radioItems[i].checked)
         index = i
     }
     this.setData({

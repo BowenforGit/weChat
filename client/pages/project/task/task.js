@@ -5,7 +5,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
+  data: { 
       projectID:0,
       taskID:0,
       task: {
@@ -24,6 +24,7 @@ Page({
       },
 
       isFinish: false,
+      filePath: 'Choose File',
       logs:[],
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -90,6 +91,19 @@ Page({
       userInfo: e.detail.userInfo
     })
     this.openConfirm()
-   
+  },
+  
+  uploadFile: function()
+  {
+    var that = this;
+    wx.chooseImage({
+      success: function (res) {
+        console.log("choosing "+res.tempFilePaths)
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.setData({
+          filePath: res.tempFilePaths
+        });
+      }
+    })
   }
 })
