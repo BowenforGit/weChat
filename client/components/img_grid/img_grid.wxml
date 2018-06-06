@@ -1,4 +1,0 @@
-<view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{item}}"  style="position: relative;margin-right: 10px;">
-                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                                         <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
-</view>

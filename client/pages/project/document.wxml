@@ -5,14 +5,16 @@
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
                             <view class="weui-uploader__title">Shared Files</view>
-                            <view class="weui-uploader__info">{{files.length}}/2</view>
+                            <view class="weui-uploader__info">
+                                 <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+                            </view>
                         </view>
                         <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for="{{files}}" wx:key="{{index}}">
-                                    <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{item}}"  style="position: relative;margin-right: 10px;">
+                                    <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{index}}"  style="position: relative;margin-right: 10px;">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                                         <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
+                                         <view wx:if="{{showDeleteIcon}}"  class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
                                     </view>
                                 </block>
                             </view>

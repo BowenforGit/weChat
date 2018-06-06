@@ -1,4 +1,4 @@
-<view class="container">
+<view class="log-container">
   <view class="logs" wx:if="{{ logs.length }}">
     <view class="item" wx:for="{{ logs }}" wx:key="{{ index }}">
       <text class="action">{{ item.action+': ' + item.actionInfo}}</text>

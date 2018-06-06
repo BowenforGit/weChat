@@ -1,17 +1,43 @@
 <!--index.wxml-->
-<view class="container">
-<!--wxml-->
-<!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
-<open-data type="userNickName"></open-data>
-<!-- 需要使用 button 来授权登录 -->
-<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-<view wx:else>请升级微信版本</view>
-  <view>
-<navigator url="../dashboard/dashboard" hover-class="navigator-hover">dashboard</navigator>
-<navigator url="../logs/logs" hover-class="navigator-hover">logs</navigator>
-<navigator url="../newProject/newProject" hover-class="navigator-hover">newProject</navigator>
-<navigator url="../project/project" hover-class="navigator-hover">project</navigator>
-<navigator url="../newTask/newTask" hover-class="navigator-hover">newTask</navigator>
- <navigator url="../project/task/task" hover-class="navigator-hover">Task</navigator>
- </view>
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class="project-wrp">
+        <view class="project-item">
+            <view class="overview">
+                <view class="left">
+                    <view>
+                        <image src="../../images/flag.png"></image>
+                        <text>{{user.projects.length}}</text>
+                    </view>
+                    <view>
+                        <image src="../../images/allread.png"></image>
+                        <text>27</text>
+                    </view>
+                </view>
+                <view class="right"  bindtap="createProject">
+                    + Create New
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-panel">
+          <view class="weui-panel__bd">
+                <navigator class="weui-media-box weui-media-box_text" url="{{'/pages/project/project?id='+projectID}}"  hover-class="weui-cell_active" wx:for="{{user.projects}}" wx:key="{{index}}">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.proName}}</view>
+                    <view class="weui-media-box__desc">{{item.proInfo}}</view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">{{item.proType}}</view>
+                        <view class="weui-media-box__info__meta">{{item.proEndDate}}</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                        <block wx:if="{{item.proMembers.length >= 1}}">
+                            {{item.proMembers.length+' Member(s)'}}
+                        </block>
+                        <block wx:else>
+                            No Members Yet
+                        </block>
+                        </view>
+                     </view>
+                </navigator>
+    </view>
 </view>
+</scroll-view>
+
