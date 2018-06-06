@@ -68,10 +68,38 @@ Page({
     });
   },
   openToast: function () {
-    wx.showToast({
-      title: 'Success',
-      icon: 'success',
-      duration: 3000
-    });
+    // wx.showToast({
+    //   title: 'Success',
+    //   icon: 'success',
+    //   duration: 3000
+    // });
+    wx.showLoading({
+      title: '正在创建项目……',
+      mask: true
+    })
+    // send the request to the server
+    var project_detail = {
+      name: project.proName,
+      info: project.proInfo || '',
+      start_date: project.proStartDate || '',
+      end_date: project.proEndDate || '',
+      project_type: project.proType
+    }
+
+    getApp.request({
+      url: '/create',
+      method: 'POST',
+      data: project_detail,
+      success: function () {
+        wx.hideLoading()
+        getApp().writeHistory(project_detail, 'create', +new Date())
+        wx.showToast({
+        title: 'Success',
+        icon: 'success',
+        duration: 3000
+        })
+        wx.navigateBack()
+      }
+    })
   },
 })

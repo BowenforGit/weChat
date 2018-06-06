@@ -1,3 +1,4 @@
+const config = require('./config')
 //app.js
 App({
   globalData:{
@@ -36,6 +37,18 @@ App({
       }
     })
   },
+
+  // seal the wx.request()
+  request: function (obj) {
+    var skey = wx.getStorageSync('skey');
+    obj.url = config.host + obj.url;
+    obj.header = {
+      skey: skey,
+      version: config.apiVersion
+    };
+    return wx.request(obj);
+  },
+
   globalData: {
     userInfo: null
   }

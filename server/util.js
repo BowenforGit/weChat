@@ -33,7 +33,7 @@ var loginCheckMiddleware = function (req, res, next) {
         var lastLoginTime = session.last_login_time;
         var expireTime = config.expireTime * 1000;
 
-        if (moment(lastLoginTime, 'YYYY-MM-DD HH:mm:ss').valueOf() + expireTime > +new Date) {
+        if (moment(lastLoginTime, 'YYYY-MM-DD HH:mm:ss').valueOf() + expireTime > +new Date()) {
           req.session = session;
         }
       }
@@ -45,7 +45,7 @@ var loginCheckMiddleware = function (req, res, next) {
 
 };
 
-function only(obj, keys) {
+var only = function (obj, keys) {
   obj = obj || {};
   if ('string' == typeof keys) keys = keys.split(/ +/);
   return keys.reduce(function (ret, key) {
@@ -55,8 +55,19 @@ function only(obj, keys) {
   }, {});
 };
 
+var checkNotLogin = function (req, res, next) {
+  if (!req.session) {
+    res.status(401).json({
+      error: '未登录'
+    });
+    return;
+  }
+  next();
+};
+
 module.exports = {
   mysql: mysql,
   loginCheckMiddleware: loginCheckMiddleware,
-  only
+  only: only,
+  checkNotLogin: checkNotLogin
 };

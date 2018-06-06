@@ -1,5 +1,4 @@
 module.exports = {
-
   serverPort: '5757',
   expireTime: 24 * 3600,
   appId: 'wx1c12411a8b7b2076',
