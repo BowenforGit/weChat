@@ -30,22 +30,22 @@ Page({
   bindNameChange: function (e) {
     this.setData({
       'project.proName': e.detail.value
-    })
+    });
   },
   bindInfoChange: function (e) {
     this.setData({
       'project.proInfo': e.detail.value
-    })
+    });
   },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
 
     var radioItems = this.data.radioItems;
-    var index
+    var index;
     for (var i = 0, len = radioItems.length; i < len; ++i) {
       radioItems[i].checked = radioItems[i].value == e.detail.value;
-      if(radioItem[i].checked)
-        index = i
+      if(radioItems[i].checked)
+        index = i;
     }
     this.setData({
       radioItems: radioItems,
@@ -55,12 +55,12 @@ Page({
   bindDateChange1: function (e) {
     this.setData({
       'project.proStartDate': e.detail.value
-    })
+    });
   },
   bindDateChange2: function (e) {
     this.setData({
       'project.proEndDate': e.detail.value
-    })
+    });
   },
   bindAgreeChange: function (e) {
     this.setData({
@@ -76,7 +76,7 @@ Page({
     wx.showLoading({
       title: '正在创建项目……',
       mask: true
-    })
+    });
     // send the request to the server
     var project_detail = {
       name: project.proName,
@@ -84,22 +84,22 @@ Page({
       start_date: project.proStartDate || '',
       end_date: project.proEndDate || '',
       project_type: project.proType
-    }
+    };
 
     getApp.request({
       url: '/create',
       method: 'POST',
       data: project_detail,
       success: function () {
-        wx.hideLoading()
-        getApp().writeHistory(project_detail, 'create', +new Date())
+        wx.hideLoading();
+        getApp().writeHistory(project_detail, 'create', +new Date());
         wx.showToast({
         title: 'Success',
         icon: 'success',
         duration: 3000
-        })
-        wx.navigateBack()
+        });
+        wx.navigateBack();
       }
-    })
+    });
   },
-})
+});
