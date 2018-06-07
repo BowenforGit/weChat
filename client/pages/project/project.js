@@ -11,63 +11,15 @@ const app = getApp(); //获得小程序实例
 const config = require('../../config.js');
 
 Page({
-  data: {
-    files: [],
-    tabs: ["Project", "Document", "Logs"],
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
+    data: {
+        files: [],
+        tabs: ["Project", "Document", "Logs"],
+        activeIndex: 0,
+        sliderOffset: 0,
+        sliderLeft: 0,
 
-    logs: [],
-    projectID: 1,
-    proName: "CSCI 3100",
-    proDes: "This is project description",
-    proMembers: [{ name: 'Alice' },
-    { name: 'Bob' },
-    { name: 'Cindy' },
-    { name: 'David' }],
-    tasks: [
-      {
-        taskID: 1,
-        taskName: 'Initial Code',
-        taskType: 'Readings',
-        taskInfo: 'Somethins',
-        taskDate: '2016-01-01',
-        taskTime: '23:59',
-        allotDetail: false,
-        taskMembers: [
-          { name: 'Alice' },
-          { name: 'Bob' },
-          { name: 'Cindy' }
-        ]
-      },
-      {
-        taskID: 2,
-        taskName: 'Project Demo',
-        taskType: 'Meeting',
-        taskInfo: 'Something about Task',
-        taskDate: '2016-01-02',
-        taskTime: '09:00',
-        allotDetail: false,
-        taskMembers: [
-          { name: 'Alice' },
-        ]
-      },
-      {
-        taskID: 3,
-        taskName: 'Project Report',
-        taskType: 'Submit file',
-        taskInfo: 'Something about Task',
-        taskDate: '2016-01-03',
-        taskTime: '23:59',
-        allotDetail: true,
-        taskMembers: [
-          { name: 'Alice', task: 'Introduction' },
-          { name: 'Bob', task: 'Summary' }
-        ]
-      }
-    ],
-    leftCount: 0,
+        project: {},
+        tasks_length: 0,
 
   },
   onShareAppMessage: function (res) {
@@ -155,7 +107,7 @@ Page({
             logs: res.data
           });
         }
-      })
+      });
     }
   },
 
@@ -193,50 +145,91 @@ Page({
       });
       this.save();
     }
+  },
 
+    //网络请求数据, 实现首页刷新
+    refresh0: function() {
+        var index_api = '';
+        util.getData(index_api)
+            .then(function(data) {
+                //this.setData({
+                //
+                //});
+                console.log(data);
+            });
+    },
 
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+    //使用本地 fake 数据实现刷新效果
+    getData: function() {
+        var feed = util.getAProjectFake();
+        console.log("get a project");
+        
+        this.setData({
+            project: feed,
+            tasks_length: feed.tasks.length
         });
-      }
-    });
-  },
-  //onShow function for Logs 
-  onShow: function () {
-    var key2 = this.data.projectID + '-logs';
-    var logs = wx.getStorageSync(key2);
-    if (logs) {
-      this.setData({ logs: logs.reverse() });
-    }
-  },
+    },
+    refresh: function() {
+        wx.showToast({
+            title: '刷新中',
+            icon: 'loading',
+            duration: 3000
+        });
+        var feed = util.getAProjectFake();
+        console.log("refresh to get a project");
+        var feed = feed;
+        this.setData({
+            project: feed,
+            tasks_length: feed.tasks.length
+        });
+        setTimeout(function() {
+            wx.showToast({
+                title: '刷新成功',
+                icon: 'success',
+                duration: 2000
+            })
+        }, 3000)
 
-  tabClick: function (e) {
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
-    });
-  },
+    },
 
-  //Navigate to newTask Page
-  createTask: function () {
-    wx.navigateTo({
-      url: '../newTask/newTask?id=' + this.data.projectID
-    });
-  },
+    //使用本地 fake 数据实现继续加载效果
+    nextLoad: function() {
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 4000
+        })
+        var next = util.getAProjectFake();
+        console.log("continueload");
 
-  chooseImage: function (e) {
-    var that = this;
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        that.setData({
-          files: that.data.files.concat(res.tempFilePaths)
+        this.setData({
+            'project.tasks': this.data.project.tasks.concat(next),
+            tasks_length: this.data.tasks_length + next.length
+        });
+        setTimeout(function() {
+            wx.showToast({
+                title: '加载成功',
+                icon: 'success',
+                duration: 2000
+            })
+        }, 3000)
+    },
+
+
+
+    //onShow function for Logs 
+    onShow: function() {
+        var key2 = this.data.project.projectID + '-logs'
+        var logs = wx.getStorageSync(key2)
+        if (logs) {
+            this.setData({ 'project.logs': logs.reverse() })
+        }
+    },
+
+    tabClick: function(e) {
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.id
         });
         //上传图片至服务器
         wx.uploadFile({
@@ -263,9 +256,8 @@ Page({
           // }
         });
 
-      }
-    });
-  },
+      },
+
   previewImage: function (e) {
     if (!this.data.showDeleteIcon) {
       var that = this;

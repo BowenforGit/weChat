@@ -41,5 +41,5 @@
 </view>
 
 <view class="finish">
-<button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{isFinish}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Finish My Task !</button>
+<button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Finish My Task !</button>
 </view>

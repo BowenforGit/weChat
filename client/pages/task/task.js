@@ -1,30 +1,17 @@
 // pages/project/task/task.js
 const util = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+      index: 0,
       projectID:0,
-      taskID:0,
-      task: {
-        taskID: 3,
-        taskName: 'Project Report',
-        taskType: 'Report',
-        taskInfo: 'Something about Task',
-        taskDate: '2016-01-03',
-        taskTime: '23:59',
-        allotDetail: true,
-        taskMembers: [
-          { name: 'Alice', task: 'Introduction', status: false},
-          { name: 'Bob', task: 'Summary', status: true },
-          { name: 'Cindy', task: 'Task for Cindy', status: false },
-        ]
-      },
+      task: {},
 
-      isFinish: false,
-      logs:[],
+      enableButton: true,
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -51,12 +38,31 @@ Page({
   },
   onLoad: function (options) {
     this.load()
-    //console.log('id_t '+ options.id_t)
     this.setData({
-        taskID: options.id_t,
-        projectID: options.id_p
+        index: options.id
     })
-    //console.log('taskID is' + this.data.taskID)
+    console.log('task index is ' + this.data.index)
+
+    for(var member in this.data.task.taskMembers)
+    {
+      if(member.name == userInfo.nickName)
+        this.setData({
+          enableButton: true
+        })
+    }
+
+  },
+  onShow: function()
+  { 
+      //get data from the project page
+      var arr = getCurrentPages();
+      if (arr[arr.length - 2].route == 'pages/project/project')
+      {
+        this.setData({
+          task: arr[arr.length - 2].data.project.tasks[this.data.index],
+          projectID: arr[arr.length - 2].data.project.proID
+        })
+      }
   },
   openConfirm: function () {
     var that = this;
@@ -68,13 +74,16 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.confirm) {
+          var arr = getCurrentPages();
+          var theProject = arr[arr.length-2];
+
           console.log('user click confirm')    
-          var logs = that.data.logs
+          var logs = theProject.data.project.logs
           logs.push({ timestamp: util.formatTime(new Date()), action: 'Finish Task', actionInfo: that.data.task.taskName, userInfo: that.data.userInfo })
-          that.setData({
-            logs: logs
+          theProject.setData({
+            'project.logs': logs
           })
-          that.save()   
+          theProject.save()   
           wx.navigateBack()
         } else {
           console.log('user click cancel')
