@@ -16,8 +16,8 @@ Page({
       { name: 'Others', value: '4'}
     ],
     checkboxItems: [
-      { name: 'Alice', value: '0', checked: true },
-      { name: 'Bob', value: '1' },
+      { name: 'Alice', value: '0'},
+      { name: 'Bob', value: '1'},
       { name: 'Cindy', value: '3'},
       { name: 'David', value: '4'}
     ],
@@ -56,6 +56,23 @@ Page({
       projectID: options.id
     })
     //console.log('project is id' + this.data.projectID)
+    var arr = getCurrentPages();
+    var theProject = arr[arr.length-2]
+    if (theProject.route == 'pages/project/project')
+    {
+        console.log('copy memebr ready')
+        var checkbox = [];
+        console.log(theProject.data.project.proMembers)
+        var members = theProject.data.project.proMembers
+        for (var index = 0; index < members.length;index++){
+          checkbox.push({name: members[index].name, value: index})
+          index++
+        }
+        this.setData({
+          checkboxItems: checkbox
+        })
+        console.log(this.data.checkboxItems)
+    }
   },
 
   taskChangeHandle: function (e) {
@@ -169,11 +186,14 @@ Page({
       icon: 'success',
       duration: 3000
     });
-    var logs = this.data.logs
+    //get the instance of project page 
+    var arr = getCurrentPages();
+    var theProject = arr[arr.length-2];
+    var logs = theProject.data.project.logs
     logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo })
-    this.setData({
-      logs: logs
+    theProject.setData({
+      'project.logs': logs
     })
-    this.save()
+    theProject.save()
   }
 })
