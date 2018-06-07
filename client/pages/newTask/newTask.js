@@ -15,16 +15,11 @@ Page({
       { name: 'Readings', value: '3' },
       { name: 'Others', value: '4'}
     ],
-    checkboxItems: [
-      { name: 'Alice', value: '0'},
-      { name: 'Bob', value: '1'},
-      { name: 'Cindy', value: '3'},
-      { name: 'David', value: '4'}
-    ],
+    checkboxItems: [],
     date: "2016-01-01",
     time: "23:59",
 
-    members: ["Alice", "Bob", "Cindy", "David"],
+    members: [],
     memberIndex: 0,
 
     isAgree: false,
@@ -66,10 +61,10 @@ Page({
         var members = theProject.data.project.proMembers
         for (var index = 0; index < members.length;index++){
           checkbox.push({name: members[index].name, value: index})
-          index++
         }
         this.setData({
-          checkboxItems: checkbox
+          checkboxItems: checkbox,
+          members: theProject.data.project.proMembers
         })
         console.log(this.data.checkboxItems)
     }
@@ -83,7 +78,7 @@ Page({
   addTodoHandle: function (e) {
     if (!this.data.input || !this.data.input.trim()) return
     var todos = this.data.todos
-    todos.push({ name: this.data.members[this.data.memberIndex], task: this.data.input, completed: false })
+    todos.push({ name: this.data.members[this.data.memberIndex].name, task: this.data.input, completed: false })
     this.setData({
       input: '',
       todos: todos,

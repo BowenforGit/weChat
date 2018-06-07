@@ -38,15 +38,9 @@ Component({
   methods: {
     getMembers: function(newVal)
     {
-      console.log('newVal')
-      console.log(newVal)
-
       this.setData({
         'list.members': newVal
       })
-
-      console.log('this.data.list')
-      console.log(this.data.list.members)
     },
     kindToggle: function (e) {
       var id = e.currentTarget.id, list = this.data.list;

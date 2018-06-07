@@ -67,7 +67,7 @@ Page({
             //get project info by local storage or wx request 
         this.getData();
         //check if it is member 
-        this.isMember();
+        this.addMember();
 
         var that = this
         wx.getSystemInfo({
@@ -81,11 +81,15 @@ Page({
     },
 
     //check member 
-    isMember: function() {
+    addMember: function() {
+      console.log('Invoke addMember()')
         var isMember = false
-        for (var item in this.data.project.proMembers) {
-            if (item.name == app.globalData.userInfo.nickName)
+        console.log(this.data.project.proMembers)
+        for (var i = 0; i < this.data.project.proMembers.length; i++) {
+            if (this.data.project.proMembers[i].name == app.globalData.userInfo.nickName){
                 isMember = true
+                console.log('already member')
+            }
         }
         if (!isMember) {
             var members = this.data.project.proMembers
@@ -141,7 +145,7 @@ Page({
     getData: function() {
         var feed = util.getAProjectFake();
         console.log("get a project");
-        console.log(feed);
+        
         this.setData({
             project: feed,
             tasks_length: feed.tasks.length
@@ -253,8 +257,8 @@ Page({
             var file_id = e.currentTarget.id
             var file_index = file_id.lastIndexOf('.')
             file_id = file_id.substring(file_index + 1)
-            console.log(file_id)
-            console.log(e.currentTarget)
+            //console.log(file_id)
+            //console.log(e.currentTarget)
             wx.getImageInfo({
                 src: e.currentTarget.id,
                 success: function(res) {
