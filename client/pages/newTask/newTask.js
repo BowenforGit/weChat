@@ -1,5 +1,5 @@
 // pages/projectForm/projectForm.js
-const util = require('../../utils/util.js')
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -40,58 +40,58 @@ Page({
   },
 
   save: function () {
-    var key2 = this.data.projectID + '-logs'
-    wx.setStorageSync(key2, this.data.logs)
+    var key2 = this.data.projectID + '-logs';
+    wx.setStorageSync(key2, this.data.logs);
   },
   load: function () {
-    var key2 = this.data.projectID + '-logs'
-    var logs = wx.getStorageSync(key2)
+    var key2 = this.data.projectID + '-logs';
+    var logs = wx.getStorageSync(key2);
     if (logs) {
-      this.setData({ logs: logs })
+      this.setData({ logs: logs });
     }
   },
   onLoad: function (options) {
-    this.load()
+    this.load();
     this.setData({
       projectID: options.id
-    })
+    });
     //console.log('project is id' + this.data.projectID)
   },
 
   taskChangeHandle: function (e) {
-    this.setData({ input: e.detail.value })
+    this.setData({ input: e.detail.value });
   },
 
 
   addTodoHandle: function (e) {
-    if (!this.data.input || !this.data.input.trim()) return
-    var todos = this.data.todos
-    todos.push({ name: this.data.members[this.data.memberIndex], task: this.data.input, completed: false })
+    if (!this.data.input || !this.data.input.trim()) return;
+    var todos = this.data.todos;
+    todos.push({ name: this.data.members[this.data.memberIndex], task: this.data.input, completed: false });
     this.setData({
       input: '',
       todos: todos,
       leftCount: this.data.leftCount + 1,
-    })
+    });
   },
 
   toggleTodoHandle: function (e) {
-    var index = e.currentTarget.dataset.index
-    var todos = this.data.todos
-    todos[index].completed = !todos[index].completed
+    var index = e.currentTarget.dataset.index;
+    var todos = this.data.todos;
+    todos[index].completed = !todos[index].completed;
     this.setData({
       todos: todos,
       leftCount: this.data.leftCount + (todos[index].completed ? -1 : 1),
-    })
+    });
   },
 
   removeTodoHandle: function (e) {
-    var index = e.currentTarget.dataset.index
-    var todos = this.data.todos
-    var remove = todos.splice(index, 1)[0]
+    var index = e.currentTarget.dataset.index;
+    var todos = this.data.todos;
+    var remove = todos.splice(index, 1)[0];
     this.setData({
       todos: todos,
       leftCount: this.data.leftCount - (remove.completed ? 0 : 1),
-    })
+    });
   },
 
   radioChange: function (e) {
@@ -105,6 +105,7 @@ Page({
       radioItems: radioItems
     });
   },
+
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value);
 
@@ -127,53 +128,78 @@ Page({
   bindNameChange: function (e){
     this.setData({
       taskName: e.detail.value 
-    })
+    });
   },
   bindDateChange: function (e) {
     this.setData({
       date: e.detail.value
-    })
+    });
   },
   bindTimeChange: function (e) {
     this.setData({
       time: e.detail.value
-    })
+    });
   },
   bindMemberChange: function (e) {
     console.log('picker member 发生选择改变，携带值为', e.detail.value);
     this.setData({
       memberIndex: e.detail.value
-    })
+    });
   },
   bindSwitchChange:function(e)
   {
-    console.log(e.detail.value)
+    console.log(e.detail.value);
     this.setData({
       allotDetail: e.detail.value
-    })
+    });
   },
   bindAgreeChange: function (e) {
     this.setData({
       isAgree: !!e.detail.value.length
     });
   },
+
+
   openToast: function () {
-   
+    var members = this.data.checkboxItems.filter(member => member.checked == true);
+    var type = this.data.radioItems.filter(type => type.checked == true);
+    var deadline = this.data.date.replace("-", "")+this.data.time.replace(":", "")+"00";
+    var format_request = {
+      project_id: this.data.projectID,
+      name: this.data.taskName,
+      member_id1: members[0] || '',
+      member_id2: member[1] || '',
+      member_id3: member[2] || '',
+      subtask1: this.data.todos[0].task || '',
+      subtask2: this.data.todos[1].task || '',
+      subtask3: this.data.todos[2].task || '',
+      info: this.data.input,
+      type: type[0],
+      importance:1,
+      deadline: deadline
+    };
+    app.request({
+      url: '/task',
+      method: 'post',
+      data: format_request
+    });
+    wx.navigateBack();
   },
+
   bindGetUserInfo: function (e) {
     this.setData({
       userInfo: e.detail.userInfo
-    })
+    });
     wx.showToast({
       title: 'Success',
       icon: 'success',
       duration: 3000
     });
-    var logs = this.data.logs
-    logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo })
+    var logs = this.data.logs;
+    logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo });
     this.setData({
       logs: logs
-    })
-    this.save()
+    });
+    this.save();
   }
-})
+});

@@ -87,7 +87,7 @@ Page({
     };
 
     getApp.request({
-      url: '/create',
+      url: '/project',
       method: 'POST',
       data: project_detail,
       success: function () {

@@ -206,7 +206,10 @@ module.exports = {
               .then(function (result) {
                 var num = req.params.num;
                 if (result.length < 5) { res.send([project, result]); }
-                else { res.send([project, members, result.slice(0, 4)]); }
+                else { 
+                  result = result.slice(0,4); 
+                  res.send([project, members, result]); 
+                }
               });
             });
         }
@@ -241,5 +244,9 @@ module.exports = {
     .then(function(result) {
       res.send(result);
     });
+  },
+
+  deleteImage: function(req, res, next) {
+    mysql(imageTable).where({ image_id: req.params.id }).delete();
   }
 };

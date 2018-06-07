@@ -4,7 +4,6 @@ Page({
   data: {
     navTab: ["Todo", "My log", "Missed"],
     currentNavtab: "0",
-    user: {
       tasks: [
         {
           taskID: 0,
@@ -31,10 +30,25 @@ Page({
           status: 0,
         }
       ]
-    }
   },
   onLoad: function () {
+    getApp.request({
+      url: '/task',
+      success: function(res) {
+        tasks = res.data.map(function(task) {
+          var format_task = {
+            taskID: task.task_id,
+            taskName: task.name,
+            taskType: task.type,
+            status: task.finish,
+            due: task.deadline
+          };
+          return format_task;
+        });
 
+        this.setData({tasks: tasks});
+      }
+    });
   },
   switchTab: function(e){
     this.setData({

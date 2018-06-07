@@ -18,6 +18,7 @@ router.get('/logs/:id', PC.getLogs); // get all the logs of a project, id for pr
 
 // DELETE
 router.delete('/:id', PC.deleteProject); // delete one project, id for project_id
+router.delete('/image/:id', PC.deleteImage);
 
 // POST
 router.post('/', PC.createProject); // create one project

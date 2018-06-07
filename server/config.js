@@ -5,11 +5,11 @@ module.exports = {
   appSecret: 'ba9780053ca3dfcc66503c4663fa17d4',
 
   mysql: {
-    host: 'localhost',
+    host: 'https://5xjlqtmz.qcloud.la',
     port: 3306,
     user: 'root',
     db: 'mini-program',
-    pass: 'scfq2018',
+    pass: 'wx1c12411a8b7b2076',
     char: 'utf8mb4'
   },
 

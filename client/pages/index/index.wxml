@@ -6,7 +6,7 @@
                 <view class="left">
                     <view>
                         <image src="../../images/flag.png"></image>
-                        <text>{{user.projects.length}}</text>
+                        <text>{{projects.length}}</text>
                     </view>
                     <view>
                         <image src="../../images/allread.png"></image>
@@ -21,7 +21,7 @@
     </view>
     <view class="weui-panel">
           <view class="weui-panel__bd">
-                <navigator class="weui-media-box weui-media-box_text" url="{{'/pages/project/project?id='+projectID}}"  hover-class="weui-cell_active" wx:for="{{user.projects}}" wx:key="{{index}}">
+                <navigator class="weui-media-box weui-media-box_text" url="{{'/pages/project/project?id='+projectID}}"  hover-class="weui-cell_active" wx:for="{{projects}}" wx:key="{{index}}">
                     <view class="weui-media-box__title weui-media-box__title_in-text">{{item.proName}}</view>
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
