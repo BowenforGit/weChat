@@ -1,8 +1,9 @@
+const config = require('./config')
 //app.js
 App({
-  globalData: {
-    userInfo: {}
-  },
+  // globalData: {
+  //   userInfo: {}
+  // },
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -46,7 +47,19 @@ App({
       })
     }
   },
-  globalData:{
-    userInfo:{}
+
+  // seal the wx.request()
+  request: function (obj) {
+    var skey = wx.getStorageSync('skey');
+    obj.url = config.host + obj.url;
+    obj.header = {
+      skey: skey,
+      version: config.apiVersion
+    };
+    return wx.request(obj);
+  },
+
+  globalData: {
+    userInfo: null
   }
 })

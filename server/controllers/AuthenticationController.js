@@ -11,7 +11,7 @@ function sha1(message) {
 }
 
 module.exports = {
-  login(req, res, next) {
+  login: function (req, res, next) {
     var code = req.query.code;
     var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -57,7 +57,7 @@ module.exports = {
               skey: skey
             });
           })
-          .catch(e => {
+          .catch(function(e) {
             res.json({
               skey: null
             });
@@ -69,15 +69,5 @@ module.exports = {
         });
       }
     });
-  },
-
-  check (req, res, next) {
-    if (!req.session) {
-      res.status(401).json({
-        error: 'Not login'
-      })
-      return
-    }
-    next()
   }
-}
+};
