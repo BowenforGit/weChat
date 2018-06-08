@@ -72,10 +72,10 @@ Page({
 
     onLoad: function() {
         console.info('loading index...');
-        // var that = this;
-        // getApp().checkLogin(function() {
-        //   that.load();
-        // });
+         var that = this;
+          getApp().checkLogin(function() {
+            that.load();
+          });
     },
 
     load: function() {
@@ -84,7 +84,6 @@ Page({
             url: "/project",
             success: function(res) {
                 wx.hideLoading();
-
                 if (res.statusCode !== 200) {
                     wx.showToast({
                         icon: 'none',
@@ -92,7 +91,7 @@ Page({
                     });
                     return;
                 }
-
+              console.info(res)
                 var projects = res.data.map(function(project) {
                     var format = {};
                     format.proID = project.project_id;
@@ -105,10 +104,10 @@ Page({
 
                 that.setData({ projects: projects });
 
-            },
-            fail: function(res) {
-                that.getData();
             }
+            // fail: function(res) {
+            //     that.getData();
+            // }
         });
     },
     upper: function() {
@@ -138,27 +137,27 @@ Page({
             url: '../project/project'
         })
     },
-    onLoad: function() {
-        console.log('onLoad')
-        wx.getSetting({
-            success: function(res) {
-                if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                    wx.getUserInfo({
-                        success: function(res) {
-                            console.log(res.userInfo)
-                            app.globalData.userInfo = res.userInfo
-                            console.log("user Info is saved")
-                                //console.log(app.globalData.userInfo)
-                        }
-                    })
-                }
-            }
-        })
-        var that = this
-            //调用应用实例的方法获取全局数据
-        this.getData();
-    },
+    // onLoad: function() {
+    //     console.log('onLoad')
+    //     wx.getSetting({
+    //         success: function(res) {
+    //             if (res.authSetting['scope.userInfo']) {
+    //                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    //                 wx.getUserInfo({
+    //                     success: function(res) {
+    //                         console.log(res.userInfo)
+    //                         app.globalData.userInfo = res.userInfo
+    //                         console.log("user Info is saved")
+    //                             //console.log(app.globalData.userInfo)
+    //                     }
+    //                 })
+    //             }
+    //         }
+    //     })
+    //     var that = this
+    //         //调用应用实例的方法获取全局数据
+    //     this.getData();
+    // },
     upper: function() {
         wx.showNavigationBarLoading()
         this.refresh();
