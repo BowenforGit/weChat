@@ -41,7 +41,6 @@
 </view>
 <view>
 <auth-button></auth-button>
-<test-server></test-server>
 </view>
 </scroll-view>
 

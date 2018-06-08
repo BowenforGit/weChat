@@ -1,7 +1,6 @@
 
 {
 "usingComponents": {
-  "auth-button": "../../components/authorize/authorize",
-  "test-server": "../../components/testServer/testServer"
+  "auth-button": "../../components/authorize/authorize"
 }
 }
