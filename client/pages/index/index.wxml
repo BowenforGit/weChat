@@ -22,11 +22,14 @@
     <view class="weui-panel">
           <view class="weui-panel__bd">
                 <navigator class="weui-media-box weui-media-box_text" url="{{'/pages/project/project?id='+projectID}}"  hover-class="weui-cell_active" wx:for="{{projects}}" wx:key="{{index}}">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.proName}}</view>
+                    <view class="flex-wrp">
+                        <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left;">{{item.proName}}</view>
+                        <view class="flex-item" style="text-align: right;">delete</view>
+                    </view>
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{item.proType}}</view>
-                        <view class="weui-media-box__info__meta">{{item.proEndDate}}</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.proEndDate}}</view>
                         <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
                         <block wx:if="{{item.proMembers.length >= 1}}">
                             {{item.proMembers.length+' Member(s)'}}

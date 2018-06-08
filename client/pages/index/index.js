@@ -96,9 +96,9 @@ Page({
                     var format = {};
                     format.proID = project.project_id;
                     format.proName = project.name;
-                    format.proType = project.type;
-                    format.proStartDate = project.start_date;
-                    format.proEndDate = project.end_date;
+                    format.proType = project.project_type;
+                    format.proStartDate = project.start_date.substring(0,10);
+                    format.proEndDate = project.end_date.substring(0,10);
                     return format;
                 });
 
