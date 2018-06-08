@@ -8,12 +8,14 @@
                     </view>
                     <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
                         <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
-                              <block wx:for="{{list.members}}" wx:for-item="member" wx:key="*this">
-                                    <view class="weui-cell__bd">
-                                    <image class="kind-list__img" src="{{member.avatarUrl}}"></image>
-                                    <text class="member-name">{{member.name}}</text>
-                                    </view>
-                      </block>
+                             <view class="weui-grids">
+            <block wx:for="{{list.members}}" wx:key="{{index}}">
+                <view url="" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
+                    <view class="weui-grid__label">{{item.name}}</view>
+                </view>
+            </block>
+        </view>
                     </view>
                 </view>
                 </view>        
