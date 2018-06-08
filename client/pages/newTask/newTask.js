@@ -52,21 +52,21 @@ Page({
     });
     //console.log('project is id' + this.data.projectID)
     var arr = getCurrentPages();
-    var theProject = arr[arr.length-2]
+    var theProject = arr[arr.length-2];
     if (theProject.route == 'pages/project/project')
     {
-        console.log('copy memebr ready')
+        console.log('copy memebr ready');
         var checkbox = [];
-        console.log(theProject.data.project.proMembers)
-        var members = theProject.data.project.proMembers
+        console.log(theProject.data.project.proMembers);
+        var members = theProject.data.project.proMembers;
         for (var index = 0; index < members.length;index++){
-          checkbox.push({name: members[index].name, value: index})
+          checkbox.push({name: members[index].name, value: index});
         }
         this.setData({
           checkboxItems: checkbox,
           members: theProject.data.project.proMembers
-        })
-        console.log(this.data.checkboxItems)
+        });
+        console.log(this.data.checkboxItems);
     }
   },
 
@@ -76,9 +76,9 @@ Page({
 
 
   addTodoHandle: function (e) {
-    if (!this.data.input || !this.data.input.trim()) return
-    var todos = this.data.todos
-    todos.push({ name: this.data.members[this.data.memberIndex].name, task: this.data.input, completed: false })
+    if (!this.data.input || !this.data.input.trim()) return;
+    var todos = this.data.todos;
+    todos.push({ name: this.data.members[this.data.memberIndex].name, task: this.data.input, completed: false });
     this.setData({
       input: '',
       todos: todos,
@@ -210,11 +210,11 @@ Page({
     //get the instance of project page 
     var arr = getCurrentPages();
     var theProject = arr[arr.length-2];
-    var logs = theProject.data.project.logs
-    logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo })
+    var logs = theProject.data.project.logs;
+    logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo });
     theProject.setData({
       'project.logs': logs
-    })
-    theProject.save()
+    });
+    theProject.save();
   }
 });

@@ -177,7 +177,7 @@ Page({
         });
         var feed = util.getAProjectFake();
         console.log("refresh to get a project");
-        var feed = feed;
+        // var feed = feed;
         this.setData({
             project: feed,
             tasks_length: feed.tasks.length
@@ -187,8 +187,8 @@ Page({
                 title: '刷新成功',
                 icon: 'success',
                 duration: 2000
-            })
-        }, 3000)
+            });
+        }, 3000);
 
     },
 
@@ -198,7 +198,7 @@ Page({
             title: '加载中',
             icon: 'loading',
             duration: 4000
-        })
+        });
         var next = util.getAProjectFake();
         console.log("continueload");
 
@@ -211,18 +211,18 @@ Page({
                 title: '加载成功',
                 icon: 'success',
                 duration: 2000
-            })
-        }, 3000)
+            });
+        }, 3000);
     },
 
 
 
     //onShow function for Logs 
     onShow: function() {
-        var key2 = this.data.project.projectID + '-logs'
-        var logs = wx.getStorageSync(key2)
+        var key2 = this.data.project.projectID + '-logs';
+        var logs = wx.getStorageSync(key2);
         if (logs) {
-            this.setData({ 'project.logs': logs.reverse() })
+            this.setData({ 'project.logs': logs.reverse() });
         }
     },
 
