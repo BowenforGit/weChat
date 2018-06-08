@@ -14,12 +14,12 @@ Page({
                 proInfo: 'This is the introduction of this project',
                 proStartDate: '2016-01-01',
                 proEndDate: '2017-02-01',
-                  proMembers: [
-                       { name: 'Alice' },
-                       { name: 'Bob' },
-                       { name: 'Cindy' },
-                       { name: 'David' }
-                     ]
+                proMembers: [
+                    { name: 'Alice' },
+                    { name: 'Bob' },
+                    { name: 'Cindy' },
+                    { name: 'David' }
+                ]
             },
             {
                 proID: 1,
@@ -28,12 +28,12 @@ Page({
                 proInfo: 'This is the introduction of this project',
                 proStartDate: '2016-03-01',
                 proEndDate: '2017-05-01',
-                     proMembers: [
-                       { name: 'Tom' },
-                       { name: 'Peter' },
-                       { name: 'Tony' },
-                       { name: 'Clement' }
-                     ]
+                proMembers: [
+                    { name: 'Tom' },
+                    { name: 'Peter' },
+                    { name: 'Tony' },
+                    { name: 'Clement' }
+                ]
             },
         ],
         user: {
@@ -72,16 +72,12 @@ Page({
 
     onLoad: function() {
         console.info('loading index...');
-         var that = this;
-<<<<<<< HEAD
-         getApp().checkLogin(function() {
-           that.load();
-         });
-=======
-          getApp().checkLogin(function() {
+        var that = this;
+
+        getApp().checkLogin(function() {
             that.load();
-          });
->>>>>>> 3faa1c68dc4a70c95c9617b525d600dd52055ce9
+        });
+
     },
 
     load: function() {
@@ -90,31 +86,31 @@ Page({
         getApp().request({
             url: "/project",
             success: function(res) {
-                wx.hideLoading();
-                if (res.statusCode !== 200) {
-                    wx.showToast({
-                        icon: 'none',
-                        title: 'Wrong Request!'
+                    wx.hideLoading();
+                    if (res.statusCode !== 200) {
+                        wx.showToast({
+                            icon: 'none',
+                            title: 'Wrong Request!'
+                        });
+                        return;
+                    }
+                    console.info(res)
+                    var projects = res.data.map(function(project) {
+                        var format = {};
+                        format.proID = project.project_id;
+                        format.proName = project.name;
+                        format.proType = project.type;
+                        format.proStartDate = project.start_date;
+                        format.proEndDate = project.end_date;
+                        return format;
                     });
-                    return;
+
+                    that.setData({ projects: projects });
+
                 }
-              console.info(res)
-                var projects = res.data.map(function(project) {
-                    var format = {};
-                    format.proID = project.project_id;
-                    format.proName = project.name;
-                    format.proType = project.type;
-                    format.proStartDate = project.start_date;
-                    format.proEndDate = project.end_date;
-                    return format;
-                });
-
-                that.setData({ projects: projects});
-
-            }
-            // fail: function(res) {
-            //     that.getData();
-            // }
+                // fail: function(res) {
+                //     that.getData();
+                // }
         });
     },
     upper: function() {
@@ -144,31 +140,7 @@ Page({
             url: '../project/project'
         })
     },
-<<<<<<< HEAD
- 
-=======
-    // onLoad: function() {
-    //     console.log('onLoad')
-    //     wx.getSetting({
-    //         success: function(res) {
-    //             if (res.authSetting['scope.userInfo']) {
-    //                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-    //                 wx.getUserInfo({
-    //                     success: function(res) {
-    //                         console.log(res.userInfo)
-    //                         app.globalData.userInfo = res.userInfo
-    //                         console.log("user Info is saved")
-    //                             //console.log(app.globalData.userInfo)
-    //                     }
-    //                 })
-    //             }
-    //         }
-    //     })
-    //     var that = this
-    //         //调用应用实例的方法获取全局数据
-    //     this.getData();
-    // },
->>>>>>> 3faa1c68dc4a70c95c9617b525d600dd52055ce9
+
     upper: function() {
         wx.showNavigationBarLoading()
         this.refresh();
