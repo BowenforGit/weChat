@@ -1,4 +1,5 @@
 // pages/projectForm/projectForm.js
+const app = getApp()
 Page({
 
     /**
@@ -68,39 +69,55 @@ Page({
             isAgree: !!e.detail.value.length
         });
     },
-    openToast: function() {
-        // wx.showToast({
-        //   title: 'Success',
-        //   icon: 'success',
-        //   duration: 3000
-        // });
-        wx.showLoading({
-            title: '正在创建项目……',
-            mask: true
-        });
-        // send the request to the server
-        var project_detail = {
-            name: project.proName,
-            info: project.proInfo || '',
-            start_date: project.proStartDate || '',
-            end_date: project.proEndDate || '',
-            project_type: project.proType
-        };
+    openToast: function () {
+      // wx.showToast({
+      //   title: 'Success',
+      //   icon: 'success',
+      //   duration: 3000
+      // });
+      wx.showLoading({
+        title: '正在创建项目……',
+        mask: true
+      });
+      // send the request to the server
+      var format_start = this.data.project.proStartDate;
+      var format_end = this.data.project.proEndDate;
 
-        getApp().request({
-            url: '/project',
-            method: 'POST',
-            data: project_detail,
-            success: function() {
-                wx.hideLoading();
-                getApp().writeHistory(project_detail, 'create', +new Date());
-                wx.showToast({
-                    title: 'Success',
-                    icon: 'success',
-                    duration: 3000
-                });
-                wx.navigateBack();
-            }
-        });
+      var project_detail = {
+        name: this.data.project.proName,
+        info: this.data.project.proInfo || '',
+        start_date: format_start || '',
+        end_date: format_end || '',
+        project_type: this.data.project.proType.name
+      };
+
+      console.info(project_detail);
+      app.request({
+        url: '/project',
+        method: 'POST',
+        data: project_detail,
+        success: function (res) {
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 2000)
+          app.writeHistory(project_detail, 'create', +new Date());
+          var project = res.data;
+          var format = {};
+          format.proID = project.project_id;
+          format.proInfo = project.info;
+          format.proName = project.name;
+          format.proType = project.project_type;
+          format.proStartDate = project.start_date;
+          format.proEndDate = project.end_date;
+          format.members = [project.leader];
+          app.globalData.projects.push(format);
+          wx.showToast({
+            title: 'Success',
+            icon: 'success',
+            duration: 1500
+          });
+          wx.navigateBack();
+        }
+      });
     },
 });

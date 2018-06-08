@@ -7,35 +7,7 @@ Page({
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        projects: [{
-                proID: 0,
-                proName: 'Project 1',
-                proType: 'Course',
-                proInfo: 'This is the introduction of this project',
-                proStartDate: '2016-01-01',
-                proEndDate: '2017-02-01',
-                proMembers: [
-                    { name: 'Alice' },
-                    { name: 'Bob' },
-                    { name: 'Cindy' },
-                    { name: 'David' }
-                ]
-            },
-            {
-                proID: 1,
-                proName: 'Project 2',
-                proType: 'Intern',
-                proInfo: 'This is the introduction of this project',
-                proStartDate: '2016-03-01',
-                proEndDate: '2017-05-01',
-                proMembers: [
-                    { name: 'Tom' },
-                    { name: 'Peter' },
-                    { name: 'Tony' },
-                    { name: 'Clement' }
-                ]
-            },
-        ],
+        projects: [],
         user: {
             projects: []
         },
@@ -48,27 +20,7 @@ Page({
         });
     },
 
-    // onLoad: function () {
-    //   console.log('onLoad');
-    //   wx.getSetting({
-    //     success: function (res) {
-    //       if (res.authSetting['scope.userInfo']) {
-    //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-    //         wx.getUserInfo({
-    //           success: function (res) {
-    //             console.log(res.userInfo);
-    //             app.globalData.userInfo = res.userInfo;
-    //             console.log("user Info is saved");
-    //             //console.log(app.globalData.userInfo)
-    //           }
-    //         });
-    //       }
-    //     }
-    //   });
-    //   var that = this;
-    //   //调用应用实例的方法获取全局数据
-    //   this.getData();
-    // },
+
 
     onLoad: function() {
         console.info('loading index...');
@@ -95,16 +47,17 @@ Page({
                         return;
                     }
                     console.info(res)
+                    console.log(res.data)
                     var projects = res.data.map(function(project) {
                         var format = {};
                         format.proID = project.project_id;
                         format.proName = project.name;
-                        format.proType = project.type;
+                        format.proType = project.project_type;
                         format.proStartDate = project.start_date;
                         format.proEndDate = project.end_date;
                         return format;
                     });
-
+                    console.log(projects)
                     that.setData({ projects: projects });
 
                 }

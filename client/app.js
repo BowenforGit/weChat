@@ -48,7 +48,6 @@ App({
               console.info('Wrong!');
               return;
             }
-
             wx.setStorageSync('skey', skey);
             that.getUserInfo(cb);
           }
@@ -112,6 +111,7 @@ App({
           }
           else {
             that.globalData.userInfo = res.data;
+            console.log(that.globalData.userInfo)
             wx.hideLoading();
             cb();
           }
@@ -183,6 +183,8 @@ App({
   },
 
   globalData: {
-    userInfo: {}
+    userInfo: {},
+    projects: [],
+    tasks:[]
   }
 });
