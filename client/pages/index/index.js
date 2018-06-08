@@ -7,35 +7,7 @@ Page({
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        projects: [{
-                proID: 0,
-                proName: 'Project 1',
-                proType: 'Course',
-                proInfo: 'This is the introduction of this project',
-                proStartDate: '2016-01-01',
-                proEndDate: '2017-02-01',
-                  proMembers: [
-                       { name: 'Alice' },
-                       { name: 'Bob' },
-                       { name: 'Cindy' },
-                       { name: 'David' }
-                     ]
-            },
-            {
-                proID: 1,
-                proName: 'Project 2',
-                proType: 'Intern',
-                proInfo: 'This is the introduction of this project',
-                proStartDate: '2016-03-01',
-                proEndDate: '2017-05-01',
-                     proMembers: [
-                       { name: 'Tom' },
-                       { name: 'Peter' },
-                       { name: 'Tony' },
-                       { name: 'Clement' }
-                     ]
-            },
-        ],
+        projects: [],
         user: {
             projects: []
         },
@@ -48,50 +20,32 @@ Page({
         });
     },
 
-    // onLoad: function () {
-    //   console.log('onLoad');
-    //   wx.getSetting({
-    //     success: function (res) {
-    //       if (res.authSetting['scope.userInfo']) {
-    //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-    //         wx.getUserInfo({
-    //           success: function (res) {
-    //             console.log(res.userInfo);
-    //             app.globalData.userInfo = res.userInfo;
-    //             console.log("user Info is saved");
-    //             //console.log(app.globalData.userInfo)
-    //           }
-    //         });
-    //       }
-    //     }
-    //   });
-    //   var that = this;
-    //   //调用应用实例的方法获取全局数据
-    //   this.getData();
-    // },
+
 
     onLoad: function() {
         console.info('loading index...');
-         var that = this;
-          getApp().checkLogin(function() {
+        var that = this;
+
+        getApp().checkLogin(function() {
             that.load();
-          });
+        });
+
     },
 
     load: function() {
         var that = this;
+        console.log('getApp start request')
         getApp().request({
             url: "/project",
             success: function(res) {
-                wx.hideLoading();
-                if (res.statusCode !== 200) {
-                    wx.showToast({
-                        icon: 'none',
-                        title: 'Wrong Request!'
-                    });
-                    return;
-                }
-              console.info(res)
+                    wx.hideLoading();
+                    if (res.statusCode !== 200) {
+                        wx.showToast({
+                            icon: 'none',
+                            title: 'Wrong Request!'
+                        });
+                        return;
+                    }
                 var projects = res.data.map(function(project) {
                     var format = {};
                     format.proID = project.project_id;
@@ -104,10 +58,10 @@ Page({
 
                 that.setData({ projects: projects });
 
-            }
-            // fail: function(res) {
-            //     that.getData();
-            // }
+                }
+                // fail: function(res) {
+                //     that.getData();
+                // }
         });
     },
     upper: function() {
@@ -137,27 +91,7 @@ Page({
             url: '../project/project'
         })
     },
-    // onLoad: function() {
-    //     console.log('onLoad')
-    //     wx.getSetting({
-    //         success: function(res) {
-    //             if (res.authSetting['scope.userInfo']) {
-    //                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-    //                 wx.getUserInfo({
-    //                     success: function(res) {
-    //                         console.log(res.userInfo)
-    //                         app.globalData.userInfo = res.userInfo
-    //                         console.log("user Info is saved")
-    //                             //console.log(app.globalData.userInfo)
-    //                     }
-    //                 })
-    //             }
-    //         }
-    //     })
-    //     var that = this
-    //         //调用应用实例的方法获取全局数据
-    //     this.getData();
-    // },
+
     upper: function() {
         wx.showNavigationBarLoading()
         this.refresh();

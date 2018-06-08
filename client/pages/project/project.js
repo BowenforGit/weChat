@@ -9,13 +9,10 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,
-
         project: {},
         tasks_length: 0,
-
         logs: [],
         leftCount: 0,
-
     },
     onShareAppMessage: function(res) {
         if (res.from === 'button') {
@@ -89,12 +86,12 @@ Page({
         }
         if (!isMember) {
             var members = this.data.project.proMembers
-            if (app.globalData.userInfo.nickName)
-            members.push({ name: app.globalData.userInfo.nickName, avatarUrl: app.globalData.userInfo.avatarUrl })
+            if (app.globalData.userInfo.name)
+            members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar})
             this.setData({
                 'project.proMembers': members
             })
-            console.log('Add Member ' + app.globalData.userInfo.nickName)
+            console.log('Add Member ' + app.globalData.userInfo.name)
             var logs = this.data.project.logs
             logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo: '', userInfo: app.globalData.userInfo })
             this.setData({
