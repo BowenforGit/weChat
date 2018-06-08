@@ -13,13 +13,13 @@ Page({
                 proType: 'Course',
                 proInfo: 'This is the introduction of this project',
                 proStartDate: '2016-01-01',
-                proEndDate: '2017-01-01'
-                    // proMembers: [
-                    //   { name: 'Alice' },
-                    //   { name: 'Bob' },
-                    //   { name: 'Cindy' },
-                    //   { name: 'David' }
-                    // ]
+                proEndDate: '2017-02-01',
+                  proMembers: [
+                       { name: 'Alice' },
+                       { name: 'Bob' },
+                       { name: 'Cindy' },
+                       { name: 'David' }
+                     ]
             },
             {
                 proID: 1,
@@ -27,13 +27,13 @@ Page({
                 proType: 'Intern',
                 proInfo: 'This is the introduction of this project',
                 proStartDate: '2016-03-01',
-                proEndDate: '2017-05-01'
-                    // proMembers: [
-                    //   { name: 'Tom' },
-                    //   { name: 'Peter' },
-                    //   { name: 'Tony' },
-                    //   { name: 'Clement' }
-                    // ]
+                proEndDate: '2017-05-01',
+                     proMembers: [
+                       { name: 'Tom' },
+                       { name: 'Peter' },
+                       { name: 'Tony' },
+                       { name: 'Clement' }
+                     ]
             },
         ],
         user: {
