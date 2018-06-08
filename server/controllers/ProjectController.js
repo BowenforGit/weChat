@@ -24,7 +24,7 @@ module.exports = {
     mysql(projectTable).insert(project)
       .then(function (result) {
         // project.project_id = result[0];
-        res.send(result[0]);
+        res.json(result[0]);
         var item = {
           project_id: result[0].project_id,
           action: 'create a project',

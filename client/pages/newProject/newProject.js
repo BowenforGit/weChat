@@ -2,45 +2,44 @@
 const app = getApp()
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
+  /**
+   * 页面的初始数据
+   */
+  data: {
 
-        project: {
-            proName: '',
-            proType: '',
-            proInfo: '',
-            proStartDate: '',
-            proEndDate: '',
-            proMembers: [],
-        },
-        radioItems: [
-            { name: 'Course', value: '0' },
-            { name: 'Intern', value: '1' },
-            { name: 'Work', value: '2' },
-            { name: 'Others', value: '3' }
-        ],
-        date: "2018-01-01",
-        date2: "2017-05-04",
-        isAgree: false
+    project:{
+        proName: '',
+        proType: '',
+        proInfo: '',
+        proStartDate: '',
+        proEndDate: '',
+        proMembers:[],
     },
-    onShareAppMessage: function() {
+    radioItems: [
+      { name: 'Course', value: '0' },
+      { name: 'Intern', value: '1' },
+      { name: 'Work', value: '2' },
+      { name: 'Others', value: '3' }
+    ],
+    date: "2018-01-01",
+    date2: "2017-05-04",
+    isAgree: false
+  },
+  onShareAppMessage: function () {
 
-    },
-    bindNameChange: function(e) {
-        this.setData({
-            'project.proName': e.detail.value
-        });
-    },
-    bindInfoChange: function(e) {
-        this.setData({
-            'project.proInfo': e.detail.value
-        });
-        
-    },
-    radioChange: function(e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value);
+  },
+  bindNameChange: function (e) {
+    this.setData({
+      'project.proName': e.detail.value
+    });
+  },
+  bindInfoChange: function (e) {
+    this.setData({
+      'project.proInfo': e.detail.value
+    });
+  },
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
 
         var radioItems = this.data.radioItems;
         var index;

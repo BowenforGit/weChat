@@ -46,19 +46,17 @@ Page({
                         });
                         return;
                     }
-                    console.info(res)
-                    console.log(res.data)
-                    var projects = res.data.map(function(project) {
-                        var format = {};
-                        format.proID = project.project_id;
-                        format.proName = project.name;
-                        format.proType = project.project_type;
-                        format.proStartDate = project.start_date;
-                        format.proEndDate = project.end_date;
-                        return format;
-                    });
-                    console.log(projects)
-                    that.setData({ projects: projects });
+                var projects = res.data.map(function(project) {
+                    var format = {};
+                    format.proID = project.project_id;
+                    format.proName = project.name;
+                    format.proType = project.project_type;
+                    format.proStartDate = project.start_date.substring(0,10);
+                    format.proEndDate = project.end_date.substring(0,10);
+                    return format;
+                });
+
+                that.setData({ projects: projects });
 
                 }
                 // fail: function(res) {
