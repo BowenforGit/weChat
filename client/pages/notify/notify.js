@@ -32,7 +32,7 @@ Page({
       ]
   },
   onLoad: function () {
-    getApp.request({
+    getApp().request({
       url: '/task',
       success: function(res) {
         tasks = res.data.map(function(task) {
