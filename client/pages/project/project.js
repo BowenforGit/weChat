@@ -81,7 +81,7 @@ Page({
     addMember: function() {
         var isMember = false
         for (var i = 0 ; i < this.data.project.proMembers.length; i++) {
-          if (this.data.project.proMembers[i].name == app.globalData.userInfo.nickName)
+          if (this.data.project.proMembers[i].name == app.globalData.userInfo.name)
                 isMember = true
         }
         if (!isMember) {
