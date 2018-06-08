@@ -11,7 +11,12 @@
                              <view class="weui-grids">
             <block wx:for="{{list.members}}" wx:key="{{index}}">
                 <view url="" class="weui-grid" hover-class="weui-grid_active">
-                    <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
+                    <block wx:if="{{item.avatarUrl}}">
+                           <image class="weui-grid__icon" src="{{item.avatarUrl}}" />
+                    </block>
+                    <block wx:else>
+                     <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
+                    </block>
                     <view class="weui-grid__label">{{item.name}}</view>
                 </view>
             </block>

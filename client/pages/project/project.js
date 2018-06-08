@@ -83,12 +83,13 @@ Page({
     //check member 
     addMember: function() {
         var isMember = false
-        for (var item in this.data.project.proMembers) {
-            if (item.name == app.globalData.userInfo.nickName)
+        for (var i = 0 ; i < this.data.project.proMembers.length; i++) {
+          if (this.data.project.proMembers[i].name == app.globalData.userInfo.nickName)
                 isMember = true
         }
         if (!isMember) {
             var members = this.data.project.proMembers
+            if (app.globalData.userInfo.nickName)
             members.push({ name: app.globalData.userInfo.nickName, avatarUrl: app.globalData.userInfo.avatarUrl })
             this.setData({
                 'project.proMembers': members
