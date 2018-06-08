@@ -12,7 +12,7 @@
                         <image src="../../images/allread.png"></image>
                         <text>27</text>
                     </view>
-           user     </view>
+           </view>
                 <view class="right"  bindtap="createProject">
                     + Create New
                 </view>

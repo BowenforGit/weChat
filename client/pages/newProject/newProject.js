@@ -36,6 +36,7 @@ Page({
         this.setData({
             'project.proInfo': e.detail.value
         });
+        
     },
     radioChange: function(e) {
         console.log('radio发生change事件，携带value值为：', e.detail.value);
@@ -49,7 +50,7 @@ Page({
         }
         this.setData({
             radioItems: radioItems,
-            'project.proType': radioItems[i]
+            'project.proType': radioItems[index]
         });
     },
     bindDateChange1: function(e) {
@@ -86,7 +87,7 @@ Page({
             project_type: project.proType
         };
 
-        getApp.request({
+        getApp().request({
             url: '/project',
             method: 'POST',
             data: project_detail,

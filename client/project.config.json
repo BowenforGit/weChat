@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"description": "项目配置文件。",
 	"packOptions": {
@@ -33,4 +34,116 @@
 			"list": []
 		}
 	}
+=======
+Skip to content
+
+
+
+Pull requests
+Issues
+Marketplace
+Explore
+
+
+
+Sign out
+
+
+Watch
+0
+Star
+1
+Fork
+2
+
+BowenforGit / weChat
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Insights
+Branch: master
+Find file
+Copy path
+weChat / project.config.json
+e3a878c 3 days ago
+BowenforGit 5 June Server
+1 contributor
+
+Raw
+Blame
+History
+
+35 lines(35 sloc) 587 Bytes
+
+{
+
+    "description": "项目配置文件。",
+
+    "setting": {
+
+        "urlCheck": false,
+
+        "es6": true,
+
+        "postcss": true,
+
+        "minified": true,
+
+        "newFeature": true
+
+    },
+
+    "compileType": "miniprogram",
+
+    "libVersion": "1.9.94",
+
+    "client": "./client",
+
+    "qcloudRoot": "./server",
+
+    "appid": "wx1c12411a8b7b2076",
+
+    "projectname": "projectManager",
+
+    "isGameTourist": false,
+
+    "condition": {
+
+        "search": {
+
+            "current": -1,
+
+            "list": []
+
+        },
+
+        "conversation": {
+
+            "current": -1,
+
+            "list": []
+
+        },
+
+        "game": {
+
+            "currentL": -1,
+
+            "list": []
+
+        },
+
+        "miniprogram": {
+
+            "current": -1,
+
+            "list": []
+
+        }
+
+    }
+
+>>>>>>> 3faa1c68dc4a70c95c9617b525d600dd52055ce9
 }
