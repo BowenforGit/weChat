@@ -4,6 +4,7 @@ const app = getApp() //获得小程序实例
 
 Page({
     data: {
+        tasks: [],
         files: [],
         tabs: ["Project", "Document", "Logs"],
         activeIndex: 0,
@@ -63,6 +64,12 @@ Page({
         this.data.project.projectID = opt.id
             //get project info by local storage or wx request 
         this.getData();
+        this.setData({
+          tasks: this.data.project.tasks
+          
+          }
+        );
+        
         //check if it is member 
         this.addMember();
 

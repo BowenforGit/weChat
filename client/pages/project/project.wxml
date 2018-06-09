@@ -1,13 +1,11 @@
 <view class="page">
-    <view class="page__bd">
-        <view class="weui-tab">
+    <view class="page__bd" style="background-color: #F0F4F3;">
             <view class="top-tab flex-wrp flex-tab">
                 <block wx:for="{{tabs}}" wx:key="{{index}}">
                     <view id="{{index}}" class="toptab flex-item {{activeIndex == index ? 'active' : ''}}" bindtap="tabClick">
                         <view class="weui-navbar__title">{{item}}</view>
                     </view>
                 </block>
-                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
             </view>
             <view class="weui-tab__panel">
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
@@ -21,5 +19,5 @@
                 </view>
             </view>
         </view>
-    </view>
+    
 </view>

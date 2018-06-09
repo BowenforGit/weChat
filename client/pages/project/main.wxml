@@ -23,26 +23,10 @@
             </button>
         </view>
     </view>
-    <view class="task-feed">
-              <navigator url="{{'/pages/task/task?id='+index}}"  hover-class="weui-cell_active" wx:for="{{project.tasks}}" wx:key="{{index}}">
-            <view class="notify-item flex-wrp">
-              <view class="avatar flex-item">
-              <block wx:if="{{item.taskType == 'Submit file'}}">
-                <image src="../../images/draft.png"></image>
-              </block>
-              <block wx:elif="{{item.taskType == 'Meeting'}}">
-                <image src="../../images/chat.png"></image>
-              </block>
-              <block wx:else>
-                <image src="../../images/star.png"></image>
-              </block>  
-              </view>
-              <view class="notify-content flex-item">
-                <text class="notify-title">{{item.taskDate + ' - ' +item.taskName}}</text>
-                <text class="notify-source" >{{item.taskMembers.length}} person(s)</text>
-              </view>
-            </view>
-            </navigator>
-    </view>
+    <zan-panel title="Tasks" style="width:90%">
+        <zan-cell>
+            <zan-steps type="vertical" hasDesc steps="{{tasks}}"></zan-steps>
+        </zan-cell>
+    </zan-panel>
 </view>
 

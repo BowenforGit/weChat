@@ -3,8 +3,8 @@
 .half {
   width: 50%;
   background-color: #fff;
-  padding: 6px 0 6px 0;
-  font-size: 34rpx;
+  padding: 4px 0 4px 0;
+  font-size: 30rpx;
 }
 .task-feed {
     padding: 0;
