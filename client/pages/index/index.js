@@ -23,12 +23,7 @@ Page({
 
     onLoad: function() {
         console.info('loading index...');
-        var that = this;
-
-        getApp().checkLogin(function() {
-            that.load();
-        });
-
+        this.load();
     },
 
     load: function() {
@@ -187,13 +182,20 @@ Page({
     },
     //delete project
     deletePro: function(e) {
+        var that = this;
         this.data.projects.splice(e.currentTarget.dataset.icon, 1)
             //add request to delete project API 
-
-
-        this.setData({
-            projects: this.data.projects
+        app.request({
+            url: '/project/quit/' + e.currentTarget.dataset.id,
+            success: function(res) {
+                that.setData({
+                    projects: that.data.projects
+                })
+            }
         })
+
+
+
     },
     //show delete project buttons
     showDelete: function(e) {

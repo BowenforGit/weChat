@@ -1,4 +1,9 @@
-/* pages/newTask/newTask.wxss */.header {
+/* pages/newTask/newTask.wxss */
+.empty{
+  width: 100%;
+}
+
+.header {
   display: flex;
   align-items: center;
   border: 1rpx solid #e0e0e0;
@@ -79,4 +84,14 @@
 .empty .icon
 {
   flex:1;
+}
+
+.title{
+  margin-right:10%;
+  font-size:16px;
+
+}
+
+.icon{
+  margin-left: 10%;
 }

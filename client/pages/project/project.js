@@ -17,31 +17,22 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,
+        MemberInfos: [],
         project: {},
         projectID: 0,
-        tasks: [],
+
+
         tasks_length: 0,
         logs: [],
         leftCount: 0,
-        list:
-      {
-        id: 'form',
-        name: 'Members',
-        open: false,
-        members: []
-      }
+        list: {
+            id: 'form',
+            name: 'Members',
+            open: false,
+            members: []
+        }
     },
 
-    onShareAppMessage: function(res) {
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            console.log(res.target)
-        }
-        return {
-            title: 'Invite some people',
-            path: '/page/project/project?id=' + this.data.project.projectID
-        }
-    },
 
     save: function() {
         var key1 = this.data.project.projectID + '-tasks'
@@ -50,13 +41,13 @@ Page({
         wx.setStorageSync(key2, this.data.project.logs)
     },
 
-    load: function() {
+    load: function(cb) {
         //不建议使用本地存储，因为信息总是在变化
         var that = this;
         var key1 = this.data.projectID + '-tasks';
         var key2 = this.data.projectID + '-logs';
         var tasks = wx.getStorageSync(key1);
-        if (tasks) {
+        if (false) {
             var leftCount = tasks.filter(function(item) {
                 return !item.completed;
             }).length;
@@ -72,7 +63,7 @@ Page({
 
                     if (res.statusCode !== 200) {
                         wx.showToast({
-                            icon: 'none',
+                            icon: 'warn',
                             title: 'Wrong Request!'
                         });
                         return;
@@ -82,11 +73,20 @@ Page({
                     // formalize the task, no member information, start and end date both needed
                     var tasks = res.data[2].map(function(task) {
                         var format_task = {};
+                        var members = [];
+                        members.push(task.member_id1, task.member_id2, task.member_id3);
+                        for (var i = 0; i < members.length; i++) {
+                            if (members[i] === '') {
+                                members.splice(i, 1);
+                                i--;
+                            }
+                        }
                         format_task.taskID = task.task_id;
                         format_task.taskName = task.name;
                         format_task.taskType = task.type;
-                        format_task.taskStartDate = task.start_date;
-                        format_task.taskEndDate = task.end_date;
+                        format_task.taskStartDate = task.start_date.substring(0, 10);
+                        format_task.taskEndDate = task.deadline.substring(0, 10)
+                        format_task.taskMembers = members;
                         return format_task;
                     });
 
@@ -96,7 +96,8 @@ Page({
                         'project.proName': project.name,
                         'project.proDes': project.info,
                         'project.proMembers': members,
-                        tasks: tasks
+                        tasks: tasks,
+                        'this.data.project.tasks': tasks
                     });
 
                     console.info(that.data.project);
@@ -126,6 +127,7 @@ Page({
         }
     },
 
+
     onLoad: function(opt) {
         var that = this;
         wx.getSystemInfo({
@@ -136,36 +138,29 @@ Page({
                 });
             }
         });
-        this.load()
-            //get the project id from the router
-        this.data.project.projectID = opt.id
-            //get project info by local storage or wx request 
-        this.getData();
-        this.setData({
-          tasks: this.data.project.tasks,
-          "list.members": this.data.project.proMembers
-          }
-        );
-        
-        this.setData({ projectID: opt.id })
-        console.info('Before');
-        that.load(); //异步出问题
-        console.log('After');
-        console.info(this.data.project);
-        //get the project id from the router
 
-        //check if it is member 
-
-
-        var that = this
-        wx.getSystemInfo({
-            success: function(res) {
-                that.setData({
-                    sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-                    sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-                })
+        wx.checkSession({
+            success: function() {
+                //session_key 未过期，并且在本生命周期一直有效
+                that.setData({ projectID: opt.id })
+                console.info('Before');
+                that.load(); //异步出问题
+                console.log('After');
+                console.info(that.data.project);
+            },
+            fail: function() {
+                // session_key 已经失效，需要重新执行登录流程
+                app.checklogin(function() {
+                        that.setData({ projectID: opt.id })
+                        console.info('Before');
+                        that.load(); //异步出问题
+                        console.log('After');
+                        console.info(that.data.project);
+                    }) //重新登录
             }
         })
+
+
     },
 
     //check member 
@@ -177,6 +172,15 @@ Page({
                 isMember = true
         }
         if (!isMember) {
+            //Invite memebr here? or in App.onshow()
+            app.request({
+                url: "/project/invite/" + this.data.projectID,
+                method: 'POST',
+                success: function(res) {
+                    console.log('Invite new member');
+                }
+            })
+
             console.log('project.proMembers ')
             console.log(this.data.project.proMembers)
             var members = this.data.project.proMembers
@@ -186,13 +190,17 @@ Page({
                 'project.proMembers': members
             })
             console.log('Add Member ' + app.globalData.userInfo.name)
-            var logs = this.data.project.logs
-            logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo: '', userInfo: app.globalData.userInfo })
-            this.setData({
-                'project.logs': logs
-            })
+
             this.save()
         }
+    },
+    onPullDownRefresh: function() {
+        wx.showToast({
+            title: '刷新中',
+            icon: 'loading',
+            duration: 3000
+        });
+        this.load();
     },
     //get Data and refresh
     upper: function() {
@@ -233,7 +241,6 @@ Page({
     getData: function() {
         var feed = util.getAProjectFake();
         console.log("get a project");
-        console.log(feed);
         this.setData({
             project: feed,
             tasks_length: feed.tasks.length
@@ -247,7 +254,6 @@ Page({
         });
         var feed = util.getAProjectFake();
         console.log("refresh to get a project");
-        var feed = feed;
         this.setData({
             project: feed,
             tasks_length: feed.tasks.length
@@ -306,7 +312,7 @@ Page({
     //Navigate to newTask Page
     createTask: function() {
         wx.navigateTo({
-            url: '../newTask/newTask?id=' + this.data.project.projectID
+            url: '../newTask/newTask?id=' + this.data.projectID
         })
     },
 
@@ -318,23 +324,20 @@ Page({
             }
         }
     },
-    
-    getMembers: function(newVal)
-    {
-      this.setData({
-        'list.members': newVal
-      })
-    },
-    kindToggle: function (e) {
-      var id = e.currentTarget.id, list = this.data.list;
-      
+    kindToggle: function(e) {
+        this.setData({
+            'list.members': this.data.project.proMembers
+        })
+        var id = e.currentTarget.id,
+            list = this.data.list;
+
         if (list.id == id) {
-          list.open = !list.open
+            list.open = !list.open
         } else {
-          list.open = false
+            list.open = false
         }
-      this.setData({
-        list: list
-      });
+        this.setData({
+            list: list
+        });
     }
 });
