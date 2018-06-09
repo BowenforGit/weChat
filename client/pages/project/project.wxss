@@ -260,7 +260,6 @@ align-items:center;
 }
 
 .flex-item{
-  padding: 20rpx 0;
   font-size: 26rpx;
 }
 
@@ -272,6 +271,7 @@ align-items:center;
 .noborder::after {
     border:none;
 }
+
 
 
 

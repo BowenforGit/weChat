@@ -20,34 +20,19 @@ Page({
         MemberInfos: [],
         project: {},
         projectID: 0,
-        tasks: [],
 
 
         tasks_length: 0,
         logs: [],
         leftCount: 0,
-        list:
-      {
-        id: 'form',
-        name: 'Members',
-        open: false,
-        members: []
-      }
+        list: {
+            id: 'form',
+            name: 'Members',
+            open: false,
+            members: []
+        }
     },
 
-<<<<<<< HEAD
-=======
-    onShareAppMessage: function(res) {
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            console.log(res.target)
-        }
-        return {
-            title: 'Invite some people',
-            path: '/page/project/project?id=' + this.data.project.projectID
-        }
-    },
->>>>>>> 84976e186963f60e911154d5e67e24726e9089ae
 
     save: function() {
         var key1 = this.data.project.projectID + '-tasks'
@@ -137,8 +122,6 @@ Page({
                     that.setData({
                         logs: res.data
                     });
-
-
                 }
             });
         }
@@ -155,26 +138,6 @@ Page({
                 });
             }
         });
-<<<<<<< HEAD
-=======
-        this.load()
-            //get the project id from the router
-        this.data.project.projectID = opt.id
-            //get project info by local storage or wx request 
-        this.getData();
-        this.setData({
-          tasks: this.data.project.tasks,
-          "list.members": this.data.project.proMembers
-          }
-        );
-        
-        this.setData({ projectID: opt.id })
-        console.info('Before');
-        that.load(); //异步出问题
-        console.log('After');
-        console.info(this.data.project);
-        //get the project id from the router
->>>>>>> 84976e186963f60e911154d5e67e24726e9089ae
 
         wx.checkSession({
             success: function() {
@@ -353,23 +316,20 @@ Page({
             }
         }
     },
-    
-    getMembers: function(newVal)
-    {
-      this.setData({
-        'list.members': newVal
-      })
-    },
-    kindToggle: function (e) {
-      var id = e.currentTarget.id, list = this.data.list;
-      
+    kindToggle: function(e) {
+        this.setData({
+            'list.members': this.data.project.proMembers
+        })
+        var id = e.currentTarget.id,
+            list = this.data.list;
+
         if (list.id == id) {
-          list.open = !list.open
+            list.open = !list.open
         } else {
-          list.open = false
+            list.open = false
         }
-      this.setData({
-        list: list
-      });
+        this.setData({
+            list: list
+        });
     }
 });
