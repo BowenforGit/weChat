@@ -50,7 +50,6 @@ Component({
         } else {
           list.open = false
         }
-      
       this.setData({
         list: list
       });

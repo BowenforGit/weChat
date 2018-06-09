@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "Project",
     "usingComponents": {
-      "show-member": "../../components/show-member/show-member"
+      "show-member": "../../components/show-member/show-member",
+      "document": "../../components/document/document"
     }
 }

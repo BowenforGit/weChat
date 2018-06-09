@@ -21,9 +21,7 @@
     padding: 10rpx 20rpx 10rpx;
     background: #52C980;
 }
-.project-item .pro-tag{
 
-}
 .project-item .pro-tag .tag{
     height: 28rpx;
     padding: 15rpx 20rpx;
