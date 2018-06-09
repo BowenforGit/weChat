@@ -1,6 +1,13 @@
+/*
+ * @Date: 2018-06-07 21:51:16 
+ * @Last Modified time: 2018-06-07 21:51:16 
+ * @Problems: 1. what is e.currentTarget.id; 2. how to fetch the images from the server; 
+ * 3. what does files store
+ */
 var sliderWidth = 108; // 需要设置slider的宽度，用于计算中间位置
 const util = require('../../utils/util.js')
 const app = getApp() //获得小程序实例
+const config = require('../../config.js');
 
 Page({
     data: {
@@ -11,6 +18,8 @@ Page({
         sliderOffset: 0,
         sliderLeft: 0,
         project: {},
+        projectID: 0,
+        tasks: [],
         tasks_length: 0,
         logs: [],
         leftCount: 0,
@@ -34,18 +43,78 @@ Page({
     },
 
     load: function() {
-        var key1 = this.data.project.projectID + '-tasks'
-        var key2 = this.data.project.projectID + '-logs'
-        var tasks = wx.getStorageSync(key1)
-        if (this.data.project.tasks) {
-            var leftCount = project.tasks.filter(function(item) {
-                return !item.completed
-            }).length
-            this.setData({ 'project.tasks': tasks, leftCount: leftCount })
+        //不建议使用本地存储，因为信息总是在变化
+        var that = this;
+        var key1 = this.data.projectID + '-tasks';
+        var key2 = this.data.projectID + '-logs';
+        var tasks = wx.getStorageSync(key1);
+        if (tasks) {
+            var leftCount = tasks.filter(function(item) {
+                return !item.completed;
+            }).length;
+            that.setData({ tasks: tasks, leftCount: leftCount });
+            console.info('Local');
+        } else {
+            console.info('Online');
+            app.request({
+                url: "/project/" + this.data.projectID,
+                success: function(res) {
+                    console.log('Success!');
+                    wx.hideLoading();
+
+                    if (res.statusCode !== 200) {
+                        wx.showToast({
+                            icon: 'none',
+                            title: 'Wrong Request!'
+                        });
+                        return;
+                    }
+                    var project = res.data[0];
+                    var members = res.data[1];
+                    // formalize the task, no member information, start and end date both needed
+                    var tasks = res.data[2].map(function(task) {
+                        var format_task = {};
+                        format_task.taskID = task.task_id;
+                        format_task.taskName = task.name;
+                        format_task.taskType = task.type;
+                        format_task.taskStartDate = task.start_date;
+                        format_task.taskEndDate = task.end_date;
+                        return format_task;
+                    });
+
+                    that.setData({
+                        projectID: project.project_id,
+                        'project.projectID': project.project_id,
+                        'project.proName': project.name,
+                        'project.proDes': project.info,
+                        'project.proMembers': members,
+                        tasks: tasks
+                    });
+
+                    console.info(that.data.project);
+                    that.addMember();
+                }
+            });
         }
         var logs = wx.getStorageSync(key2)
         if (logs) {
             this.setData({ 'project.logs': logs })
+        } else {
+            app.request({
+                url: "/project/logs/" + this.data.projectID,
+                success: function(res) {
+                    if (res.statusCode !== 200) {
+                        wx.showToast({
+                            icon: 'none',
+                            title: 'Wrong Request!'
+                        });
+                        return;
+                    }
+                    that.setData({
+                        logs: res.data
+                    });
+                }
+            });
         }
     },
 
@@ -70,8 +139,15 @@ Page({
           }
         );
         
+        this.setData({ projectID: opt.id })
+        console.info('Before');
+        that.load(); //异步出问题
+        console.log('After');
+        console.info(this.data.project);
+        //get the project id from the router
+
         //check if it is member 
-        this.addMember();
+
 
         var that = this
         wx.getSystemInfo({
@@ -86,15 +162,18 @@ Page({
 
     //check member 
     addMember: function() {
+        console.log(this.data.project.proMembers)
         var isMember = false
-        for (var i = 0 ; i < this.data.project.proMembers.length; i++) {
-          if (this.data.project.proMembers[i].name == app.globalData.userInfo.nickName)
+        for (var i = 0; i < this.data.project.proMembers.length; i++) {
+            if (this.data.project.proMembers[i].name == app.globalData.userInfo.name)
                 isMember = true
         }
         if (!isMember) {
+            console.log('project.proMembers ')
+            console.log(this.data.project.proMembers)
             var members = this.data.project.proMembers
             if (app.globalData.userInfo.name)
-            members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar})
+                members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar })
             this.setData({
                 'project.proMembers': members
             })
@@ -223,69 +302,6 @@ Page({
         })
     },
 
-    chooseImage: function(e) {
-        var that = this;
-        wx.chooseImage({
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function(res) {
-                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                that.setData({
-                    files: that.data.files.concat(res.tempFilePaths)
-                });
-                //上传图片至服务器
-                var tempFilePaths = res.tempFilePaths
-                    /* 上传图片接口
-                    wx.uploadFile({
-                      url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-                      filePath: tempFilePaths[0],
-                      name: 'file',
-                      formData: {
-                        'user': 'test'
-                      },
-                      success: function (res) {
-                        var data = res.data
-                        //do something
-                      }
-                    }) */
-
-            }
-        })
-    },
-    previewImage: function(e) {
-        if (!this.data.showDeleteIcon) {
-            var that = this
-            var file_id = e.currentTarget.id
-            var file_index = file_id.lastIndexOf('.')
-            file_id = file_id.substring(file_index + 1)
-            console.log(file_id)
-            console.log(e.currentTarget)
-            wx.getImageInfo({
-                src: e.currentTarget.id,
-                success: function(res) {
-                    //The file is an Image 
-                    console.log(res.type)
-                    wx.previewImage({
-                        current: e.currentTarget.id, // 当前显示图片的http链接
-                        urls: that.data.files // 需要预览的图片http链接列表
-                    })
-                },
-                fail: function() {
-                    wx.openDocument({
-                        filePath: e.currentTarget.id,
-                        success: function(res) {
-                            console.log("打开文件成功")
-                        },
-                        fail: function() {
-                            console.log("不支持打开该文件")
-                        }
-                    })
-                }
-            })
-        } else {
-            this.deleteFile(e)
-        }
-    },
     onShareAppMessage: function() {
         return {
             path: 'pages/project/project?id=' + this.data.project.projectID,
@@ -294,23 +310,4 @@ Page({
             }
         }
     },
-
-    deleteFile: function(e) {
-        console.log(e.currentTarget.id)
-        this.data.files.splice(e.currentTarget.id, 1)
-        this.setData({
-            files: this.data.files
-        })
-    },
-
-    showDelete: function(e) {
-        this.setData({
-            showDeleteIcon: true
-        })
-    },
-    hideDelete: function() {
-        this.setData({
-            showDeleteIcon: false
-        })
-    }
 });

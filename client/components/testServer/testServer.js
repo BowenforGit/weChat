@@ -1,6 +1,6 @@
 // components/testServer/testServer.js
 var app = getApp();
-var config = require('../../config.js')
+var config = require('../../config.js');
 Component({
     /**
      * 组件的属性列表
@@ -37,8 +37,7 @@ Component({
             })
         },
         logout: function() {
-            app.globalData.userInfo = null
-            console.log(app.globalData.userInfo)
+            log.methods.addLog(1);
         },
         getOpenID: function() {
             var that = app

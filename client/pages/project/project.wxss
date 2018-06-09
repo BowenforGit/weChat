@@ -21,9 +21,7 @@
     padding: 10rpx 20rpx 10rpx;
     background: #52C980;
 }
-.project-item .pro-tag{
 
-}
 .project-item .pro-tag .tag{
     height: 28rpx;
     padding: 15rpx 20rpx;
@@ -113,25 +111,6 @@ page,
   margin-top:0;
 }
 
-.weui-uploader__file{
-  display: flex;
-  margin-right: 16px;
-  margin-bottom: 16px;
-}
-.weui-uploader__img{
-  width: 72px;
-  height: 72px;
-}
-
-.weui-uploader__hd{
-  align-items: center;
-}
-.weui-uploader__title{
-    margin-top: 10px;
-}
-.weui-uploader__info {
-  padding-top:8px;
-}
 .logs {
   border: 1rpx solid #e0e0e0;
   border-radius: 10rpx;
