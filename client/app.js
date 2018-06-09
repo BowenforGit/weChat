@@ -182,6 +182,8 @@ App({
   },
 
   globalData: {
-    userInfo: {}
+    userInfo: {},
+    projects: [],
+    tasks: []
   }
 });

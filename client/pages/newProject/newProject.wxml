@@ -41,7 +41,7 @@
                         <view class="weui-label">Start Date</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{project.proStartDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange1">
+                        <picker mode="date" value="{{project.proStartDate}}"  bindchange="bindDateChange1">
                             <view class="weui-input">{{project.proStartDate}}</view>
                         </picker>
                     </view>
@@ -51,7 +51,7 @@
                         <view class="weui-label">End Date</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{project.proEtartDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange2">
+                        <picker mode="date" value="{{project.proEtartDate}}"  bindchange="bindDateChange2">
                             <view class="weui-input">{{project.proEndDate}}</view>
                         </picker>
                     </view>

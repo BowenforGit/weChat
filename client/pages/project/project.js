@@ -17,9 +17,13 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,
+        MemberInfos: [],
 
         project: {},
+        tasks: [],
+        logs: [],
         tasks_length: 0,
+        projectID: 2
 
   },
   onShareAppMessage: function (res) {
@@ -40,21 +44,25 @@ Page({
     wx.setStorageSync(key2, this.data.logs);
   },
 
-  load: function () {
+  load: function (cb) {
     //不建议使用本地存储，因为信息总是在变化
+    var that = this;
     var key1 = this.data.projectID + '-tasks';
     var key2 = this.data.projectID + '-logs';
     var tasks = wx.getStorageSync(key1);
-    if (tasks) {
+    if (false) {
       var leftCount = tasks.filter(function (item) {
         return !item.completed;
       }).length;
-      this.setData({ tasks: tasks, leftCount: leftCount });
+      that.setData({ tasks: tasks, leftCount: leftCount });
+      console.info('Local');
     }
     else {
+      console.info('Online');
       app.request({
         url: "/project/"+this.data.projectID,
         success: function(res) {
+          console.log('Success!');
           wx.hideLoading();
   
           if (res.statusCode !== 200) {
@@ -77,19 +85,22 @@ Page({
             return format_task;
           });
           
-          this.setData({
-              projectID: project.project_id,
-              proName: project.name,
-              proDes: project.info,
-              proMembers: members,
+          that.setData({
+            projectID: project.project_id, 
+            'project.projectID': project.project_id,
+              'project.proName': project.name,
+              'project.proDes': project.info,
+              'project.proMembers': members,
               tasks: tasks
           });
+
+          console.info(that.data.project);
         }
       });
     }
     var logs = wx.getStorageSync(key2);
-    if (logs) {
-      this.setData({ logs: logs });
+    if (false) {
+      that.setData({ logs: logs });
     }
     else {
       app.request({
@@ -103,16 +114,19 @@ Page({
             return;
           }
           
-          this.setData({
+          that.setData({
             logs: res.data
           });
+          if(res.data !== null)
+            cb(res.data);
         }
       });
     }
+
   },
 
   onLoad: function (opt) {
-    // var that = this;
+    var that = this;
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -121,30 +135,38 @@ Page({
         });
       }
     });
-    this.load();
-    //get the project id from the router
-    this.data.projectID = opt.id;
-    //get project info by local storage or wx request 
-
-    var isMember = false;
-    for (var item in this.data.proMembers) {
-      if (item.name == app.globalData.userInfo.nickName)
-        isMember = true;
-    }
+    that.data.projectID = opt.id;
+    that.load(function(){
+      console.log("Hello!");
+      var isMember = false;
+    // for (var item in that.data.project.proMembers) {
+    //   if (item.name == app.globalData.userInfo.nickName)
+    //     isMember = true;
+    // }
     if (!isMember) {
-      var members = this.data.proMembers;
-      members.push({ name: app.globalData.userInfo.nickName, avatarUrl: app.globalData.userInfo.avatarUrl});
-      this.setData({
-        proMembers: members
+      var members = that.data.project.proMembers;
+      console.info(that.data.project);
+      console.info(that.data.project.proMembers);
+      console.info(app.globalData.userInfo);
+      //members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar});
+      that.setData({
+        MemberInfos: members
       });
-      console.log('Add Member ' + app.globalData.userInfo.nickName);
-      var logs = this.data.logs;
+      console.log('Add Member ', members);
+      var logs = that.data.logs;
       logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo: '', userInfo: app.globalData.userInfo });
-      this.setData({
+      that.setData({
         logs: logs
       });
-      this.save();
+      that.save();
     }
+    }); //异步出问题
+    //get the project id from the router
+
+    // console.info(this.data.projectID);
+    //get project info by local storage or wx request 
+
+    
   },
 
     //网络请求数据, 实现首页刷新
@@ -224,6 +246,13 @@ Page({
         if (logs) {
             this.setData({ 'project.logs': logs.reverse() });
         }
+    },
+
+    createTask: function(){
+      console.info('ID=', this.data.projectID);
+      wx.navigateTo({
+        url: '../newTask/newTask?id='+this.data.projectID
+      });
     },
 
     tabClick: function(e) {

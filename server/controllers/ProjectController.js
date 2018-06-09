@@ -19,16 +19,16 @@ module.exports = {
       info: project.info || '',
       start_date: project.start_date || '',
       end_date: project.end_date || '',
-      project_type: project.type
+      project_type: project.project_type
     };
     mysql(projectTable).insert(project)
       .then(function (result) {
         // project.project_id = result[0];
-        res.send(result[0]);
+        res.json(result);
         var item = {
-          project_id: result[0].project_id,
+          project_id: result.project_id,
           action: 'create a project',
-          item: result[0].name
+          item: result.name
         };
         mysql(logsTable).insert(item);
       });
@@ -165,6 +165,7 @@ module.exports = {
   },
   // get all the project for a specific user
   getProjects: function(req, res, next) {
+    console.log(req.session);
     mysql(projectTable).where({ leader: req.session.open_id })
       .orWhere({ member_id1: req.session.open_id })
       .orWhere({ member_id2: req.session.open_id })
@@ -173,6 +174,7 @@ module.exports = {
       .orWhere({ member_id5: req.session.open_id })
       .select('*')
       .then(function (result) {
+        console.log(result);
         res.send(result);
       });
   },
@@ -189,6 +191,8 @@ module.exports = {
           });
         }
         else {
+          console.log("project", result);
+          console.log("project", result[0]);
           project = result[0];
           var id_list = [project.leader, project.member_id1, project.member_id2, project.member_id3, project.member_id4, project.member_id5];
           for(var i = 0; i < id_list.length; i++) {
@@ -197,18 +201,26 @@ module.exports = {
               i--;
             }
           }
+          console.log(id_list);
           mysql(userTable)
-            .whereIn({open_id: id_list})
+            .whereIn('open_id', id_list)
             .select('*')
             .then(function(members) {
               mysql(taskTable)
               .where({ project_id: req.params.id })
               .then(function (result) {
                 var num = req.params.num;
-                if (result.length < 5) { res.send([project, result]); }
+                if (result.length < 5) { res.json([project, members, result]); }
                 else { 
                   result = result.slice(0,4); 
-                  res.send([project, members, result]); 
+                  console.log('project!!!');
+                  console.log(project);
+                  console.log('members!!!');
+                  console.log(members);
+                  console.log('result!!!');
+                  
+                  console.log(result);
+                  res.json([project, members, result]); 
                 }
               });
             });

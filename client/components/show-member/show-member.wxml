@@ -10,7 +10,7 @@
                         <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
                               <block wx:for="{{list.members}}" wx:for-item="member" wx:key="*this">
                                     <view class="weui-cell__bd">
-                                    <image class="kind-list__img" src="{{member.avatarUrl}}"></image>
+                                    <image class="kind-list__img" src="{{member.avatar}}"></image>
                                     <text class="member-name">{{member.name}}</text>
                                     </view>
                       </block>

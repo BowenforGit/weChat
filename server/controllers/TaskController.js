@@ -84,7 +84,7 @@ module.exports = {
       action: 'Add task',
       item: task.name,
     });
-    
+    console.info("add task success!");
     mysql(taskTable)
       .insert(task)
       .then(function (result) {

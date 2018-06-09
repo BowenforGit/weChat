@@ -1,4 +1,5 @@
 // pages/projectForm/projectForm.js
+var app = getApp();
 Page({
 
   /**
@@ -49,7 +50,7 @@ Page({
     }
     this.setData({
       radioItems: radioItems,
-      'project.proType': radioItems[i]
+      'project.proType': radioItems[index]
     });
   },
   bindDateChange1: function (e) {
@@ -78,25 +79,40 @@ Page({
       mask: true
     });
     // send the request to the server
+    var format_start = this.data.project.proStartDate;
+    var format_end = this.data.project.proEndDate;
+
     var project_detail = {
-      name: project.proName,
-      info: project.proInfo || '',
-      start_date: project.proStartDate || '',
-      end_date: project.proEndDate || '',
-      project_type: project.proType
+      name: this.data.project.proName,
+      info: this.data.project.proInfo || '',
+      start_date: format_start || '',
+      end_date: format_end || '',
+      project_type: this.data.project.proType.name
     };
 
-    getApp.request({
+    console.info(project_detail);
+    app.request({
       url: '/project',
       method: 'POST',
       data: project_detail,
-      success: function () {
+      success: function (res) {
+        console.info(res.data);
         wx.hideLoading();
-        getApp().writeHistory(project_detail, 'create', +new Date());
+        app.writeHistory(project_detail, 'create', +new Date());
+        var project = res.data;
+        var format = {};
+        format.proID = project.project_id;
+        format.proInfo = project.info;
+        format.proName= project.name;
+        format.proType = project.project_type;
+        format.proStartDate = project.start_date;
+        format.proEndDate = project.end_date;
+        format.members = [project.leader];
+        app.globalData.projects.push(format);
         wx.showToast({
         title: 'Success',
         icon: 'success',
-        duration: 3000
+        duration: 1500
         });
         wx.navigateBack();
       }

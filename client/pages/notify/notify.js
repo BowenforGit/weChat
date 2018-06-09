@@ -1,5 +1,6 @@
 //logs.js
-var util = require('../../utils/util.js')
+var util = require('../../utils/util.js');
+var app = getApp();
 Page({
   data: {
     navTab: ["Todo", "My log", "Missed"],
@@ -31,6 +32,8 @@ Page({
         }
       ]
   },
+
+  /*下拉加载更多在哪里？ */
   onLoad: function () {
     getApp.request({
       url: '/task',
@@ -47,6 +50,7 @@ Page({
         });
 
         this.setData({tasks: tasks});
+        app.globalData.tasks = tasks;
       }
     });
   },

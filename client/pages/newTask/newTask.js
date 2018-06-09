@@ -1,5 +1,6 @@
 // pages/projectForm/projectForm.js
 const util = require('../../utils/util.js');
+var app = getApp();
 Page({
 
   /**
@@ -53,6 +54,7 @@ Page({
     //console.log('project is id' + this.data.projectID)
     var arr = getCurrentPages();
     var theProject = arr[arr.length-2];
+    console.info(theProject.data);
     if (theProject.route == 'pages/project/project')
     {
         console.log('copy memebr ready');
@@ -120,7 +122,9 @@ Page({
 
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
+    this.setData({
+      memberIndex: e.detail.value
+    });
     var checkboxItems = this.data.checkboxItems, values = e.detail.value;
     for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
       checkboxItems[i].checked = false;
@@ -154,9 +158,11 @@ Page({
   },
   bindMemberChange: function (e) {
     console.log('picker member 发生选择改变，携带值为', e.detail.value);
+    console.log('jajaja');
     this.setData({
       memberIndex: e.detail.value
     });
+    console.info(this.data.memberIndex);
   },
   bindSwitchChange:function(e)
   {
@@ -173,23 +179,34 @@ Page({
 
 
   openToast: function () {
-    var members = this.data.checkboxItems.filter(member => member.checked == true);
+    var members = [];
+    console.info('memberIndex:', this.data.memberIndex);
+    console.info('members:', this.data.members);
+    for(var item in this.data.memberIndex){
+      members.push(this.data.members[item].open_id);
+    }
+    console.info("Members:", members);
     var type = this.data.radioItems.filter(type => type.checked == true);
-    var deadline = this.data.date.replace("-", "")+this.data.time.replace(":", "")+"00";
+    console.info("Type:", type);
+    var deadline = this.data.date.replace("-", "").replace("-","")+this.data.time.replace(":", "")+"00";
+    var todos = this.data.todos.map(function(todo){
+      if(todo !== undefined) return todo.task;
+    });
     var format_request = {
       project_id: this.data.projectID,
       name: this.data.taskName,
       member_id1: members[0] || '',
-      member_id2: member[1] || '',
-      member_id3: member[2] || '',
-      subtask1: this.data.todos[0].task || '',
-      subtask2: this.data.todos[1].task || '',
-      subtask3: this.data.todos[2].task || '',
+      member_id2: members[1] || '',
+      member_id3: members[2] || '',
+      subtask1: todos[0] || '',
+      subtask2: todos[1] || '',
+      subtask3: todos[2] || '',
       info: this.data.input,
-      type: type[0],
+      task_type: type[0].name,
       importance:1,
       deadline: deadline
     };
+    console.info("format:", format_request);
     app.request({
       url: '/task',
       method: 'post',
@@ -210,7 +227,7 @@ Page({
     //get the instance of project page 
     var arr = getCurrentPages();
     var theProject = arr[arr.length-2];
-    var logs = theProject.data.project.logs;
+    var logs = theProject.data.logs;
     logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo });
     theProject.setData({
       'project.logs': logs

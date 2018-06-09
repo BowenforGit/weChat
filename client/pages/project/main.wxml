@@ -10,7 +10,7 @@
             </view>
         </view>
         <view class="show-member">
-        <show-member members="{{project.proMembers}}"></show-member>
+        <show-member members="{{MemberInfos}}"></show-member>
         </view>
         <view class="pro-operate flex-wrp">
             <button class="half" open-type="share">

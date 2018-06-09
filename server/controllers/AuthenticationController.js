@@ -20,8 +20,8 @@ module.exports = {
       json: true,
       qs: {
         grant_type: 'authorization_code',
-        appid: config.appid,
-        secret: config.secret,
+        appid: config.appId,
+        secret: config.appSecret,
         js_code: code
       }
     }, function (err, response, data) {
@@ -69,5 +69,6 @@ module.exports = {
         });
       }
     });
+    //res.send({skey: 'Yesss!'});
   }
 };
