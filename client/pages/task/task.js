@@ -1,5 +1,6 @@
 // pages/project/task/task.js
 const util = require('../../utils/util.js')
+const app = getApp();
 
 Page({
 
@@ -32,6 +33,7 @@ Page({
                     })
             }
         }
+
         if (logs) {
             this.setData({ logs: logs })
         }
@@ -53,12 +55,12 @@ Page({
     },
     onShow: function(options) {
         //get data from the project page
-        
+
         var arr = getCurrentPages();
         if (arr[arr.length - 2].route == 'pages/project/project') {
             this.setData({
                 task: arr[arr.length - 2].data.tasks[this.data.index],
-                projectID: arr[arr.length - 2].data.project.projectID
+                projectID: arr[arr.length - 2].data.project.proID
             })
         }
         console.log(this.data.task)

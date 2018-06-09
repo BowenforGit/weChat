@@ -49,7 +49,7 @@
     </view>
     <zan-panel title="Tasks" style="width:90%">
         <zan-cell>
-            <zan-steps type="vertical" hasDesc steps="{{tasks}}"></zan-steps>
+            <zan-steps type="vertical" steps="{{tasks}}"></zan-steps>
         </zan-cell>
     </zan-panel>
 </view>

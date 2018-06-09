@@ -63,7 +63,7 @@ Page({
 
                     if (res.statusCode !== 200) {
                         wx.showToast({
-                            icon: 'none',
+                            icon: 'warn',
                             title: 'Wrong Request!'
                         });
                         return;
@@ -193,6 +193,14 @@ Page({
 
             this.save()
         }
+    },
+    onPullDownRefresh: function() {
+        wx.showToast({
+            title: '刷新中',
+            icon: 'loading',
+            duration: 3000
+        });
+        this.load();
     },
     //get Data and refresh
     upper: function() {

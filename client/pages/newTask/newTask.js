@@ -22,7 +22,7 @@ Page({
 
         members: [],
         memberIndex: 0,
-
+        memberlist: [],
         isAgree: false,
         allotDetail: false,
 
@@ -59,12 +59,15 @@ Page({
             var checkbox = [];
             console.log(theProject.data.project.proMembers);
             var members = theProject.data.project.proMembers;
+            var memberlist = this.data.memberlist;
             for (var index = 0; index < members.length; index++) {
                 checkbox.push({ name: members[index].name, value: index });
+                memberlist.push(members[index].name)
             }
             this.setData({
                 checkboxItems: checkbox,
-                members: theProject.data.project.proMembers
+                members: members,
+                memberlist: memberlist
             });
             console.log(this.data.checkboxItems);
         }
@@ -194,9 +197,9 @@ Page({
             member_id1: members[0] || '',
             member_id2: members[1] || '',
             member_id3: members[2] || '',
-            subtask1: todos[0] || '',
-            subtask2: todos[1] || '',
-            subtask3: todos[2] || '',
+            subtask1: this.data.todos[0] ? this.data.todos[0].task : '',
+            subtask2: this.data.todos[1] ? this.data.todos[0].task : '',
+            subtask3: this.data.todos[2] ? this.data.todos[0].task : '',
             info: this.data.input,
             task_type: type[0].name,
             importance: 1,
@@ -236,7 +239,7 @@ Page({
                 pro.setData({
                     tasks: tempTasks
                 })
-
+                console.log(pro.data.tasks)
                 wx.navigateBack();
             }
         });
@@ -258,10 +261,10 @@ Page({
         var arr = getCurrentPages();
         var theProject = arr[arr.length - 2];
         var logs = theProject.data.project.logs;
-        logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo });
+        /*logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo });
         theProject.setData({
             'project.logs': logs
-        });
+        });*/
         theProject.save();
     }
 });
