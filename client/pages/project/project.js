@@ -116,6 +116,9 @@ Page({
         }
     },
 
+    onshow: function() {
+        this.load();
+    },
     onLoad: function(opt) {
         var that = this;
         wx.getSystemInfo({
@@ -156,6 +159,14 @@ Page({
                 isMember = true
         }
         if (!isMember) {
+            //Invite memebr here? or in App.onshow()
+            app.request({
+                url: "/invite/" + this.data.projectID,
+                success: function(res) {
+                    console.log('Invite new member');
+                }
+            })
+
             console.log('project.proMembers ')
             console.log(this.data.project.proMembers)
             var members = this.data.project.proMembers
@@ -165,11 +176,7 @@ Page({
                 'project.proMembers': members
             })
             console.log('Add Member ' + app.globalData.userInfo.name)
-            var logs = this.data.project.logs
-            logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo: '', userInfo: app.globalData.userInfo })
-            this.setData({
-                'project.logs': logs
-            })
+
             this.save()
         }
     },

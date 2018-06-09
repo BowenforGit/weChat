@@ -24,7 +24,7 @@
         </view>
     </view>
     <view class="task-feed">
-              <navigator url="{{'/pages/task/task?id='+index}}"  hover-class="weui-cell_active" wx:for="{{project.tasks}}" wx:key="{{index}}">
+              <navigator url="{{'/pages/task/task?id='+index}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
             <view class="notify-item flex-wrp">
               <view class="avatar flex-item">
               <block wx:if="{{item.taskType == 'Submit file'}}">
