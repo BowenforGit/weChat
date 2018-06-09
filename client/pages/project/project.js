@@ -4,7 +4,6 @@ const app = getApp() //获得小程序实例
 
 Page({
     data: {
-        files: [],
         tabs: ["Project", "Document", "Logs"],
         activeIndex: 0,
         sliderOffset: 0,

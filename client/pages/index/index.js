@@ -11,7 +11,8 @@ Page({
         user: {
             projects: []
         },
-        projects_length: 0
+        projects_length: 0,
+        showDeleteIcon: false
     },
     //事件处理函数
     bindProTap: function() {
@@ -186,5 +187,37 @@ Page({
             url: '../newProject/newProject'
         })
     },
-
+    //delete project
+    deletePro: function (e) {
+      this.data.projects.splice(e.currentTarget.id, 1)
+      this.setData({
+        projects: this.data.projects
+      })
+    },
+    //show delete project buttons
+    showDelete: function (e) {
+      this.setData({
+        showDeleteIcon: true
+      })
+    },
+    //hide delete project buttons
+    hideDelete: function () {
+      this.setData({
+        showDeleteIcon: false
+      })
+    },
+    toProject: function(opt)
+    {
+      if(!this.data.showDeleteIcon){
+        console.log('navigate to' + '/pages/project/project?id=' + opt.target.id)
+      wx.navigateTo({
+        url: '/pages/project/project?id='+opt.target.id
+      })
+      }
+      else {
+        this.setData({
+          showDeleteIcon: false
+        })
+      }
+    }
 })

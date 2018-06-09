@@ -81,14 +81,7 @@ Component({
         this.deleteFile(e)
       }
     },
-    onShareAppMessage: function () {
-      return {
-        path: 'pages/project/project?id=' + this.data.project.projectID,
-        success: res => {
-          console.log(res)
-        }
-      }
-    },
+
 
     deleteFile: function (e) {
       console.log(e.currentTarget.id)
