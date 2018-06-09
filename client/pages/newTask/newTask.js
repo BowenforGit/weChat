@@ -22,6 +22,8 @@ Page({
     members: [],
     memberIndex: 0,
 
+    showDetail: false,
+
     isAgree: false,
     allotDetail: false,
 

@@ -62,7 +62,7 @@
             <view class="weui-cell weui-cell_switch">
                 <view class="weui-cell__bd">Assign task to each person</view>
                 <view class="weui-cell__ft">
-                    <switch checked="{{showDetail}}" bindchange="bindSwitchChange" />
+                    <switch checked="{{allotDetail}}" bindchange="bindSwitchChange" />
                 </view>
             </view>
 </view>
@@ -74,7 +74,7 @@
             <view class="weui-cell weui-cell_select">
                 <view class="weui-cell__hd" style="width:30%">
                     <picker bindchange="bindMemberChange" value="{{memberIndex}}" range="{{members}}">
-                        <view class="weui-select">{{members[memberIndex]}}</view>
+                        <view class="weui-select">{{members[memberIndex].name}}</view>
                     </picker>
                 </view>
                 <view class="weui-cell__bd weui-cell__bd_in-select-before">

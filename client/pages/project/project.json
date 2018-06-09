@@ -1,7 +1,6 @@
 {
     "navigationBarTitleText": "Project",
     "usingComponents": {
-      "show-member": "../../components/show-member/show-member",
       "zan-cell": "../../components/cell/index",
       "zan-cell-group": "../../components/cell-group/index",
       "zan-panel": "../../components/panel/index",
