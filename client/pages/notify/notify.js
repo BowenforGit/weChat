@@ -35,21 +35,22 @@ Page({
 
   /*下拉加载更多在哪里？ */
   onLoad: function () {
-    getApp.request({
+    var that  = this;
+    app.request({
       url: '/task',
       success: function(res) {
-        tasks = res.data.map(function(task) {
+        var tasks = res.data.map(function(task) {
           var format_task = {
             taskID: task.task_id,
             taskName: task.name,
-            taskType: task.type,
+            taskType: task.task_type,
             status: task.finish,
             due: task.deadline
           };
           return format_task;
         });
 
-        this.setData({tasks: tasks});
+        that.setData({tasks: tasks});
         app.globalData.tasks = tasks;
       }
     });

@@ -210,7 +210,7 @@ module.exports = {
               .where({ project_id: req.params.id })
               .then(function (result) {
                 var num = req.params.num;
-                if (result.length < 5) { res.json([project, members, result]); }
+                if (result.length < 100) { res.json([project, members, result]); }
                 else { 
                   result = result.slice(0,4); 
                   console.log('project!!!');

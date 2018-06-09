@@ -77,11 +77,20 @@ Page({
           // formalize the task, no member information, start and end date both needed
           var tasks = res.data[2].map(function(task) {
             var format_task = {};
+            var members = [];
+            members.push(task.member_id1, task.member_id2,task.member_id3);
+            for(var i = 0; i < members.length; i++){
+              if(members[i] ==='') {
+                members.splice(i, 1);
+                i--;
+              }
+            }
             format_task.taskID = task.task_id;
             format_task.taskName= task.name;
-            format_task.taskType = task.type;
+            format_task.taskType = task.task_type;
             format_task.taskStartDate = task.start_date;
-            format_task.taskEndDate = task.end_date;
+            format_task.taskEndDate = task.deadline.substring(0,9);
+            format_task.taskMembers = members;
             return format_task;
           });
           
@@ -95,6 +104,7 @@ Page({
           });
 
           console.info(that.data.project);
+          console.log('task!',tasks);
         }
       });
     }
@@ -245,6 +255,16 @@ Page({
         var logs = wx.getStorageSync(key2);
         if (logs) {
             this.setData({ 'project.logs': logs.reverse() });
+        }
+        console.log("Global", app.globalData.new_task);
+        console.log(app.globalData.new_task !== {});
+        if(app.globalData.new_task !== {}){
+          var tasks = this.data.tasks;
+          tasks.push(app.globalData.new_task);
+          this.setData({
+            tasks: tasks
+          });
+          app.globalData.new_task = {};
         }
     },
 

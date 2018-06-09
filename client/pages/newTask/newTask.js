@@ -210,9 +210,30 @@ Page({
     app.request({
       url: '/task',
       method: 'post',
-      data: format_request
+      data: format_request,
+      success: function(res) {
+        var format_task = {};
+        var task = res.data;
+        var members = [];
+        members.push(task.member_id1, task.member_id2,task.member_id3);
+        for(var i = 0; i < members.length; i++){
+          if(members[i] ==='') {
+            members.splice(i, 1);
+            i--;
+          }
+        }
+        format_task.taskID = task.task_id;
+        format_task.taskName= task.name;
+        format_task.taskType = task.task_type;
+        format_task.taskStartDate = task.start_date;
+        format_task.taskEndDate = task.deadline.substring(0,9);
+        format_task.taskMembers = members;
+        console.info("format", format_task);
+        app.globalData.new_task = format_task;
+        wx.navigateBack();
+      }
     });
-    wx.navigateBack();
+
   },
 
   bindGetUserInfo: function (e) {

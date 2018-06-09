@@ -184,6 +184,7 @@ App({
   globalData: {
     userInfo: {},
     projects: [],
-    tasks: []
+    tasks: [],
+    new_task: {}
   }
 });
