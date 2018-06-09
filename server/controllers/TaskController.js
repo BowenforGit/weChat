@@ -21,22 +21,25 @@ module.exports = {
 
   // check a specific task
   checkOneTask: function(req, res, next) {
+    console.log("here!");
     mysql(taskTable)
       .where({ task_id: req.params.id })
       .select('*')
       .then(function (result) {
+        console.log("result1:", result);
         if(result.length === 0) {
           res.status(404).json({
             error: 'No such task.'
           });
         }
         else {
-          var task = result;
+          var task = result[0];
           mysql(userTable)
-            .where({ open_id: member_id1 })
-            .orWhere({ open_id: member_id2 })
-            .orWhere({ open_id: member_id3 })
+            .where({ open_id: task.member_id1 })
+            .orWhere({ open_id: task.member_id2 })
+            .orWhere({ open_id: task.member_id3 })
             .then(function (result) {
+              console.log("result2:", result);
               res.send([task, result]);
             });
         }

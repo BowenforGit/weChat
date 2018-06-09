@@ -37,31 +37,37 @@ module.exports = {
   // the leader invite the members
   inviteMembers: function(req, res, next) {
     var project_id = req.params.id;
-    
+    console.info("I am here1");
     mysql(projectTable).where({
       project_id: project_id
     })
       .select('*')
       .then(function (result) {
-        if(result.length === 0) {
+        
+    console.info("I am here2");
+    if(result.length === 0) {
           res.status(404).json({
             error: 'There is no project with this project id.'
           });
         }
-        else {
-          var attr = {};
-          if(result[0].member_id1 === '') { attr.member_id1 = req.session.id; }
-          else if(result[0].member_id2 === '') { attr.member_id2 = req.session.id; }
-          else if(result[0].member_id3 === '') { attr.member_id3 = req.session.id; }
-          else if(result[0].member_id4 === '') { attr.member_id4 = req.session.id; }
-          else if(result[0].member_id5 === '') { attr.member_id5 = req.session.id; }
+        else {     
+        console.info("I am here2");
+        var attr = {};
+          if(result[0].member_id1 === '') { attr.member_id1 = req.session.open_id; }
+          else if(result[0].member_id2 === '') { attr.member_id2 = req.session.open_id; }
+          else if(result[0].member_id3 === '') { attr.member_id3 = req.session.open_id; }
+          else if(result[0].member_id4 === '') { attr.member_id4 = req.session.open_id; }
+          else if(result[0].member_id5 === '') { attr.member_id5 = req.session.open_id; }
           else { res.send({ error: 'Maximum 5 members!' }); return; }
+          console.info("attr", attr);
           mysql(projectTable).where({
             project_id: project_id
           })
             .update(attr)
-            .then(function () {
-              res.end();
+            .then(function (result) {
+              console.log(result);
+              console.info("I am here3");              
+              res.json(result);
             });
           
           var item = {

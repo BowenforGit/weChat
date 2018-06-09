@@ -10,7 +10,6 @@ Page({
       index: 0,
       projectID:0,
       task: {},
-
       enableButton: true,
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -38,53 +37,86 @@ Page({
   },
   
   // load the task data from the server
-  load_online: function() {
+  load_online: function(cb) {
+    var that = this;
+    console.info("index", this.data.index);
     app.request({
       url: '/task/'+this.data.index.toString(),
       success: function(res) {
+       console.info('First');
         var format_task ={};
         var task = res.data[0];
         var members = res.data[1];
         var taskMembersId = [];
-        var subtasks = [];
+        // var subtasks = [];
         var taskMembers = [];
-        taskMembersId.push(task.member_id1, task.member_id2, task.member_id3);
-        taskMembersId.splice("", 1);
-        subtasks.push(task.subtask1, task.subtask2, task.subtask3);
-        subtasks.splice("", 1);
-        var i = 0;
-        for(var item in taskMembersId) {
-          var name = members.filter(member => member.open_id == item)[0].name;
-          taskMembers.push({
-            name: name,
-            task: subtasks[i]
-          });
-          i++;
-        }
+        //taskMembersId.push(task.member_id1, task.member_id2, task.member_id3);
+        if(task.member_id1 !== "") taskMembersId.push(task.member_id1);
+        if(task.member_id2 !== "") taskMembersId.push(task.member_id2);
+        if(task.member_id3 !== "") taskMembersId.push(task.member_id3);
+        // subtasks.push(task.subtask1, task.subtask2, task.subtask3);
+        // subtasks.splice("", 1);
+        // var i = 0;
+        console.info(taskMembersId);
+        for(var i = 0; i < taskMembersId.length; i++) {
+          // console.log("i:", i);
+          // console.info(members);
+          //console.log(item); 
+          var name = members.filter(member => member.open_id === taskMembersId[i])[0].name;
+          // console.info("Members", members);
+          // console.log(name);
+           taskMembers.push({
+             name: name
+             //task: subtasks[i]
+           });
+         }
+        //  console.info("task members", taskMembers);
+        format_task.taskID = task.task_id;
         format_task.taskName = task.name;
-        format_task.taskType = task.type;
+        format_task.taskType = task.task_type;
         format_task.taskInfo = task.info;
-        format_task.taskDate = task.start_date;
-        format_task.taskTime = task.deadline;
+        format_task.taskDate = task.start_date.substring(0,10);
+        format_task.taskTime = task.deadline.substring(0,10);
         format_task.taskMembers = taskMembers;
+        format_task.status = task.finish;
+        that.setData({
+          task: format_task
+        });
+        if(that.data.task !== {}){
+          console.info(that.data.task);
+          cb(that.data.task);
+
+        }
+        // console.info("Here!", that.data.task);
       }
     });
   },
 
   onLoad: function (options) {
-    this.load();
+    // this.load();
+    var that = this;
     this.setData({
         index: options.id
     });
-    console.log('task index is ' + this.data.index);
+    this.load_online(function(){
+      console.info("Second");
+      // console.log("1:", that.data.task.taskMembers);
+      for(var i = 0; i < that.data.task.taskMembers.length; i++)
+      {
+        //console.info("2:",app.globalData.userInfo);
+          // console.info(member.name);
+          console.info(that.data.task.taskMembers[i].name);
+          console.info(app.globalData.userInfo.name);
+        if(that.data.task.taskMembers[i].name === app.globalData.userInfo.Name){
+          that.setData({
+            enableButton: true
+          });
+          break;
+        }
+      }  
+    });
 
-    for(var member in this.data.task.taskMembers)
-    {
-      if(member.name == userInfo.nickName)
-        this.setData({
-          enableButton: true
-        });
-    }
+    
 
   },
   onShow: function()
@@ -109,16 +141,26 @@ Page({
       success: function (res) {
         console.log(res);
         if (res.confirm) {
+          console.log("taskID:", that.data.task);
+          app.request({
+            url:'/task/toggle/'+that.data.task.taskID,
+            success: function(res){
+              that.setData({
+                'task.status': res.data.finish
+              });
+              console.log(that.data.task.status);
+            }
+          });
           var arr = getCurrentPages();
           var theProject = arr[arr.length-2];
 
           console.log('user click confirm');    
-          var logs = theProject.data.project.logs;
-          logs.push({ timestamp: util.formatTime(new Date()), action: 'Finish Task', actionInfo: that.data.task.taskName, userInfo: that.data.userInfo });
-          theProject.setData({
-            'project.logs': logs
-          });
-          theProject.save();
+          // var logs = theProject.data.logs;
+          // logs.push({ timestamp: util.formatTime(new Date()), action: 'Finish Task', actionInfo: that.data.task.taskName, userInfo: that.data.userInfo });
+          // theProject.setData({
+          //   'logs': logs
+          // });
+          // theProject.save();
           wx.navigateBack();
         } else {
           console.log('user click cancel');

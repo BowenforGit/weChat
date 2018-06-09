@@ -146,6 +146,12 @@ Page({
       taskName: e.detail.value 
     });
   },
+  bindInfoChange: function (e) {
+    console.info("bind success");
+    this.setData({
+      input: e.detail.value
+    });
+  },
   bindDateChange: function (e) {
     this.setData({
       date: e.detail.value

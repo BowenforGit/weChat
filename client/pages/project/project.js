@@ -88,8 +88,8 @@ Page({
             format_task.taskID = task.task_id;
             format_task.taskName= task.name;
             format_task.taskType = task.task_type;
-            format_task.taskStartDate = task.start_date;
-            format_task.taskEndDate = task.deadline.substring(0,9);
+            format_task.taskStartDate = task.start_date.substring(0,10);
+            format_task.taskEndDate = task.deadline.substring(0,10);
             format_task.taskMembers = members;
             return format_task;
           });
