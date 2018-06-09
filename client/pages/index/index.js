@@ -21,8 +21,6 @@ Page({
         });
     },
 
-
-
     onLoad: function() {
         console.info('loading index...');
         var that = this;
@@ -47,17 +45,17 @@ Page({
                         });
                         return;
                     }
-                var projects = res.data.map(function(project) {
-                    var format = {};
-                    format.proID = project.project_id;
-                    format.proName = project.name;
-                    format.proType = project.project_type;
-                    format.proStartDate = project.start_date.substring(0,10);
-                    format.proEndDate = project.end_date.substring(0,10);
-                    return format;
-                });
+                    var projects = res.data.map(function(project) {
+                        var format = {};
+                        format.proID = project.project_id;
+                        format.proName = project.name;
+                        format.proType = project.project_type;
+                        format.proStartDate = project.start_date.substring(0, 10);
+                        format.proEndDate = project.end_date.substring(0, 10);
+                        return format;
+                    });
 
-                that.setData({ projects: projects });
+                    that.setData({ projects: projects });
 
                 }
                 // fail: function(res) {
@@ -188,36 +186,32 @@ Page({
         })
     },
     //delete project
-    deletePro: function (e) {
-      this.data.projects.splice(e.currentTarget.id, 1)
-      this.setData({
-        projects: this.data.projects
-      })
+    deletePro: function(e) {
+        this.data.projects.splice(e.currentTarget.dataset.icon, 1)
+            //add request to delete project API 
+
+
+        this.setData({
+            projects: this.data.projects
+        })
     },
     //show delete project buttons
-    showDelete: function (e) {
-      this.setData({
-        showDeleteIcon: true
-      })
-    },
-    //hide delete project buttons
-    hideDelete: function () {
-      this.setData({
-        showDeleteIcon: false
-      })
-    },
-    toProject: function(opt)
-    {
-      if(!this.data.showDeleteIcon){
-        console.log('navigate to' + '/pages/project/project?id=' + opt.target.id)
-      wx.navigateTo({
-        url: '/pages/project/project?id='+opt.target.id
-      })
-      }
-      else {
+    showDelete: function(e) {
         this.setData({
-          showDeleteIcon: false
+            showDeleteIcon: true
         })
-      }
+    },
+    //navigate to the project or hide the delete buttons
+    toProject: function(opt) {
+        if (!this.data.showDeleteIcon) {
+            console.log('navigate to' + '/pages/project/project?id=' + opt.currentTarget.id)
+            wx.navigateTo({
+                url: '/pages/project/project?id=' + opt.currentTarget.id
+            })
+        } else {
+            this.setData({
+                showDeleteIcon: false
+            })
+        }
     }
 })

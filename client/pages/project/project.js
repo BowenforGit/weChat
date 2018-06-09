@@ -1,6 +1,13 @@
+/*
+ * @Date: 2018-06-07 21:51:16 
+ * @Last Modified time: 2018-06-07 21:51:16 
+ * @Problems: 1. what is e.currentTarget.id; 2. how to fetch the images from the server; 
+ * 3. what does files store
+ */
 var sliderWidth = 108; // 需要设置slider的宽度，用于计算中间位置
 const util = require('../../utils/util.js')
 const app = getApp() //获得小程序实例
+const config = require('../../config.js');
 
 Page({
     data: {
@@ -9,6 +16,8 @@ Page({
         sliderOffset: 0,
         sliderLeft: 0,
         project: {},
+        projectID: 0,
+        tasks: [],
         tasks_length: 0,
         logs: [],
         leftCount: 0,
@@ -32,18 +41,78 @@ Page({
     },
 
     load: function() {
-        var key1 = this.data.project.projectID + '-tasks'
-        var key2 = this.data.project.projectID + '-logs'
-        var tasks = wx.getStorageSync(key1)
-        if (this.data.project.tasks) {
-            var leftCount = project.tasks.filter(function(item) {
-                return !item.completed
-            }).length
-            this.setData({ 'project.tasks': tasks, leftCount: leftCount })
+        //不建议使用本地存储，因为信息总是在变化
+        var that = this;
+        var key1 = this.data.projectID + '-tasks';
+        var key2 = this.data.projectID + '-logs';
+        var tasks = wx.getStorageSync(key1);
+        if (tasks) {
+            var leftCount = tasks.filter(function(item) {
+                return !item.completed;
+            }).length;
+            that.setData({ tasks: tasks, leftCount: leftCount });
+            console.info('Local');
+        } else {
+            console.info('Online');
+            app.request({
+                url: "/project/" + this.data.projectID,
+                success: function(res) {
+                    console.log('Success!');
+                    wx.hideLoading();
+
+                    if (res.statusCode !== 200) {
+                        wx.showToast({
+                            icon: 'none',
+                            title: 'Wrong Request!'
+                        });
+                        return;
+                    }
+                    var project = res.data[0];
+                    var members = res.data[1];
+                    // formalize the task, no member information, start and end date both needed
+                    var tasks = res.data[2].map(function(task) {
+                        var format_task = {};
+                        format_task.taskID = task.task_id;
+                        format_task.taskName = task.name;
+                        format_task.taskType = task.type;
+                        format_task.taskStartDate = task.start_date;
+                        format_task.taskEndDate = task.end_date;
+                        return format_task;
+                    });
+
+                    that.setData({
+                        projectID: project.project_id,
+                        'project.projectID': project.project_id,
+                        'project.proName': project.name,
+                        'project.proDes': project.info,
+                        'project.proMembers': members,
+                        tasks: tasks
+                    });
+
+                    console.info(that.data.project);
+                    that.addMember();
+                }
+            });
         }
         var logs = wx.getStorageSync(key2)
         if (logs) {
             this.setData({ 'project.logs': logs })
+        } else {
+            app.request({
+                url: "/project/logs/" + this.data.projectID,
+                success: function(res) {
+                    if (res.statusCode !== 200) {
+                        wx.showToast({
+                            icon: 'none',
+                            title: 'Wrong Request!'
+                        });
+                        return;
+                    }
+                    that.setData({
+                        logs: res.data
+                    });
+                }
+            });
         }
     },
 
@@ -57,13 +126,15 @@ Page({
                 });
             }
         });
-        this.load()
-            //get the project id from the router
-        this.data.project.projectID = opt.id
-            //get project info by local storage or wx request 
-        this.getData();
+        this.setData({ projectID: opt.id })
+        console.info('Before');
+        that.load(); //异步出问题
+        console.log('After');
+        console.info(this.data.project);
+        //get the project id from the router
+
         //check if it is member 
-        this.addMember();
+
 
         var that = this
         wx.getSystemInfo({
@@ -78,17 +149,18 @@ Page({
 
     //check member 
     addMember: function() {
+        console.log(this.data.project.proMembers)
         var isMember = false
-        for (var i = 0 ; i < this.data.project.proMembers.length; i++) {
-          if (this.data.project.proMembers[i].name == app.globalData.userInfo.name)
+        for (var i = 0; i < this.data.project.proMembers.length; i++) {
+            if (this.data.project.proMembers[i].name == app.globalData.userInfo.name)
                 isMember = true
         }
         if (!isMember) {
-          console.log('project.proMembers ')
-          console.log(this.data.project.proMembers)
+            console.log('project.proMembers ')
+            console.log(this.data.project.proMembers)
             var members = this.data.project.proMembers
             if (app.globalData.userInfo.name)
-            members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar})
+                members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar })
             this.setData({
                 'project.proMembers': members
             })
@@ -224,5 +296,5 @@ Page({
                 console.log(res)
             }
         }
-    }
+    },
 });

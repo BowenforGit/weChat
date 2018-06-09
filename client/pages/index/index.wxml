@@ -22,9 +22,9 @@
     <view class="weui-panel">
           <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text"  hover-class="weui-cell_active" wx:for="{{projects}}" wx:key="{{index}}" >
-                    <view class="flex-wrp" bindlongpress='showDelete' bindtap="toProject" id="{{'proID'+item.proID}}" >
+                    <view class="flex-wrp" bindlongpress='showDelete' bindtap="toProject" id="{{item.proID}}" >
                         <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left;">{{item.proName}}</view>
-                        <view wx:if="{{showDeleteIcon}}"class="flex-item" style="text-align: right;"><icon id="{{index}}" type="cancel" size="23" bindtap="deletePro"></icon></view>
+                        <view wx:if="{{showDeleteIcon}}"class="flex-item" style="text-align: right;"><icon data-icon="{{index}}" type="cancel" size="23" bindtap="deletePro"></icon></view>
                     </view>
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
