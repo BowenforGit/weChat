@@ -23,12 +23,7 @@ Page({
 
     onLoad: function() {
         console.info('loading index...');
-        var that = this;
-
-        getApp().checkLogin(function() {
-            that.load();
-        });
-
+        this.load();
     },
 
     load: function() {

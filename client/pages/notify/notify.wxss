@@ -20,14 +20,13 @@
 .notify-item{
   width: 680rpx;
   background: #ffffff;
-  padding: 25rpx 70rpx 25rpx 0;
+  padding: 25rpx 70rpx 10rpx 0;
   border-bottom: solid 1px #ebebeb;
   align-items: center;
 }
 .notify-item  image{
   width: 60rpx;
   height: 60rpx;
-  border-radius: 60rpx;
 }
 .notify-item .avatar{
   flex: 1;
@@ -45,8 +44,7 @@
   padding: 2px 0 6rpx 0;
 }
 .notify-item .notify-content .notify-title{
-  color: #818A8F;
-  font-size: 32rpx;
+  font-size: 30rpx;
   line-height: 36rpx;
 }
 .placehold{

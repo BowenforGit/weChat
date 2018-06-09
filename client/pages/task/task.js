@@ -58,7 +58,7 @@ Page({
         if (arr[arr.length - 2].route == 'pages/project/project') {
             this.setData({
                 task: arr[arr.length - 2].data.tasks[this.data.index],
-                projectID: arr[arr.length - 2].data.project.proID
+                projectID: arr[arr.length - 2].data.project.projectID
             })
         }
         console.log(this.data.task)

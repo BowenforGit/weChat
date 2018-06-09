@@ -2,6 +2,11 @@
     "navigationBarTitleText": "Project",
     "usingComponents": {
       "show-member": "../../components/show-member/show-member",
+      "zan-cell": "../../components/cell/index",
+      "zan-cell-group": "../../components/cell-group/index",
+      "zan-panel": "../../components/panel/index",
+      "zan-steps": "../../components/steps/index",
+      "doc-page": "../../components/doc-page/index",
       "document": "../../components/document/document"
     }
 }
