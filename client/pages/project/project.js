@@ -91,6 +91,7 @@ Page({
             format_task.taskStartDate = task.start_date.substring(0,10);
             format_task.taskEndDate = task.deadline.substring(0,10);
             format_task.taskMembers = members;
+            format_task.taskInfo = task.info;
             return format_task;
           });
           
@@ -156,7 +157,7 @@ Page({
     if (!isMember) {
       var members = that.data.project.proMembers;
       console.info(that.data.project);
-      console.info(that.data.project.proMembers);
+      console.info("Hey", that.data.project.proMembers);
       console.info(app.globalData.userInfo);
       //members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar});
       that.setData({

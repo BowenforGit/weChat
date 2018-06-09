@@ -1,0 +1,48 @@
+<!--main.wxml-->
+<view class="container">
+    <view class="project-wrp">
+        <view class="project-item">
+            <view class="pro-title">
+                {{project.proName}}
+            </view>
+            <view class="pro-content">
+                {{project.proDes}}
+            </view>
+        </view>
+        <view class="show-member">
+        <show-member members="{{MemberInfos}}"></show-member>
+        </view>
+        <view class="pro-operate flex-wrp">
+            <button class="half" open-type="share">
+                <image src="../../images/invite.png"></image>
+                <text>Invite</text>
+            </button>
+            <button class="half" bindtap="createTask">
+                <image src="../../images/write.png"></image>
+                <text>Add</text>
+            </button>
+        </view>
+    </view>
+    <view class="task-feed">
+              <navigator url="{{'/pages/task/task?id='+index}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
+            <view class="notify-item flex-wrp">
+              <view class="avatar flex-item">
+              <block wx:if="{{item.taskType == 'Submit file'}}">
+                <image src="../../images/draft.png"></image>
+              </block>
+              <block wx:elif="{{item.taskType == 'Meeting'}}">
+                <image src="../../images/chat.png"></image>
+              </block>
+              <block wx:else>
+                <image src="../../images/star.png"></image>
+              </block>  
+              </view>
+              <view class="notify-content flex-item">
+                <text class="notify-title">{{item.taskEndDate + ' - ' +item.taskName}}</text>
+                <text class="notify-source" >{{item.taskMembers.length}} person(s)</text>
+              </view>
+            </view>
+            </navigator>
+    </view>
+</view>
+

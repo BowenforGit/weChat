@@ -154,17 +154,17 @@ module.exports = {
       .select('*')
       .then(function(result) {
         var attr = {};
-        if(result[0].member_id1 === req.params.id) { attr.member_id1 = ''; }
-        else if(result[0].member_id2 === req.params.id) { attr.member_id2 = ''; }
-        else if(result[0].member_id3 === req.params.id) { attr.member_id3 = ''; }
-        else if(result[0].member_id4 === req.params.id) { attr.member_id4 = ''; }
-        else if(result[0].member_id5 === req.params.id) { attr.member_id5 = ''; }
+        if(result[0].member_id1 === req.session.open_id) { attr.member_id1 = ''; }
+        else if(result[0].member_id2 === req.session.open_id) { attr.member_id2 = ''; }
+        else if(result[0].member_id3 === req.session.open_id) { attr.member_id3 = ''; }
+        else if(result[0].member_id4 === req.session.open_id) { attr.member_id4 = ''; }
+        else if(result[0].member_id5 === req.session.open_id) { attr.member_id5 = ''; }
         mysql(projectTable).where({ project_id: req.params.id })
           .update(attr)
           .then(function(){
             mysql(projectTable).where({ project_id: req.params.id })
               .then(function(result) {
-                res.send(result[0]);
+                res.json({success: 'yes!'});
               });
           });
       });

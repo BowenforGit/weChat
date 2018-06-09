@@ -232,8 +232,9 @@ Page({
         format_task.taskName= task.name;
         format_task.taskType = task.task_type;
         format_task.taskStartDate = task.start_date;
-        format_task.taskEndDate = task.deadline.substring(0,9);
+        format_task.taskEndDate = task.deadline.substring(0,4)+'-'+task.deadline.substring(4,6)+'-'+task.deadline.substring(6,8);
         format_task.taskMembers = members;
+        format_task.taskInfo = task.info;
         console.info("format", format_task);
         app.globalData.new_task = format_task;
         wx.navigateBack();

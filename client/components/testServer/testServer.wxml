@@ -1,0 +1,5 @@
+<!--components/testServer/testServer.wxml-->
+
+<button bindtap="getTask">getTask</button>
+<button bindtap="getOpenID">getOpenID</button>
+<button bindtap="logout">logout</button>

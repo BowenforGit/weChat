@@ -172,6 +172,15 @@ page,
   display: block;
 }
 
+.noborder {
+background:none;
+color:#fff;
+}
+
+.noborder::after {
+border:none;
+}
+
 /*.task-feed .feed-item{*/
     /*width: 690rpx;*/
     /*padding: 30rpx 30rpx 20rpx;*/
