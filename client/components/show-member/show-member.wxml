@@ -1,26 +1,35 @@
 <view class="page__bd page__bd_spacing">
-        <view class="kind-list">
-            
-                <view class="kind-list__item">
-                    <view id="{{list.id}}" class="kind-list__item-hd {{list.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
-                        <view class="weui-flex__item">{{list.name}}</view>
-                        
-                    </view>
-                    <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
-                        <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
-                             <view class="weui-grids">
-            <block wx:for="{{list.members}}" wx:key="{{index}}">
-                <view url="" class="weui-grid" hover-class="weui-grid_active">
-                    <block wx:if="{{item.avatar}}">
-                           <image class="weui-grid__icon" src="{{item.avatar}}" />
-                    </block>
-                    <block wx:else>
-                     <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
-                    </block>
-                    <view class="weui-grid__label">{{item.name}}</view>
+        <view class="kind-list">        
+             <view class="kind-list__item">
+                <view class="flex-wrp">
+                    <button id="{{list.id}}" class="half" style="float:left;" bindtap="kindToggle">
+                        <image style="width:35px;height:35px;" src="../../images/member.png"></image>
+                        <text>{{list.name}}</text>
+                    </button>
+                    <button class="half" bindtap="createTask">
+                        <image style="width:35px;height:35px;" src="../../images/write.png"></image>
+                        <text>Add</text>
+                    </button>
                 </view>
-            </block>
-        </view>
+                <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
+                    <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
+                            <view class="weui-grids">
+                <block wx:for="{{list.members}}" wx:key="{{index}}">
+                    <view url="" class="weui-grid" hover-class="weui-grid_active">
+                        <block wx:if="{{item.avatar}}">
+                            <image class="weui-grid__icon" src="{{item.avatar}}" />
+                        </block>
+                        <block wx:else>
+                        <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
+                        </block>
+                        <view class="weui-grid__label">{{item.name}}</view>
+                    </view>
+                </block>
+                <view class="weui-grid" hover-class="weui-grid_active" open-type="share">
+                    <image class="weui-grid__icon" src="../../images/invite.png" />
+                    <view class="weui-grid__label">Invite member</view>
+                </view>
+            </view>
                     </view>
                 </view>
                 </view>        

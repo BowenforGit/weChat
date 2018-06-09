@@ -1,4 +1,5 @@
 <view class="zan-steps zan-steps--{{ type == 'vertical' ? 'vsteps' : 'steps' }} zan-steps--{{ steps.length }} {{ className }}">
+<view wx:if="{{steps.tasks}}">
   <navigator
     url="{{'/pages/task/task?id='+index}}" wx:for="{{ steps }}" wx:for-item="step" wx:key="unique" wx:for-index="index"
     class="zan-steps__step {{ hasDesc ? 'zan-steps__step--db-title' : '' }} {{ index == 0 ? 'zan-steps__step--first-child' : '' }} {{ index == steps.length - 1 ? 'zan-steps__step--last-child' : '' }} {{ step.allotDetail  ? 'zan-steps__step--done' : '' }} {{ step.allotDetail ? 'zan-steps__step--cur' : '' }}"
@@ -11,4 +12,8 @@
     </view>
     <view class="zan-steps__line"></view>
   </navigator>
+  </view>
+  <view wx:else>
+    <view>No tasks yet.</view>
+  </view>
 </view>

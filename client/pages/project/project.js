@@ -23,7 +23,15 @@ Page({
         tasks_length: 0,
         logs: [],
         leftCount: 0,
+        list:
+      {
+        id: 'form',
+        name: 'Members',
+        open: false,
+        members: []
+      }
     },
+
     onShareAppMessage: function(res) {
         if (res.from === 'button') {
             // 来自页面内转发按钮
@@ -134,8 +142,8 @@ Page({
             //get project info by local storage or wx request 
         this.getData();
         this.setData({
-          tasks: this.data.project.tasks
-          
+          tasks: this.data.project.tasks,
+          "list.members": this.data.project.proMembers
           }
         );
         
@@ -310,4 +318,23 @@ Page({
             }
         }
     },
+    
+    getMembers: function(newVal)
+    {
+      this.setData({
+        'list.members': newVal
+      })
+    },
+    kindToggle: function (e) {
+      var id = e.currentTarget.id, list = this.data.list;
+      
+        if (list.id == id) {
+          list.open = !list.open
+        } else {
+          list.open = false
+        }
+      this.setData({
+        list: list
+      });
+    }
 });
