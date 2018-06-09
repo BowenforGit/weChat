@@ -20,7 +20,11 @@
                      <include src='logs.wxml'/>
                 </view>
             </view>
+<<<<<<< HEAD
         </view>
+=======
+    </view>
+>>>>>>> 84976e186963f60e911154d5e67e24726e9089ae
     
     <button bindtap="testLog">test log component</button>
 </view>

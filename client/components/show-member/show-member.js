@@ -20,21 +20,11 @@ Component({
     list:
       {
         id: 'form',
-        name: 'Group Members',
+        name: 'Members',
         open: false,
         members: []
       }
   },
-  attached: function () { 
-    /*var pages = getCurrentPages();
-    console.log(pages.data.userInfo)
-    this.setData({
-      userInfo: pages.data.userInfo
-    })*/
-  },
-  /**
-   * 组件的方法列表
-   */
   methods: {
     getMembers: function(newVal)
     {
