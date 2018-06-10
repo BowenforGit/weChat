@@ -13,7 +13,14 @@ const config = require('../../config.js');
 Page({
     data: {
         files: [],
-        tabs: ["Project", "Logs", "Back"],
+        tabs: [{
+          icon: '../../images/allread.png',
+          selectedIcon: '../../images/b-allread.png'
+        },
+      {
+        icon: '../../images/log.png',
+          selectedIcon: '../../images/b-log.png'
+      }],
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,

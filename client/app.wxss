@@ -32,14 +32,14 @@
 .top-tab{
   width: 750rpx;
   height: 100rpx;
-  background: #1aad19;
+  background: #FBFBFB;
   color: #9FF781;
   font-size: 28rpx;
   line-height: 100rpx;
   box-shadow: 0 2px 2px #bebebe;
   margin: 0 0 8rpx 0;
   position: fixed;
-  top: 0;
+  bottom: 0;
   z-index: 9999;
 }
 .toptab.active{

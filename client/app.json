@@ -9,7 +9,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#088A08",
+    "navigationBarBackgroundColor": "#1976D2",
     "navigationBarTitleText": "Project Helper",
     "navigationBarTextStyle":"white",
     "enablePullDownRefresh":true

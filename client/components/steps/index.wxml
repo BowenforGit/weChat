@@ -4,7 +4,7 @@
     url="{{'/pages/task/task?id='+step.taskID}}" wx:for="{{ steps }}" wx:for-item="step" wx:key="unique" wx:for-index="index"
     class="zan-steps__step {{ hasDesc ? 'zan-steps__step--db-title' : '' }} {{ index == 0 ? 'zan-steps__step--first-child' : '' }} {{ index == steps.length - 1 ? 'zan-steps__step--last-child' : '' }} {{ step.status  ? 'zan-steps__step--done' : '' }} {{ step.status ? 'zan-steps__step--cur' : '' }}"
   >    
-    <view wx:if="{{ step.taskName }}" class="zan-steps__title" style="display:block;">{{ step.taskName }}</view>
+    <view wx:if="{{ step.taskName }}" class="zan-steps__title" style="display:block;font-size:18px;">{{ step.taskName }}</view>
     <view class="zan-steps__title">{{ step.taskEndDate }}</view>
     <view class="zan-steps__title  zan-steps__title--desc">{{ step.taskInfo }}</view>
     <view class="zan-steps__icons">

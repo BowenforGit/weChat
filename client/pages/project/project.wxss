@@ -99,7 +99,7 @@ page,
     padding-bottom: 0;
 }
 .weui-tab__content{
-    padding-top: 1px;
+    padding-top: 0px;
 }
 
 .show-member{
@@ -270,6 +270,12 @@ align-items:center;
 
 .noborder::after {
     border:none;
+}
+
+.icon{
+    margin-top:10px;
+    height:35px;
+    width:35px;
 }
 
 
