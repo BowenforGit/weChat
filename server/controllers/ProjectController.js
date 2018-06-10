@@ -13,6 +13,8 @@ module.exports = {
   // First time the project is created
   createProject: function(req, res, next) {
     var project = req.body;
+    console.log("I am creating a new task!");
+    console.log(project);
     project = {
       name: project.name,
       leader: req.session.open_id,
@@ -23,14 +25,28 @@ module.exports = {
     };
     mysql(projectTable).insert(project)
       .then(function (result) {
-        // project.project_id = result[0];
-        res.json(result);
-        var item = {
-          project_id: result.project_id,
-          action: 'create a project',
-          item: result.name
-        };
-        mysql(logsTable).insert(item);
+        mysql(projectTable).where({ project_id: result[0]})
+        .then(function(result) {
+          var project_name = result[0].name;
+          var project_id = result[0].project_id;
+          mysql(userTable).where({ open_id: req.session.open_id})
+            .select('*')  
+            .then(function(result) {
+              console.info("Find the user!!!");
+              var name  = result[0].name;
+              var item = {
+                name: name,
+                project_id: project_id,
+                action: 'Create a Project',
+                item: project_name
+              };
+              mysql(logsTable).insert(item)
+              .then(function(result){
+                console.log(result);
+              });
+            });
+        });
+        res.json(result);        
       });
   },
 
@@ -65,17 +81,20 @@ module.exports = {
           })
             .update(attr)
             .then(function (result) {
-              console.log(result);
-              console.info("I am here3");              
+              mysql(userTable).where({ open_id: req.session.open_id})
+              .select('name')  
+              .then(function(result){
+                var name  = result[0];
+                var item = {
+                  name: name,
+                  project_id: project_id,
+                  action: 'Be invited',
+                  item: name
+                };
+                mysql(logsTable).insert(item);
+              });            
               res.json(result);
             });
-          
-          var item = {
-            project_id: project_id,
-            action: 'New member joins!',
-            item: attr.member_id1 || attr.member_id2 || attr.member_id3 || attr.member_id4 || attr.member_id5
-          };
-          mysql(logsTable).insert(item);
         }
       });
   },
@@ -159,6 +178,16 @@ module.exports = {
         else if(result[0].member_id3 === req.session.open_id) { attr.member_id3 = ''; }
         else if(result[0].member_id4 === req.session.open_id) { attr.member_id4 = ''; }
         else if(result[0].member_id5 === req.session.open_id) { attr.member_id5 = ''; }
+        mysql(userTable).where({open_id: req.session.open_id})
+        .then(function(result1) {
+          var item = {
+            name: result1[0].name,
+            action: "Quit the project",
+            item: result[0].name,
+            project_id: result[0].project_id
+          };
+          mysql(logsTable).insert(item);
+        } );
         mysql(projectTable).where({ project_id: req.params.id })
           .update(attr)
           .then(function(){

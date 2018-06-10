@@ -10,7 +10,7 @@ Page({
       index: 0,
       projectID:0,
       task: {},
-      enableButton: true,
+      enableButton: false,
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -107,7 +107,8 @@ Page({
           // console.info(member.name);
           console.info(that.data.task.taskMembers[i].name);
           console.info(app.globalData.userInfo.name);
-        if(that.data.task.taskMembers[i].name === app.globalData.userInfo.Name){
+        if(that.data.task.taskMembers[i].name === app.globalData.userInfo.name){
+          console.info("Set true~");
           that.setData({
             enableButton: true
           });
@@ -122,14 +123,14 @@ Page({
   onShow: function()
   { 
       //get data from the project page
-      var arr = getCurrentPages();
-      if (arr[arr.length - 2].route == 'pages/project/project')
-      {
-        this.setData({
-          task: arr[arr.length - 2].data.project.tasks[this.data.index],
-          projectID: arr[arr.length - 2].data.project.proID
-        });
-      }
+      // var arr = getCurrentPages();
+      // if (arr[arr.length - 2].route == 'pages/project/project')
+      // {
+      //   this.setData({
+      //     task: arr[arr.length - 2].data.project.tasks[this.data.index],
+      //     projectID: arr[arr.length - 2].data.project.proID
+      //   });
+      // }
   },
   openConfirm: function () {
     var that = this;

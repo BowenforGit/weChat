@@ -69,6 +69,28 @@ module.exports = {
         changedAttrs = {};
         if (result[0].finish == true) { changedAttrs.finish = false; }
         else { changedAttrs.finish = true; }
+        var project_id = result[0].project_id;
+        var project_item = result[0].name;
+        mysql(userTable).where({ open_id: req.session.open_id})
+        .select('*')
+        .then(function(result){
+          console.log("result", result);
+          var user = result[0].name;
+          console.log(user);
+          var action = changedAttrs.finish ? 'Finish the task' : 'Undo the task';
+          var item = {
+            project_id : project_id,
+            action: action,
+            item: project_item,
+            name: user
+          };
+          console.log(item);
+          mysql(logsTable).insert(item)
+          .then(function(result) {
+            console.log("toggle!");
+                  });
+          });
+        
         mysql(taskTable)
           .where({ task_id: req.params.id })
           .update(changedAttrs)
@@ -81,17 +103,25 @@ module.exports = {
 
   addTask: function(req, res, next) {
     var task = req.body;
-    
-    mysql(logsTable).insert({
-      project_id: task.project_id,
-      action: 'Add task',
-      item: task.name,
+    mysql(userTable).where({open_id: req.session.open_id})
+    .then(function(result) {
+      var item = {
+        name: result[0].name,
+        project_id: task.project_id,
+        action: 'Add task',
+        item: task.name,
+      };
+      console.log(item);
+      mysql(logsTable).insert(item)
+      .then(function(result){
+        console.log(result);
+      });
     });
     console.info("add task success!");
     mysql(taskTable)
       .insert(task)
       .then(function (result) {
-        task.task_id = result[0].task_id;
+        task.task_id = result[0];
         res.json(task);
       });  
   }

@@ -125,8 +125,13 @@ Page({
             return;
           }
           
+          var logs = res.data;
+          logs = logs.map(function(log) {
+            log.date = log.date.substring(0,10);
+            return log;
+          });
           that.setData({
-            logs: res.data
+            logs: logs
           });
           if(res.data !== null)
             cb(res.data);
@@ -147,31 +152,31 @@ Page({
       }
     });
     that.data.projectID = opt.id;
-    that.load(function(){
-      console.log("Hello!");
-      var isMember = false;
-    // for (var item in that.data.project.proMembers) {
-    //   if (item.name == app.globalData.userInfo.nickName)
-    //     isMember = true;
+    that.load(function(){});
+    //   console.log("Hello!");
+    //   var isMember = false;
+    // // for (var item in that.data.project.proMembers) {
+    // //   if (item.name == app.globalData.userInfo.nickName)
+    // //     isMember = true;
+    // // }
+    // if (!isMember) {
+    //   var members = that.data.project.proMembers;
+    //   console.info(that.data.project);
+    //   console.info("Hey", that.data.project.proMembers);
+    //   console.info(app.globalData.userInfo);
+    //   //members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar});
+    //   that.setData({
+    //     MemberInfos: members
+    //   });
+    //   console.log('Add Member ', members);
+    //   var logs = that.data.logs;
+    //   logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo: '', userInfo: app.globalData.userInfo });
+    //   that.setData({
+    //     logs: logs
+    //   });
+    //   that.save();
     // }
-    if (!isMember) {
-      var members = that.data.project.proMembers;
-      console.info(that.data.project);
-      console.info("Hey", that.data.project.proMembers);
-      console.info(app.globalData.userInfo);
-      //members.push({ name: app.globalData.userInfo.name, avatarUrl: app.globalData.userInfo.avatar});
-      that.setData({
-        MemberInfos: members
-      });
-      console.log('Add Member ', members);
-      var logs = that.data.logs;
-      logs.push({ timestamp: util.formatTime(new Date()), action: 'Become New Member', actionInfo: '', userInfo: app.globalData.userInfo });
-      that.setData({
-        logs: logs
-      });
-      that.save();
-    }
-    }); //异步出问题
+  //异步出问题
     //get the project id from the router
 
     // console.info(this.data.projectID);
