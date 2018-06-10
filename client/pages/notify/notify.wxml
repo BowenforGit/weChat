@@ -6,15 +6,23 @@
 </view>
 <scroll-view scroll-y="true" class="container notify withtab" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
   <view class="ctnt0" hidden="{{currentNavtab==0 ? '' : true}}">
+  <block wx:if="{{item.status == 0 && item.due >= date}}">
   <navigator url="{{'/pages/task/task?id='+item.taskID}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
   <block wx:if="{{item.status == 0}}">
     <view class="notify-item flex-wrp">
       <view class="avatar flex-item">
-      <block wx:if="{{item.taskType == 'Submit file'}}">
+      <block wx:if="{{item.taskType == 'Presentation'}}">
         <image src="../../images/draft.png"></image>
       </block>
-      <block wx:elif="{{item.taskType == 'Meeting'}}">
+      
+      <block wx:elif="{{item.taskType == 'Report/Paper'}}">
         <image src="../../images/chat.png"></image>
+      </block>
+      <block wx:elif="{{item.taskType == 'Data Collection'}}">
+        <image src="../../images/discovery.png"></image>
+      </block>
+      <block wx:elif="{{item.taskType == 'Readings'}}">
+        <image src="../../images/book.png"></image>
       </block>
       <block wx:else>
         <image src="../../images/star.png"></image>
@@ -27,44 +35,29 @@
     </view>
     </block>
     </navigator>
-  </view>
-  <view class="ctnt1" hidden="{{currentNavtab==1 ? '' : true}}">
-    <navigator url="{{'/pages/task/task?id='+taskID}}"  hover-class="weui-cell_active" wx:for="{{user.tasks}}" wx:key="{{index}}">
-    <block wx:if="{{item.status == 1}}">
-    <view class="notify-item flex-wrp">
-      <view class="avatar flex-item">
-      <block wx:if="{{item.taskType == 'Submit file'}}">
-        <image src="../../images/draft.png"></image>
-      </block>
-      <block wx:elif="{{item.taskType == 'Meeting'}}">
-        <image src="../../images/chat.png"></image>
-      </block>
-      <block wx:else>
-        <image src="../../images/star.png"></image>
-      </block>  
-      </view>
-      <view class="notify-content flex-item">
-        <text class="notify-title">{{item.taskName}}</text>
-        <text class="notify-source">{{item.proName}}</text>
-      </view>
-    </view>
     </block>
-    </navigator>
   </view>
-  <view class="ctnt2" hidden="{{currentNavtab==2 ? '' : true}}">
-    <navigator url="{{'/pages/task/task?id='+taskID}}"  hover-class="weui-cell_active" wx:for="{{user.tasks}}" wx:key="{{index}}">
-    <block wx:if="{{item.status == 0 && item.due < '2018-06-06'}}">
+  <view class="ctnt2" hidden="{{currentNavtab==1 ? '' : true}}">
+    <navigator url="{{'/pages/task/task?id='+item.taskID}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
+    <block wx:if="{{item.status == 0 && item.due < date}}">
     <view class="notify-item flex-wrp">
       <view class="avatar flex-item">
-      <block wx:if="{{item.taskType == 'Submit file'}}">
+      <block wx:if="{{item.taskType == 'Presentation'}}">
         <image src="../../images/draft.png"></image>
       </block>
-      <block wx:elif="{{item.taskType == 'Meeting'}}">
+      
+      <block wx:elif="{{item.taskType == 'Report/Paper'}}">
         <image src="../../images/chat.png"></image>
+      </block>
+      <block wx:elif="{{item.taskType == 'Data Collection'}}">
+        <image src="../../images/discovery.png"></image>
+      </block>
+      <block wx:elif="{{item.taskType == 'Readings'}}">
+        <image src="../../images/book.png"></image>
       </block>
       <block wx:else>
         <image src="../../images/star.png"></image>
-      </block>  
+      </block>    
       </view>
       <view class="notify-content flex-item">
         <text class="notify-title">{{item.taskName}}</text>

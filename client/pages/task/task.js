@@ -75,15 +75,15 @@ Page({
         format_task.taskName = task.name;
         format_task.taskType = task.task_type;
         format_task.taskInfo = task.info;
-        format_task.taskDate = task.start_date.substring(0,10);
-        format_task.taskTime = task.deadline.substring(0,10);
+        format_task.taskDate = task.deadline.substring(0,10);
+        format_task.taskTime = task.deadline.substring(11,19);
         format_task.taskMembers = taskMembers;
         format_task.status = task.finish;
         that.setData({
           task: format_task
         });
         if(that.data.task !== {}){
-          console.info(that.data.task);
+          //console.info(that.data.task);
           cb(that.data.task);
 
         }

@@ -13,7 +13,7 @@
     <view class="zan-steps__line"></view>
   </navigator>
   </view>
-  <view wx:else>
+  <view wx:if="{{steps.length === 0}}">
     <view>No tasks yet.</view>
   </view>
 </view>

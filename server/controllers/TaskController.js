@@ -4,6 +4,7 @@ var only = require('../util').only;
 var taskTable = 'task';
 var userTable = 'user';
 var logsTable = 'logs';
+var projectTable = 'project';
 var taskAttrs = 'name info start_date deadline task_type subtask1 subtask2 subtask3 importance';
 
 module.exports = {

@@ -13,7 +13,7 @@ const config = require('../../config.js');
 Page({
     data: {
         files: [],
-        tabs: ["Project", "Document", "Logs"],
+        tabs: ["Project", "Logs", "Back"],
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,
@@ -31,6 +31,11 @@ Page({
           members: []
       }
 
+  },
+
+  goBack: function(){
+    console.info("go back!");
+    wx.redirectTo('/pages/index/index');
   },
   onShareAppMessage: function () {
     var title = "Invite you to join "+this.data.project.proName;
@@ -117,6 +122,7 @@ Page({
           format_task.taskEndDate = task.deadline.substring(0,10);
           format_task.taskMembers = members;
           format_task.taskInfo = task.info;
+          format_task.status = task.finish;
           return format_task;
         });
         
@@ -156,6 +162,7 @@ Page({
         });
         if(res.data !== null)
           cb(res.data);
+      wx.hideLoading();        
       }
     });
   },
@@ -170,7 +177,10 @@ Page({
         });
       }
     });
-
+    wx.showLoading({
+      title: 'Loading...',
+      mask: true
+    });
     wx.checkSession({
       success: function() {
           //session_key 未过期，并且在本生命周期一直有效
@@ -266,8 +276,8 @@ Page({
 
     onShow: function() {
         console.log("Global", app.globalData.new_task);
-        console.log(app.globalData.new_task !== {});
-        if(app.globalData.new_task !== {}){
+        console.log(app.globalData.new_task.taskName !== undefined);
+        if(app.globalData.new_task.taskName !== undefined){
           var tasks = this.data.tasks;
           tasks.push(app.globalData.new_task);
           this.setData({
@@ -278,6 +288,15 @@ Page({
     },
 
     tabClick: function(e) {
+      // console.info(typeof e.currentTarget.id);
+      if(e.currentTarget.id === '2') {
+        console.info('hey');
+        wx.switchTab({
+          url: '../index/index',
+          fail: function(err) {console.log(err);}
+        }); 
+        return;
+      }
       this.setData({
           sliderOffset: e.currentTarget.offsetLeft,
           activeIndex: e.currentTarget.id

@@ -27,7 +27,6 @@
 .notify-item  image{
   width: 60rpx;
   height: 60rpx;
-  border-radius: 60rpx;
 }
 .notify-item .avatar{
   flex: 1;

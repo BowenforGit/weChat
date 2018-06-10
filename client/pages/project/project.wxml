@@ -13,12 +13,12 @@
                     <include src='main.wxml'/>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                    <!--include src='document.wxml'/-->
-                    <document></document>
-                </view>
-                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
                      <include src='logs.wxml'/>
                 </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                    <!--include src='document.wxml'/-->
+                </view>
+
             </view>
         </view>
     

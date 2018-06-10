@@ -155,6 +155,10 @@ module.exports = {
             })
               .delete();
             
+            mysql(taskTable).where({
+              project_id: req.params.id
+            })
+            .delete();
               mysql(projectTable).where({
                 project_id: req.params.id
               })
@@ -200,7 +204,7 @@ module.exports = {
   },
   // get all the project for a specific user
   getProjects: function(req, res, next) {
-    console.log(req.session);
+    //console.log(req.session);
     mysql(projectTable).where({ leader: req.session.open_id })
       .orWhere({ member_id1: req.session.open_id })
       .orWhere({ member_id2: req.session.open_id })

@@ -6,39 +6,9 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
+    showDeleteIcon: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    projects: [
-      {
-        proID: 0,
-        proName: 'Project 1',
-        proType: 'Course',
-        proInfo: 'This is the introduction of this project',
-        proStartDate: '2016-01-01',
-        proEndDate: '2017-01-01',
-        proMembers: []
-        // proMembers: [
-        //   { name: 'Alice' },
-        //   { name: 'Bob' },
-        //   { name: 'Cindy' },
-        //   { name: 'David' }
-        // ]
-      },
-      {
-        proID: 1,
-        proName: 'Project 2',
-        proType: 'Intern',
-        proInfo: 'This is the introduction of this project',
-        proStartDate: '2016-03-01',
-        proEndDate: '2017-05-01',
-        proMembers: []
-        // proMembers: [
-        //   { name: 'Tom' },
-        //   { name: 'Peter' },
-        //   { name: 'Tony' },
-        //   { name: 'Clement' }
-        // ]
-      },
-    ]
+    projects: []
   },
   //事件处理函数
   bindProTap: function() {
@@ -67,7 +37,7 @@ Page({
       app.request({
         url: "/project",
         success: function(res) {
-          // wx.hideLoading();
+          wx.hideLoading();
 
           if (res.statusCode !== 200) {
             wx.showToast({
@@ -82,21 +52,30 @@ Page({
             var format = {};
             var members = [];
             members.push(project.leader);
-            members.push(project.members_id1, project.members_id2, project.members_id3, project.members_id4, project.members_id5);
-            members.splice('', 1);
+            members.push(project.member_id1, project.member_id2, project.member_id3, project.member_id4, project.member_id5);
+            //console.log(members);
+            for(var i = 0; i < members.length; i++){
+              if(members[i] === ''){
+                members.splice(i, 1);
+                i--;
+              }
+            }
+            //console.info(members);
             format.proID = project.project_id;
             format.proName= project.name;
             format.proInfo = project.info;
             format.proType = project.project_type;
-            format.proStartDate = project.start_date;
-            format.proEndDate = project.end_date;
+            format.proStartDate = project.start_date.substring(0,10);
+            format.proEndDate = project.end_date.substring(0, 10);
             format.proMembers = members;
+            format.proLeader = project.leader;
             return format;
           });
 
           that.setData({ projects : projects });
           // 存入全局数据
           app.globalData.projects = projects;
+          wx.hideLoading();
         }
       });
     }
@@ -108,6 +87,10 @@ Page({
   },
 
   onShow: function(){
+    wx.showLoading({
+      title: "Loading...",
+      mask: true
+    });
     this.load();
   },
 
@@ -170,5 +153,66 @@ Page({
     wx.navigateTo({
       url: '../newProject/newProject'
     });
-  }
+  },
+
+  showDelete: function(e) {
+    this.setData({
+        showDeleteIcon: true
+    });
+  },
+//navigate to the project or hide the delete buttons
+  toProject: function(opt) {
+      if (!this.data.showDeleteIcon) {
+          console.log('navigate to' + '/pages/project/project?id=' + opt.currentTarget.id);
+          wx.navigateTo({
+              url: '/pages/project/project?id=' + opt.currentTarget.id
+          });
+      } else {
+          this.setData({
+              showDeleteIcon: false
+          });
+      }
+  },
+
+  onPullDownRefresh: function() {
+    wx.showToast({
+        title: '刷新中',
+        icon: 'loading',
+        duration: 3000
+    });
+    this.load(function(){});
+},
+
+  deletePro: function(e) {
+    var that = this;
+    console.log(app.globalData.userInfo.open_id);
+    if (app.globalData.userInfo.open_id === that.data.projects[e.currentTarget.dataset.icon].proLeader)
+    {
+        //is Leader: use delete project api
+      app.request({
+        url: '/project/' + e.currentTarget.dataset.id,
+        method: 'DELETE',
+        success: function (res) {
+          that.data.projects.splice(e.currentTarget.dataset.icon, 1);
+          that.setData({
+            projects: that.data.projects
+          });
+          console.log('Delete project as leader');
+        }
+      })  ;
+    }
+    else{
+          //not leader: use quit project api 
+      app.request({
+        url: '/project/quit/' + e.currentTarget.dataset.id,
+        success: function (res) {
+          that.data.projects.splice(e.currentTarget.dataset.icon, 1);
+          that.setData({
+            projects: that.data.projects
+          });
+          console.log('quit project as member');
+        }
+      });
+    }
+}
 });
