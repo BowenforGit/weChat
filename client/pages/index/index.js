@@ -4,6 +4,7 @@ var util = require('../../utils/util.js');
 var app = getApp();
 Page({
     data: {
+        Create_New: 'Create New',
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -22,6 +23,7 @@ Page({
     },
 
     onLoad: function() {
+        this.setLang();
         console.info('loading index...');
         this.load();
     },
@@ -215,5 +217,11 @@ Page({
                 showDeleteIcon: false
             })
         }
-    }
+    },
+    setLang() {
+        const _ = wx.T._
+        this.setData({
+         Create_New: _('Create_New'),
+        })
+      }
 })

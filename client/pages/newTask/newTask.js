@@ -7,6 +7,16 @@ Page({
      * 页面的初始数据
      */
     data: {
+        Task_Name:"Task Name",
+        Task_Type:"Task Type",
+        Task_Description:"Task Description",
+        des:"Some information...",
+        Deadline:"Deadline",
+        Detailed_Allocation:"Detailed_Allocation",
+        Who_Takes_Charge:'Who_Takes_Charge',
+        toall:"Assign task to each person",
+        task_term:'I would not be a freerider.',
+        Create:"Create",
         taskName: '',
         projectID: 0,
         radioItems: [
@@ -47,6 +57,7 @@ Page({
         }
     },
     onLoad: function(options) {
+        this.setLang();
         this.load();
         this.setData({
             projectID: options.id
@@ -266,5 +277,25 @@ Page({
             'project.logs': logs
         });*/
         theProject.save();
-    }
+    },
+    setLang() {
+        const _ = wx.T._
+        this.setData({
+            Task_Name: _('Task_Name'),
+            Task_Type: _('Task_Type'),
+            Task_Description: _('Task_Description'),
+            Deadline: _('Deadline'),
+            "radioItems[0].name": _('Presentation'),
+            "radioItems[1].name": _('Report/Paper'),
+            "radioItems[2].name": _('Data Collection'),
+            "radioItems[3].name": _('Readings'),
+            "radioItems[4].name": _('Others'),
+            Detailed_Allocation: _('Detailed_Allocation'),
+            Who_Takes_Charge: _('Who_Takes_Charge'),
+            toall: _('toall'),
+           task_term: _('task_term'),
+           Create: _('Create'),
+           des: _('des'),
+        })
+      }
 });

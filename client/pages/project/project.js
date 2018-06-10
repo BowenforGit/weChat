@@ -11,6 +11,9 @@ const config = require('../../config.js');
 
 Page({
     data: {
+        Add: 'Add',
+        Members:"Members",
+        Tasks:"Tasks",
         tasks: [],
         files: [],
         tabs: ["Project", "Document", "Logs"],
@@ -129,6 +132,7 @@ Page({
 
 
     onLoad: function(opt) {
+        this.setLang();
         var that = this;
         wx.getSystemInfo({
             success: function(res) {
@@ -339,5 +343,13 @@ Page({
         this.setData({
             list: list
         });
+    },
+    setLang(){
+        const _ = wx.T._
+        this.setData({
+            Members: _('Members'),
+            Add: _('Add'),
+            Tasks: _('Tasks'),
+        })
     }
 });

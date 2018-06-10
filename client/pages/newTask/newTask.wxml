@@ -1,15 +1,15 @@
 <!--pages/projectForm/projectForm.wxml-->
 <view class="page">
 <view class="page__bd">
-<view class="weui-cells__title">Task Name</view>
+<view class="weui-cells__title">{{Task_Name}}</view>
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" bindinput="bindNameChange" placeholder="Initial Report" />
+                    <input class="weui-input" bindinput="bindNameChange" placeholder="e.g.Initial Report" />
             </view>
     </view>
 </view>
- <view class="weui-cells__title">Task Type</view>
+ <view class="weui-cells__title">{{Task_Type}}</view>
         <view class="weui-cells weui-cells_after-title">
             <radio-group bindchange="radioChange">
                 <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
@@ -23,17 +23,17 @@
             </radio-group>
   </view>
 
-<view class="weui-cells__title">Task Description</view>
+<view class="weui-cells__title">{{Task_Description}}</view>
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
             <view class="weui-cell__bd">
-                  <textarea class="weui-textarea" placeholder="Some information of this task" style="height: 3.3em" />
+                  <textarea class="weui-textarea" placeholder="{{des}}" style="height: 3.3em" />
             <view class="weui-textarea-counter">0/50</view>
         </view>
    </view>
 </view>
 
-        <view class="weui-cells__title">Deadline</view>
+        <view class="weui-cells__title">{{Deadline}}</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
@@ -47,7 +47,7 @@
             </view>
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">Time</view>
+                    <view class="weui-label">{{Time}}</view>
                 </view>
                 <view class="weui-cell__bd">
                     <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
@@ -57,17 +57,17 @@
             </view>
         </view>
 
- <view class="weui-cells__title">Detailed Allocation</view>
+ <view class="weui-cells__title">{{Detailed_Allocation}}</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_switch">
-                <view class="weui-cell__bd">Assign task to each person</view>
+                <view class="weui-cell__bd">{{toall}}</view>
                 <view class="weui-cell__ft">
                     <switch checked="{{allotDetail}}" bindchange="bindSwitchChange" />
                 </view>
             </view>
 </view>
 
- <view class="weui-cells__title">Who Takes Charge</view>
+ <view class="weui-cells__title">{{Who_Takes_Charge}}</view>
       <view class="weui-cells weui-cells_after-title">
        <block wx:if="{{allotDetail}}">
             <include src='allocation.wxml'/>
@@ -104,13 +104,13 @@
                     <view class="weui-agree__checkbox-icon">
                         <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
                     </view>
-                     I agree to the <navigator url="" class="weui-agree__link">Terms and Conditions</navigator>
+                     {{task_term}}
                 </view>
             </label>
         </checkbox-group>
 
         <view class="weui-btn-area">
-        <button wx:if="{{canIUse}}" class="weui-btn" type="primary" bindgetuserinfo="bindGetUserInfo" bindtap="openToast" open-type="getUserInfo" >create</button>
+        <button wx:if="{{canIUse}}" class="weui-btn" type="primary" bindgetuserinfo="bindGetUserInfo" bindtap="openToast" open-type="getUserInfo" >{{Create}}</button>
         <view wx:else>请升级微信版本</view>
         </view>
   </view>

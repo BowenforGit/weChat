@@ -2,6 +2,7 @@
 var util = require('../../utils/util.js')
 Page({
   data: {
+    More:'更多de',
     navTab: ["Todo", "My log", "Missed"],
     currentNavtab: "0",
       tasks: [
@@ -32,6 +33,7 @@ Page({
       ]
   },
   onLoad: function () {
+    this.setLang(),
     getApp().request({
       url: '/task',
       success: function(res) {
@@ -54,5 +56,11 @@ Page({
     this.setData({
       currentNavtab: e.currentTarget.dataset.idx
     });
+  },
+  setLang() {
+    const _ = wx.T._
+    this.setData({
+      More: _('More'),
+    })
   }
 })

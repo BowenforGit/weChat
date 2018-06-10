@@ -2,10 +2,10 @@
   <block wx:if="{{ todos }}">
     <view class="todos">
       <!-- List items should get the class `completed` when marked as completed -->
-      <view class="item{{ item.completed ? ' completed' : '' }}" wx:for="{{ members }}" wx:key="{{ index }}" bindtap="toggleTodoHandle" data-index="{{ index }}">
+      <view class="item{{ item.completed ? ' completed' : '' }}" wx:for="{{ memberlist }}" wx:key="{{ index }}" bindtap="toggleTodoHandle" data-index="{{ index }}">
         <!-- completed: success, todo: circle -->
         <view class="name">{{item.name}}</view>
-        <view class="task">this{{item.task}}</view>
+        <view class="task">{{item.task}}</view>
         <icon class="remove" type="clear" size="16" catchtap="removeTodoHandle" data-index="{{ index }}"/>
       </view>
     </view>

@@ -15,11 +15,11 @@
                         <view class="pro-operate flex-wrp" style="background-color: #F0F4F3;">
                             <button id="{{list.id}}" class="half" style="float:left;" bindtap="kindToggle">
                                 <image style="width:35px;height:35px;" src="../../images/member.png"></image>
-                                <text>{{list.name}}</text>
+                                <text>{{Members}}</text>
                             </button>
                             <button class="half" bindtap="createTask">
                                 <image style="width:35px;height:35px;" src="../../images/write.png"></image>
-                                <text>Add</text>
+                                <text>{{Add}}</text>
                             </button>
                         </view>
                         <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
@@ -47,7 +47,7 @@
                 </view>
         </view>
     </view>
-    <zan-panel title="Tasks" style="width:90%">
+    <zan-panel title="{{Tasks}}" style="width:90%">
         <zan-cell>
             <zan-steps type="vertical" steps="{{tasks}}"></zan-steps>
         </zan-cell>

@@ -3,11 +3,17 @@ const util = require('../../utils/util.js')
 const app = getApp();
 
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
+        Task_Information:"Task Information",
+        Task_Name:"Task Name",
+        Task_Description:"Task Description",
+        Date:"Date",
+        Time:'Time',
+        Task_Type:"Task Type",
+        Progress:"Progress",
+        Deadline:"Deadline",
+        Finish:'Finish My Task!',
+
         index: 0,
         projectID: 0,
         task: {},
@@ -39,6 +45,7 @@ Page({
         }
     },
     onLoad: function(options) {
+        this.setLang();
         this.load()
         this.setData({
             index: options.id
@@ -101,5 +108,19 @@ Page({
         })
         this.openConfirm()
 
-    }
+    },
+    setLang() {
+        const _ = wx.T._
+        this.setData({
+            Task_Name: _('Task_Name'),
+            Task_Type: _('Task_Type'),
+            Task_Information: _('Task_Information'),
+            Date: _('Date'),
+            Time: _('Time'),
+            Task_Description: _('Task_Description'),
+            Deadline: _('Deadline'),
+            Progress: _('Progress'),
+            Finish: _('Finish'),
+        })
+      }
 })

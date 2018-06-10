@@ -1,3 +1,10 @@
+import locales from './utils/locales'
+import T from './utils/wxapp-i18n'
+
+T.registerLocale(locales)
+T.setLocale('en')
+wx.T = T
+
 var config = require('./config');
 //app.js
 App({
