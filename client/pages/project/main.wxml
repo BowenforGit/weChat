@@ -25,7 +25,7 @@
                         <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
                             <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
                                     <view class="weui-grids">
-                        <block wx:for="{{project.proMembers}}" wx:key="{{index}}">
+                        <block wx:for="{{list.members}}" wx:key="{{index}}">
                             <view url="" class="weui-grid" hover-class="weui-grid_active">
                                 <block wx:if="{{item.avatar}}">
                                     <image style='border-radius: 80rpx ;width: 100rpx; height: 100rpx' class="weui-grid__icon" src="{{item.avatar}}" />
@@ -38,7 +38,7 @@
                         </block>
                         <view class="weui-grid" hover-class="weui-grid_active" bindtab="onShareAppMessage">
                             
-                            <button class="noborder" open-type="share" style="background:none;color:#fff;"><image style="height:58px;width:55px;" src="../../images/invite.png" /></button>
+                            <button class="noborder" open-type="share" style="background:none;color:#fff;"><image style="height:113rpx;width:100rpx;" src="../../images/invite.png" /></button>
                         </view>
                     </view>
                             </view>

@@ -16,6 +16,9 @@ App({
     // });
   },
 
+  onShow: function() {
+    this.checkLogin(function() {});
+  },
   checkLogin: function(cb) {
     console.info('check login...');
     var skey = wx.getStorageSync('skey');
