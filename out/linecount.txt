@@ -1,0 +1,137 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2018-06-10 01:01:25
+count workspace : c:\Users\Chiak\Desktop\wechat development\miniapp\weChat
+total files : 125
+total code lines : 4431
+total comment lines : 2122
+total blank lines : 493
+
+client\app.js, code is 126, comment is 55, blank is 8.
+client\app.json, code is 41, comment is 0, blank is 1.
+client\app.wxss, code is 122, comment is 6, blank is 2.
+client\components\authorize\authorize.js, code is 30, comment is 11, blank is 2.
+client\components\authorize\authorize.json, code is 4,  comment is 0, blank is 0.
+client\components\authorize\authorize.wxml, code is 3, comment is 0, blank is 1.
+client\components\authorize\authorize.wxss, code is 0, comment is 1, blank is 0.
+client\components\cell-group\index.js, code is 39, comment is 1, blank is 8.
+client\components\cell-group\index.json, code is 3, comment is 0, blank is 0.
+client\components\cell-group\index.wxml, code is 3, comment is 0, blank is 0.
+client\components\cell-group\index.wxss, code is 1, comment is 0, blank is 0.
+client\components\cell\index.js, code is 84, comment is 4, blank is 11.
+client\components\cell\index.json, code is 3, comment is 0, blank is 0.
+client\components\cell\index.wxml, code is 18, comment is 0, blank is 3.
+client\components\cell\index.wxss, code is 1, comment is 0, blank is 0.
+client\components\doc-page\index.js, code is 11, comment is 0, blank is 1.
+client\components\doc-page\index.json, code is 3, comment is 0, blank is 0.
+client\components\doc-page\index.wxml, code is 6, comment is 0, blank is 0.
+client\components\doc-page\index.wxss, code is 24, comment is 0, blank is 3.
+client\components\document\document.js, code is 72, comment is 30, blank is 7.
+client\components\document\document.json, code is 4, comment is 0, blank is 0.
+client\components\document\document.wxml, code is 29, comment is 0, blank is 0.
+client\components\document\document.wxss, code is 19, comment is 5, blank is 2.
+client\components\panel\index.js, code is 17, comment is 7, blank is 1.
+client\components\panel\index.json, code is 3, comment is 0, blank is 0.
+client\components\panel\index.wxml, code is 10, comment is 0, blank is 0.
+client\components\panel\index.wxss, code is 1, comment is 0, blank is 0.
+client\components\show-member\show-member.js, code is 38, comment is 7, blank is 3.
+client\components\show-member\show-member.json, code is 4, comment is 0, blank is 0.
+client\components\show-member\show-member.wxml, code is 37, comment is 0, blank is 0.
+client\components\show-member\show-member.wxss, code is 34, comment is 0, blank is 5.
+client\components\steps\index.js, code is 18, comment is 1, blank is 4.
+client\components\steps\index.json, code is 3, comment is 0, blank is 0.
+client\components\steps\index.wxml, code is 19, comment is 0, blank is 0.
+client\components\steps\index.wxss, code is 1, comment is 1, blank is 0.
+client\components\steps\wxss\step.wxss, code is 1, comment is 1, blank is 0.
+client\components\steps\wxss\vstep.wxss, code is 1, comment is 1, blank is 0.
+client\components\testServer\testServer.js, code is 54, comment is 13, blank is 10.
+client\components\testServer\testServer.json, code is 5, comment is 0, blank is 1.
+client\components\testServer\testServer.wxml, code is 4, comment is 0, blank is 1.
+client\components\testServer\testServer.wxss, code is 0, comment is 1, blank is 0.
+client\config.js, code is 4, comment is 1, blank is 0.
+client\data\data_index.js, code is 109, comment is 3, blank is 14.
+client\images\allread.png, it is a binary file.
+client\images\book.png, it is a binary file.
+client\images\burger.png, it is a binary file.
+client\images\burger_focus.png, it is a binary file.
+client\images\chat.png, it is a binary file.
+client\images\chat_focus.png, it is a binary file.
+client\images\comment.png, it is a binary file.
+client\images\comment2.png, it is a binary file.
+client\images\discovery.png, it is a binary file.
+client\images\discovery_focus.png, it is a binary file.
+client\images\draft.png, it is a binary file.
+client\images\eye.png, it is a binary file.
+client\images\fakeImage.jpg, it is a binary file.
+client\images\flag.png, it is a binary file.
+client\images\good-bad.png, it is a binary file.
+client\images\heart2.png, it is a binary file.
+client\images\index.png, it is a binary file.
+client\images\index_focus.png, it is a binary file.
+client\images\invite.png, it is a binary file.
+client\images\lighting.png, it is a binary file.
+client\images\live.png, it is a binary file.
+client\images\member.png, it is a binary file.
+client\images\more.png, it is a binary file.
+client\images\recent.png, it is a binary file.
+client\images\ring.png, it is a binary file.
+client\images\ring_focus.png, it is a binary file.
+client\images\search.png, it is a binary file.
+client\images\star.png, it is a binary file.
+client\images\star2.png, it is a binary file.
+client\images\write.png, it is a binary file.
+client\jsconfig.json, code is 6, comment is 0, blank is 0.
+client\pages\index\index.js, code is 183, comment is 22, blank is 14.
+client\pages\index\index.json, code is 5, comment is 0, blank is 1.
+client\pages\index\index.wxml, code is 48, comment is 0, blank is 1.
+client\pages\index\index.wxss, code is 34, comment is 1, blank is 2.
+client\pages\newProject\newProject.js, code is 106, comment is 10, blank is 6.
+client\pages\newProject\newProject.json, code is 2, comment is 0, blank is 1.
+client\pages\newProject\newProject.wxml, code is 71, comment is 0, blank is 6.
+client\pages\newProject\newProject.wxss, code is 0, comment is 0, blank is 0.
+client\pages\newTask\allocation.wxml, code is 19, comment is 0, blank is 0.
+client\pages\newTask\newTask.js, code is 235, comment is 13, blank is 22.
+client\pages\newTask\newTask.json, code is 1, comment is 0, blank is 0.
+client\pages\newTask\newTask.wxml, code is 109, comment is 0, blank is 8.
+client\pages\newTask\newTask.wxss, code is 73, comment is 11, blank is 13.
+client\pages\notify\notify.js, code is 56, comment is 1, blank is 1.
+client\pages\notify\notify.json, code is 3, comment is 0, blank is 0.
+client\pages\notify\notify.wxml, code is 77, comment is 0, blank is 0.
+client\pages\notify\notify.wxss, code is 53, comment is 0, blank is 0.
+client\pages\project\logs.wxml, code is 9, comment is 0, blank is 0.
+client\pages\project\main.wxml, code is 54, comment is 0, blank is 2.
+client\pages\project\project.js, code is 290, comment is 29, blank is 29.
+client\pages\project\project.json, code is 12, comment is 0, blank is 0.
+client\pages\project\project.wxml, code is 23, comment is 0, blank is 2.
+client\pages\project\project.wxss, code is 181, comment is 72, blank is 29.
+client\pages\task\task.js, code is 89, comment is 7, blank is 9.
+client\pages\task\task.json, code is 1, comment is 0, blank is 0.
+client\pages\task\task.wxml, code is 42, comment is 0, blank is 3.
+client\pages\task\task.wxss, code is 6, comment is 1, blank is 0.
+client\project.config.json, code is 36, comment is 0, blank is 0.
+client\README.md, code is 0, comment is 0, blank is 0.
+client\style\weui.wxss, code is 1, comment is 5, blank is 0.
+client\style\zanui.wxss, code is 1, comment is 0, blank is 0.
+client\typings\wx.d.ts, code is 773, comment is 1767, blank is 165.
+client\utils\util.js, code is 48, comment is 1, blank is 14.
+project.config.json, code is 35, comment is 0, blank is 0.
+README.md, code is 1, comment is 0, blank is 0.
+server\app.js, code is 27, comment is 0, blank is 7.
+server\config.js, code is 18, comment is 0, blank is 2.
+server\controllers\AuthenticationController.js, code is 66, comment is 2, blank is 5.
+server\controllers\ProjectController.js, code is 232, comment is 7, blank is 13.
+server\controllers\TaskController.js, code is 83, comment is 4, blank is 8.
+server\package.json, code is 31, comment is 0, blank is 0.
+server\routes\project.js, code is 19, comment is 12, blank is 6.
+server\routes\task.js, code is 15, comment is 5, blank is 6.
+server\routes\user.js, code is 121, comment is 3, blank is 20.
+server\sql\image.sql, code is 6, comment is 0, blank is 0.
+server\sql\logs.sql, code is 6, comment is 0, blank is 0.
+server\sql\project.sql, code is 16, comment is 0, blank is 0.
+server\sql\session.sql, code is 10, comment is 0, blank is 0.
+server\sql\task.sql, code is 19, comment is 0, blank is 0.
+server\sql\user.sql, code is 7, comment is 0, blank is 0.
+server\util.js, code is 63, comment is 0, blank is 10.
+===============================================================================

@@ -11,7 +11,7 @@ Page({
         index: 0,
         projectID: 0,
         task: {},
-
+        members: [],
         enableButton: true,
         userInfo: {},
         canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -55,15 +55,28 @@ Page({
     },
     onShow: function(options) {
         //get data from the project page
-
         var arr = getCurrentPages();
-        if (arr[arr.length - 2].route == 'pages/project/project') {
+        var parent = arr[arr.length - 2];
+        if (parent.route == 'pages/project/project') {
             this.setData({
-                task: arr[arr.length - 2].data.tasks[this.data.index],
-                projectID: arr[arr.length - 2].data.project.proID
+                task: parent.data.tasks[this.data.index],
+                projectID: parent.data.project.projectID,
+                members: parent.data.project.proMembers
             })
         }
+
+        var newarr = [];
+        for (var i = 0; i < this.data.task.taskMembers.length; i++) {
+            for (var j = 0; j < this.data.members.length; j++) {
+                if (this.data.members[j].open_id == this.data.task.taskMembers[i])
+                    newarr.push(this.data.members[j]);
+            }
+        }
+        this.setData({
+            'task.taskMembers': newarr
+        })
         console.log(this.data.task)
+
     },
     openConfirm: function() {
         var that = this;

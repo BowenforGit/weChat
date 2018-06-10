@@ -205,6 +205,7 @@ Page({
             importance: 1,
             deadline: deadline
         };
+        console.log(format_request)
         app.request({
             url: '/task',
             method: 'post',
@@ -224,7 +225,8 @@ Page({
                 format_task.taskName = task.name;
                 format_task.taskType = task.task_type;
                 format_task.taskStartDate = task.start_date;
-                format_task.taskEndDate = task.deadline.substring(0, 9);
+                format_task.taskEndDate = task.deadline.substring(0, 8);
+                format_task.taskTime = task.deadline.substring(8,12);
                 format_task.taskMembers = members;
                 console.info("format", format_task);
                 app.globalData.new_task = format_task;

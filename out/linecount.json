@@ -1,0 +1,797 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "c:\\Users\\Chiak\\Desktop\\wechat development\\miniapp\\weChat",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2018-06-10 01:01:25",
+            "filesum": 125,
+            "codesum": 4431,
+            "commentsum": 2122,
+            "blanksum": 493,
+            "filelist": [
+                {
+                    "blank": 8,
+                    "code": 126,
+                    "comment": 55,
+                    "filename": "client\\app.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "client\\app.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 122,
+                    "comment": 6,
+                    "filename": "client\\app.wxss"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 11,
+                    "filename": "client\\components\\authorize\\authorize.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "client\\components\\authorize\\authorize.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\authorize\\authorize.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "client\\components\\authorize\\authorize.wxss"
+                },
+                {
+                    "blank": 8,
+                    "code": 39,
+                    "comment": 1,
+                    "filename": "client\\components\\cell-group\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\cell-group\\index.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\cell-group\\index.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "client\\components\\cell-group\\index.wxss"
+                },
+                {
+                    "blank": 11,
+                    "code": 84,
+                    "comment": 4,
+                    "filename": "client\\components\\cell\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\cell\\index.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "client\\components\\cell\\index.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "client\\components\\cell\\index.wxss"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "client\\components\\doc-page\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\doc-page\\index.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "client\\components\\doc-page\\index.wxml"
+                },
+                {
+                    "blank": 3,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "client\\components\\doc-page\\index.wxss"
+                },
+                {
+                    "blank": 7,
+                    "code": 72,
+                    "comment": 30,
+                    "filename": "client\\components\\document\\document.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "client\\components\\document\\document.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "client\\components\\document\\document.wxml"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 5,
+                    "filename": "client\\components\\document\\document.wxss"
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 7,
+                    "filename": "client\\components\\panel\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\panel\\index.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "client\\components\\panel\\index.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "client\\components\\panel\\index.wxss"
+                },
+                {
+                    "blank": 3,
+                    "code": 38,
+                    "comment": 7,
+                    "filename": "client\\components\\show-member\\show-member.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "client\\components\\show-member\\show-member.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "client\\components\\show-member\\show-member.wxml"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "client\\components\\show-member\\show-member.wxss"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "client\\components\\steps\\index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\components\\steps\\index.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "client\\components\\steps\\index.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "client\\components\\steps\\index.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "client\\components\\steps\\wxss\\step.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "client\\components\\steps\\wxss\\vstep.wxss"
+                },
+                {
+                    "blank": 10,
+                    "code": 54,
+                    "comment": 13,
+                    "filename": "client\\components\\testServer\\testServer.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "client\\components\\testServer\\testServer.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "client\\components\\testServer\\testServer.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "client\\components\\testServer\\testServer.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 1,
+                    "filename": "client\\config.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 109,
+                    "comment": 3,
+                    "filename": "client\\data\\data_index.js"
+                },
+                {
+                    "filename": "client\\images\\allread.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\book.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\burger.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\burger_focus.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\chat.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\chat_focus.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\comment.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\comment2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\discovery.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\discovery_focus.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\draft.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\eye.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\fakeImage.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\flag.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\good-bad.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\heart2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\index.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\index_focus.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\invite.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\lighting.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\live.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\member.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\more.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\recent.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\ring.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\ring_focus.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\search.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\star.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\star2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "client\\images\\write.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "client\\jsconfig.json"
+                },
+                {
+                    "blank": 14,
+                    "code": 183,
+                    "comment": 22,
+                    "filename": "client\\pages\\index\\index.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "client\\pages\\index\\index.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "client\\pages\\index\\index.wxml"
+                },
+                {
+                    "blank": 2,
+                    "code": 34,
+                    "comment": 1,
+                    "filename": "client\\pages\\index\\index.wxss"
+                },
+                {
+                    "blank": 6,
+                    "code": 106,
+                    "comment": 10,
+                    "filename": "client\\pages\\newProject\\newProject.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "client\\pages\\newProject\\newProject.json"
+                },
+                {
+                    "blank": 6,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "client\\pages\\newProject\\newProject.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "client\\pages\\newProject\\newProject.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "client\\pages\\newTask\\allocation.wxml"
+                },
+                {
+                    "blank": 22,
+                    "code": 235,
+                    "comment": 13,
+                    "filename": "client\\pages\\newTask\\newTask.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "client\\pages\\newTask\\newTask.json"
+                },
+                {
+                    "blank": 8,
+                    "code": 109,
+                    "comment": 0,
+                    "filename": "client\\pages\\newTask\\newTask.wxml"
+                },
+                {
+                    "blank": 13,
+                    "code": 73,
+                    "comment": 11,
+                    "filename": "client\\pages\\newTask\\newTask.wxss"
+                },
+                {
+                    "blank": 1,
+                    "code": 56,
+                    "comment": 1,
+                    "filename": "client\\pages\\notify\\notify.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "client\\pages\\notify\\notify.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 77,
+                    "comment": 0,
+                    "filename": "client\\pages\\notify\\notify.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "client\\pages\\notify\\notify.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "client\\pages\\project\\logs.wxml"
+                },
+                {
+                    "blank": 2,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "client\\pages\\project\\main.wxml"
+                },
+                {
+                    "blank": 29,
+                    "code": 290,
+                    "comment": 29,
+                    "filename": "client\\pages\\project\\project.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "client\\pages\\project\\project.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "client\\pages\\project\\project.wxml"
+                },
+                {
+                    "blank": 29,
+                    "code": 181,
+                    "comment": 72,
+                    "filename": "client\\pages\\project\\project.wxss"
+                },
+                {
+                    "blank": 9,
+                    "code": 89,
+                    "comment": 7,
+                    "filename": "client\\pages\\task\\task.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "client\\pages\\task\\task.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "client\\pages\\task\\task.wxml"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 1,
+                    "filename": "client\\pages\\task\\task.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "client\\project.config.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "client\\README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "client\\style\\weui.wxss"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "client\\style\\zanui.wxss"
+                },
+                {
+                    "blank": 165,
+                    "code": 773,
+                    "comment": 1767,
+                    "filename": "client\\typings\\wx.d.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 48,
+                    "comment": 1,
+                    "filename": "client\\utils\\util.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "project.config.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 7,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "server\\app.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "server\\config.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 66,
+                    "comment": 2,
+                    "filename": "server\\controllers\\AuthenticationController.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 232,
+                    "comment": 7,
+                    "filename": "server\\controllers\\ProjectController.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 83,
+                    "comment": 4,
+                    "filename": "server\\controllers\\TaskController.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "server\\package.json"
+                },
+                {
+                    "blank": 6,
+                    "code": 19,
+                    "comment": 12,
+                    "filename": "server\\routes\\project.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 15,
+                    "comment": 5,
+                    "filename": "server\\routes\\task.js"
+                },
+                {
+                    "blank": 20,
+                    "code": 121,
+                    "comment": 3,
+                    "filename": "server\\routes\\user.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server\\sql\\image.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server\\sql\\logs.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "server\\sql\\project.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server\\sql\\session.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "server\\sql\\task.sql"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "server\\sql\\user.sql"
+                },
+                {
+                    "blank": 10,
+                    "code": 63,
+                    "comment": 0,
+                    "filename": "server\\util.js"
+                }
+            ]
+        }
+    ]
+}

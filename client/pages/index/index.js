@@ -47,6 +47,15 @@ Page({
                         format.proType = project.project_type;
                         format.proStartDate = project.start_date.substring(0, 10);
                         format.proEndDate = project.end_date.substring(0, 10);
+                        format.proLeader = project.leader;
+                        var proMembers = []
+                        if (project.leader) proMembers.push(project.leader);
+                        if (project.member_id1) proMembers.push(project.member_id1);
+                        if (project.member_id2) proMembers.push(project.member_id2);
+                        if (project.member_id3) proMembers.push(project.member_id3);
+                        if (project.member_id4) proMembers.push(project.member_id4);
+                        if (project.member_id5) proMembers.push(project.member_id5);
+                        format.proMembers = proMembers;
                         return format;
                     });
 
@@ -183,19 +192,35 @@ Page({
     //delete project
     deletePro: function(e) {
         var that = this;
-        this.data.projects.splice(e.currentTarget.dataset.icon, 1)
-            //add request to delete project API 
-        app.request({
-            url: '/project/quit/' + e.currentTarget.dataset.id,
-            success: function(res) {
-                that.setData({
-                    projects: that.data.projects
-                })
+        console.log(app.globalData.userInfo.open_id)
+        if (app.globalData.userInfo.open_id == this.data.projects[e.currentTarget.dataset.icon].proLeader)
+        {
+            //is Leader: use delete project api
+          app.request({
+            url: '/project/' + e.currentTarget.dataset.id,
+            method: 'DELETE',
+            success: function (res) {
+              that.data.projects.splice(e.currentTarget.dataset.icon, 1)
+              that.setData({
+                projects: that.data.projects
+              })
+              console.log('Delete project as leader')
             }
-        })
-
-
-
+          })  
+        }
+        else{
+              //not leader: use quit project api 
+          app.request({
+            url: '/project/quit/' + e.currentTarget.dataset.id,
+            success: function (res) {
+              that.data.projects.splice(e.currentTarget.dataset.icon, 1)
+              that.setData({
+                projects: that.data.projects
+              })
+              console.log('quit project as member')
+            }
+          })
+        }
     },
     //show delete project buttons
     showDelete: function(e) {
