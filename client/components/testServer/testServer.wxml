@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 <!--components/testServer/testServer.wxml-->
 
 <button bindtap="getTask">getTask</button>
 <button bindtap="getOpenID">getOpenID</button>
-=======
-<!--components/testServer/testServer.wxml-->
-
-<button bindtap="getTask">getTask</button>
-<button bindtap="getOpenID">getOpenID</button>
->>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 <button bindtap="logout">logout</button>

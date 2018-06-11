@@ -27,11 +27,7 @@
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
             <view class="weui-cell__bd">
-<<<<<<< HEAD
                   <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="{{des}}" style="height: 3.3em" />
-=======
-                  <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="Some information of this task" style="height: 3.3em" />
->>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
             <view class="weui-textarea-counter">0/50</view>
         </view>
    </view>
