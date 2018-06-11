@@ -2,36 +2,36 @@
 <view class="weui-cells__title">Task Information</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
-                <view class="weui-cell__bd">Task Name</view>
+                <view class="weui-cell__bd">{{Task_Name}}</view>
                 <view class="weui-cell__ft">{{task.taskName}}</view>
              </view>
               <view class="weui-cell">
-                <view class="weui-cell__bd">Task Type</view>
+                <view class="weui-cell__bd">{{Task_Type}}</view>
                 <view class="weui-cell__ft">{{task.taskType}}</view>
              </view>
         </view>
  <view class="weui-panel weui-panel_access">
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">Task Description</view>
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{Task_Description}}</view>
                     <view class="weui-media-box__desc">{{task.taskInfo}}</view>
                 </view>
             </view>
         </view>
 
-  <view class="weui-cells__title">Deadline</view>
+  <view class="weui-cells__title">{{Deadline}}</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
-                <view class="weui-cell__bd">Date</view>
+                <view class="weui-cell__bd">{{Date}}</view>
                 <view class="weui-cell__ft">{{task.taskDate}}</view>
              </view>
               <view class="weui-cell">
-                <view class="weui-cell__bd">Time</view>
+                <view class="weui-cell__bd">{{Time}}</view>
                 <view class="weui-cell__ft">{{task.taskTime}}</view>
              </view>
 </view>
 
-<view class="weui-cells__title">Progress</view>
+<view class="weui-cells__title">{{Progress}}</view>
         <view class="weui-cells weui-cells_after-title"  wx:for="{{ task.taskMembers }}" wx:key="{{ index }}">
             <view class="weui-cell">
               <icon class="checkbox" type="{{ item.status ? 'success' : 'circle' }}"/>
@@ -42,10 +42,18 @@
 
 
 <view class="finish" wx:if="{{!task.status}}">
+<<<<<<< HEAD
+    <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">{{Finis}} My Task !</button>
+</view>
+
+<view class="finish" wx:if="{{task.status}}">
+    <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">{{Undo}}</button>
+=======
     <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Finish My Task !</button>
 </view>
 
 <view class="finish" wx:if="{{task.status}}">
     <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Undo My Task !</button>
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 </view>
 

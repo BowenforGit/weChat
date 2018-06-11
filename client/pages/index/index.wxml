@@ -14,7 +14,7 @@
                     </view>
            </view>
                 <view class="right"  bindtap="createProject">
-                    + Create New
+                    + {{Create_New}}
                 </view>
             </view>
         </view>

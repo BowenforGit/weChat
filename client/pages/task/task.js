@@ -7,6 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Task_Information:"Task Information",
+      Task_Name:"Task Name",
+      Task_Description:"Task Description",
+      Date:"Date",
+      Time:'Time',
+      Task_Type:"Task Type",
+      Progress:"Progress",
+      Deadline:"Deadline",
+      Finish:'Finish My Task!',
+      Undo:'Undo My Task!',
       index: 0,
       projectID:0,
       task: {},
@@ -122,6 +132,7 @@ Page({
   },
   onShow: function()
   { 
+    this.setLang();
       //get data from the project page
       // var arr = getCurrentPages();
       // if (arr[arr.length - 2].route == 'pages/project/project')
@@ -178,5 +189,24 @@ Page({
     });
     this.openConfirm();
    
+<<<<<<< HEAD
+  },
+  setLang() {
+      const _ = wx.T._
+      this.setData({
+          Task_Name: _('Task_Name'),
+          Task_Type: _('Task_Type'),
+          Task_Information: _('Task_Information'),
+          Date: _('Date'),
+          Time: _('Time'),
+          Task_Description: _('Task_Description'),
+          Deadline: _('Deadline'),
+          Progress: _('Progress'),
+          Finish: _('Finish'),
+          Undo: _('Undo'),
+      })
+    }
+=======
   }
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 });

@@ -12,11 +12,22 @@ const config = require('../../config.js');
 
 Page({
     data: {
+<<<<<<< HEAD
+      Add: 'Add',
+      Members:"Members",
+      Tasks:"Tasks",
+      files: [],
+      tabs: [{
+        icon: '../../images/allread.png',
+        selectedIcon: '../../images/b-allread.png'
+      },
+=======
         files: [],
         tabs: [{
           icon: '../../images/allread.png',
           selectedIcon: '../../images/b-allread.png'
         },
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
       {
         icon: '../../images/log.png',
           selectedIcon: '../../images/b-log.png'
@@ -282,6 +293,10 @@ Page({
     },
 
     onShow: function() {
+<<<<<<< HEAD
+      this.setLang();
+=======
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
         console.log("Global", app.globalData.new_task);
         console.log(app.globalData.new_task.taskName !== undefined);
         if(app.globalData.new_task.taskName !== undefined){
@@ -342,5 +357,17 @@ Page({
     this.setData({
         list: list
     });
+<<<<<<< HEAD
+  },
+  setLang(){
+      const _ = wx.T._
+      this.setData({
+          Members: _('Members'),
+          Add: _('Add'),
+          Tasks: _('Tasks'),
+      })
+  }
+=======
 }
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 });

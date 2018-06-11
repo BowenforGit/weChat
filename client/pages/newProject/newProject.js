@@ -6,7 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    Project_Name:"Project Name",
+    Project_Type:"Project Type",
+    Project_Description:"Project Description",
+    Period:"Period",
+    Start_Date:"Start Date",
+    End_Date:"End Date",
+    des:"Some information of this project",
+    Create:"Create",
+    term:"I would be responsible for the project.",
     project:{
         proName: '',
         proType: '',
@@ -25,6 +33,10 @@ Page({
     date2: "2017-05-04",
     isAgree: false
   },
+  onShow: function(){
+    this.setLang();
+  },
+  
   onShareAppMessage: function () {
 
   },
@@ -118,4 +130,22 @@ Page({
       }
     });
   },
+  setLang() {
+    const _ = wx.T._
+    this.setData({
+        Project_Name: _('Project_Name'),
+        Project_Type: _('Project_Type'),
+        Project_Description: _('Project_Description'),
+        Period: _('Period'),
+        Start_Date: _('Start_Date'),
+        End_Date: _('End_Date'),
+        des: _('des'),
+        Create: _('Create'),
+        term: _('term'),
+        "radioItems[0].name": _('Course'),
+        "radioItems[1].name": _('Intern'),
+        "radioItems[2].name": _('Work'),
+        "radioItems[3].name": _('Others'),
+    })
+  }
 });

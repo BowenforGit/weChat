@@ -1,16 +1,16 @@
 <!--pages/projectForm/projectForm.wxml-->
 <view class="page">
     <view class="page__bd">
-    <view class="weui-cells__title">Project Name</view>
+    <view class="weui-cells__title">{{Project_Name}}</view>
         <view class="weui-cells weui-cells_after-title">
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__bd">
-                        <input class="weui-input" bindinput="bindNameChange" placeholder="CSCI 3100" />
+                        <input class="weui-input" bindinput="bindNameChange" placeholder="e.g. CSCI 3100" />
                 </view>
         </view>
     </view>
     
-     <view class="weui-cells__title">Project Type</view>
+     <view class="weui-cells__title">{{Project_Type}}</view>
             <view class="weui-cells weui-cells_after-title">
                 <radio-group bindchange="radioChange">
                     <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
@@ -24,21 +24,21 @@
                 </radio-group>
       </view>
     
-    <view class="weui-cells__title">Project Description</view>
+    <view class="weui-cells__title">{{Project_Description}}</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                      <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="Some information of this project" style="height: 3.3em" />
+                      <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="{{des}}" style="height: 3.3em" />
                 <view class="weui-textarea-counter">0/50</view>
             </view>
        </view>
     </view>
     
-            <view class="weui-cells__title">Period</view>
+            <view class="weui-cells__title">{{Period}}</view>
             <view class="weui-cells weui-cells_after-title">
                 <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">Start Date</view>
+                        <view class="weui-label">{{Start_Date}}</view>
                     </view>
                     <view class="weui-cell__bd">
                         <picker mode="date" value="{{project.proStartDate}}"  bindchange="bindDateChange1">
@@ -48,7 +48,7 @@
                 </view>
                  <view class="weui-cell weui-cell_input">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">End Date</view>
+                        <view class="weui-label">{{End_Date}}</view>
                     </view>
                     <view class="weui-cell__bd">
                         <picker mode="date" value="{{project.proEtartDate}}"  bindchange="bindDateChange2">
@@ -65,13 +65,13 @@
                         <view class="weui-agree__checkbox-icon">
                             <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
                         </view>
-                         I agree to the <navigator url="" class="weui-agree__link">Terms and Conditions</navigator>
+                        {{term}}
                     </view>
                 </label>
             </checkbox-group>
             
             <view class="weui-btn-area">
-                <button class="weui-btn"  bindtap="openToast">Create</button>
+                <button class="weui-btn"  bindtap="openToast">{{Create}}</button>
             </view>
       </view>
     </view>
