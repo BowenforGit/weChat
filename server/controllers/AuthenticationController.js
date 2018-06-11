@@ -69,5 +69,6 @@ module.exports = {
         });
       }
     });
+    //res.send({skey: 'Yesss!'});
   }
 };

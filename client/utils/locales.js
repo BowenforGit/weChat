@@ -35,7 +35,8 @@ export default {
         "task_term":'I would not be a freerider.',
         "Task_Information":"Task_Information",
         "Progress":"Progress",
-        "Finish":"Finish My Task!"
+        "Finish":"Finish My Task!",
+        "Undo":"Undo My Task!"
     },
     "cn": {
         "setting":"设置",
@@ -72,6 +73,7 @@ export default {
         "task_term":'本人会完成自己的工作。',
         "Task_Information":"任务信息",
         "Progress":"进度",
-        "Finish":"完成任务！"
+        "Finish":"完成任务！",
+        "Undo":'重做！'
     }
 }

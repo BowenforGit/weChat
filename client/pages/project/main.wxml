@@ -14,11 +14,11 @@
                      <view class="kind-list__item">
                         <view class="pro-operate flex-wrp" style="background-color: #F0F4F3;">
                             <button id="{{list.id}}" class="half" style="float:left;" bindtap="kindToggle">
-                                <image style="width:35px;height:35px;" src="../../images/member.png"></image>
+                                <image style="width:35rpx;height:35rpx;" class="noborder" src="../../images/member.png"></image>
                                 <text>{{Members}}</text>
                             </button>
                             <button class="half" bindtap="createTask">
-                                <image style="width:35px;height:35px;" src="../../images/write.png"></image>
+                                <image style="width:45rpx;height:47rpx;" src="../../images/write.png"></image>
                                 <text>{{Add}}</text>
                             </button>
                         </view>
@@ -28,7 +28,7 @@
                         <block wx:for="{{list.members}}" wx:key="{{index}}">
                             <view url="" class="weui-grid" hover-class="weui-grid_active">
                                 <block wx:if="{{item.avatar}}">
-                                    <image class="weui-grid__icon" src="{{item.avatar}}" />
+                                    <image style='border-radius: 80rpx ;width: 100rpx; height: 100rpx' class="weui-grid__icon" src="{{item.avatar}}" />
                                 </block>
                                 <block wx:else>
                                 <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
@@ -38,7 +38,7 @@
                         </block>
                         <view class="weui-grid" hover-class="weui-grid_active" bindtab="onShareAppMessage">
                             
-                            <button class="noborder" open-type="share" style="background:none;color:#fff;"><image style="height:58px;width:55px;" src="../../images/invite.png" /></button>
+                            <button class="noborder" open-type="share" style="background:none;color:#fff;"><image style="height:113rpx;width:100rpx;" src="../../images/invite.png" /></button>
                         </view>
                     </view>
                             </view>
@@ -47,6 +47,7 @@
                 </view>
         </view>
     </view>
+
     <zan-panel title="{{Tasks}}" style="width:90%">
         <zan-cell>
             <zan-steps type="vertical" steps="{{tasks}}"></zan-steps>

@@ -14,6 +14,9 @@ Page({
         this.setLang();
 
     },
+    onShow: function(){
+        this.setLang();
+    },
     langChange(e) {
         var index = e.detail.value
         this.setData({

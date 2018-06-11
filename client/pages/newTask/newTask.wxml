@@ -5,7 +5,7 @@
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <input class="weui-input" bindinput="bindNameChange" placeholder="e.g.Initial Report" />
+                    <input class="weui-input" bindinput="bindNameChange" placeholder="e.g. Initial Report" />
             </view>
     </view>
 </view>
@@ -27,7 +27,7 @@
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
             <view class="weui-cell__bd">
-                  <textarea class="weui-textarea" placeholder="{{des}}" style="height: 3.3em" />
+                  <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="{{des}}" style="height: 3.3em" />
             <view class="weui-textarea-counter">0/50</view>
         </view>
    </view>
@@ -37,7 +37,7 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">Date</view>
+                    <view class="weui-label">{{Date}}</view>
                 </view>
                 <view class="weui-cell__bd">
                     <picker mode="date" value="{{date}}"  bindchange="bindDateChange1">
@@ -62,7 +62,7 @@
             <view class="weui-cell weui-cell_switch">
                 <view class="weui-cell__bd">{{toall}}</view>
                 <view class="weui-cell__ft">
-                    <switch checked="{{allotDetail}}" bindchange="bindSwitchChange" />
+                    <switch checked="{{showDetail}}" bindchange="bindSwitchChange" />
                 </view>
             </view>
 </view>
@@ -73,8 +73,8 @@
             <include src='allocation.wxml'/>
             <view class="weui-cell weui-cell_select">
                 <view class="weui-cell__hd" style="width:30%">
-                    <picker bindchange="bindMemberChange" value="{{memberIndex}}" range="{{memberlist}}">
-                        <view class="weui-select">{{members[memberIndex].name}}</view>
+                    <picker bindchange="bindMemberChange" value="{{memberIndex}}" range="{{members}}">
+                        <view class="weui-select">{{members[memberIndex]}}</view>
                     </picker>
                 </view>
                 <view class="weui-cell__bd weui-cell__bd_in-select-before">
@@ -104,7 +104,7 @@
                     <view class="weui-agree__checkbox-icon">
                         <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
                     </view>
-                     {{task_term}}
+                        {{task_term}}
                 </view>
             </label>
         </checkbox-group>

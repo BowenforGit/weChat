@@ -5,7 +5,7 @@ module.exports = {
   appSecret: 'ba9780053ca3dfcc66503c4663fa17d4',
 
   mysql: {
-    host: 'https://5xjlqtmz.qcloud.la',
+    host: 'localhost',
     port: 3306,
     user: 'root',
     db: 'mini-program',

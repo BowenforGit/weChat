@@ -20,7 +20,7 @@
 .notify-item{
   width: 680rpx;
   background: #ffffff;
-  padding: 25rpx 70rpx 10rpx 0;
+  padding: 25rpx 70rpx 25rpx 0;
   border-bottom: solid 1px #ebebeb;
   align-items: center;
 }
@@ -44,7 +44,8 @@
   padding: 2px 0 6rpx 0;
 }
 .notify-item .notify-content .notify-title{
-  font-size: 30rpx;
+  color: #818A8F;
+  font-size: 32rpx;
   line-height: 36rpx;
 }
 .placehold{

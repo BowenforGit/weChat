@@ -1,8 +1,8 @@
 <view class="container">
-  <block wx:if="{{ todos }}">
+  <block wx:if="{{ todos.length }}">
     <view class="todos">
       <!-- List items should get the class `completed` when marked as completed -->
-      <view class="item{{ item.completed ? ' completed' : '' }}" wx:for="{{ memberlist }}" wx:key="{{ index }}" bindtap="toggleTodoHandle" data-index="{{ index }}">
+      <view class="item{{ item.completed ? ' completed' : '' }}" wx:for="{{ todos }}" wx:key="{{ index }}" bindtap="toggleTodoHandle" data-index="{{ index }}">
         <!-- completed: success, todo: circle -->
         <view class="name">{{item.name}}</view>
         <view class="task">{{item.task}}</view>

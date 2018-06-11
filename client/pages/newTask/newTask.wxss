@@ -1,9 +1,4 @@
-/* pages/newTask/newTask.wxss */
-.empty{
-  width: 100%;
-}
-
-.header {
+/* pages/newTask/newTask.wxss */.header {
   display: flex;
   align-items: center;
   border: 1rpx solid #e0e0e0;
@@ -26,9 +21,9 @@
 
 .todos {
   border: 1rpx solid #e0e0e0;
+  border-radius: 10rpx;
   box-shadow: 0 0 5rpx #e0e0e0;
   background-color: white;
-  width: 100%;
 }
 
 .todos .item {
@@ -48,12 +43,10 @@
 
 .todos .item .name {
   flex: 1;
-  font-size: 16px;
 }
 .todos .item .task{
   flex: 3;
-  color: #444;
-  font-size: 16px;
+color: #444;
 }
 
 /* 
@@ -84,14 +77,4 @@
 .empty .icon
 {
   flex:1;
-}
-
-.title{
-  margin-right:10%;
-  font-size:16px;
-
-}
-
-.icon{
-  margin-left: 10%;
 }
