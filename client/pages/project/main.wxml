@@ -1,7 +1,7 @@
 <!--main.wxml-->
 <view class="container">
     <view class="project-wrp">
-        <view class="project-item">
+        <view class="project-item" style="background-image:url(../../images/bg1.png);max-width:100%;max-height:100%;background-size:100% 100%;">
             <view class="pro-title">
                 {{project.proName}}
             </view>
@@ -12,7 +12,7 @@
         <view class="page__bd page__bd_spacing">
                 <view class="kind-list">        
                      <view class="kind-list__item">
-                        <view class="pro-operate flex-wrp" style="background-color: #F0F4F3;">
+                        <view class="pro-operate flex-wrp">
                             <button id="{{list.id}}" class="half" style="float:left;" bindtap="kindToggle">
                                 <image style="width:35rpx;height:35rpx;" class="noborder" src="../../images/member.png"></image>
                                 <text>{{Members}}</text>

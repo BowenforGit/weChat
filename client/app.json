@@ -10,7 +10,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#088A08",
+    "navigationBarBackgroundColor": "#1976D2",
     "navigationBarTitleText": "Project Helper",
     "navigationBarTextStyle":"white",
     "enablePullDownRefresh":true
@@ -41,8 +41,5 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true,
-  "usingComponents": {
-    "zan-steps": "components/steps"
-  }
+  "debug": true
 }
