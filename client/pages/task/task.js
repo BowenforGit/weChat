@@ -189,6 +189,7 @@ Page({
     });
     this.openConfirm();
    
+<<<<<<< HEAD
   },
   setLang() {
       const _ = wx.T._
@@ -205,4 +206,7 @@ Page({
           Undo: _('Undo'),
       })
     }
+=======
+  }
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 });

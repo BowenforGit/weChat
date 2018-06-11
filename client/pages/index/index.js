@@ -88,7 +88,10 @@ Page({
   },
 
   onShow: function(){
+<<<<<<< HEAD
     this.setLang();
+=======
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
     wx.showLoading({
       title: "Loading...",
       mask: true
@@ -175,6 +178,7 @@ Page({
           });
       }
   },
+<<<<<<< HEAD
 
   onPullDownRefresh: function() {
     wx.showToast({
@@ -185,6 +189,18 @@ Page({
     this.load(function(){});
 },
 
+=======
+
+  onPullDownRefresh: function() {
+    wx.showToast({
+        title: '刷新中',
+        icon: 'loading',
+        duration: 3000
+    });
+    this.load(function(){});
+},
+
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
   deletePro: function(e) {
     var that = this;
     console.log(app.globalData.userInfo.open_id);
@@ -216,6 +232,7 @@ Page({
         }
       });
     }
+<<<<<<< HEAD
   },
   setLang() {
     const _ = wx.T._
@@ -223,4 +240,7 @@ Page({
      Create_New: _('Create_New'),
     })
   }
+=======
+}
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 });

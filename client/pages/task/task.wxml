@@ -42,10 +42,18 @@
 
 
 <view class="finish" wx:if="{{!task.status}}">
+<<<<<<< HEAD
     <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">{{Finis}} My Task !</button>
 </view>
 
 <view class="finish" wx:if="{{task.status}}">
     <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">{{Undo}}</button>
+=======
+    <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Finish My Task !</button>
+</view>
+
+<view class="finish" wx:if="{{task.status}}">
+    <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Undo My Task !</button>
+>>>>>>> 58761f4c025757c4f7b389c869a0a7aa3bb5e915
 </view>
 
