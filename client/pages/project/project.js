@@ -338,7 +338,6 @@ Page({
         this.setData({
             'list.members': this.data.project.proMembers
         });
-<<<<<<< HEAD
 =======
         
 >>>>>>> 281fc3e8efe7d0f6740eb94c851c01dacb500570
