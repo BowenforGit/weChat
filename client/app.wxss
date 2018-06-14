@@ -1,6 +1,7 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
 @import 'style/zanui.wxss';
+@import 'components/wux.wxss';
 
 .page{
     background-color: #F8F8F8;
