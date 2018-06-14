@@ -335,16 +335,8 @@ Page({
         this.setData({
             'list.members': this.data.project.proMembers
         });
-        var id = e.currentTarget.id,
-            list = this.data.list;
-
-        if (list.id == id) {
-            list.open = !list.open;
-        } else {
-            list.open = false;
-        }
         this.setData({
-            list: list
+            'list.open': !this.data.list.open
         });
     },
     setLang() {
