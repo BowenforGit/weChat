@@ -1,4 +1,6 @@
 <!--main.wxml-->
+ <import src="../../components/button/button.wxml"/> 
+ <template is="button" data="{{ ...$wux.button.br }}"/> 
 <view class="container">
     <view class="project-wrp">
         <view class="project-item" style="background-image:url(../../images/bg1.png);max-width:100%;max-height:100%;background-size:100% 100%;">

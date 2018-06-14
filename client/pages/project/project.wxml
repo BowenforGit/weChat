@@ -13,9 +13,9 @@
                 </view>
 
             </view>
-             <view class="top-tab flex-wrp flex-tab" style="bottom:0;">
+             <view class="bottom-tab flex-wrp flex-tab" style="bottom:0;">
                 <block wx:for="{{tabs}}" wx:key="{{index}}">
-                    <view id="{{index}}" class="toptab flex-item {{activeIndex == index ? 'active' : ''}}" bindtap="tabClick">
+                    <view id="{{index}}" class="bottomtab flex-item {{activeIndex == index ? 'active' : ''}}" bindtap="tabClick">
                         <view class="weui-navbar__title">
                             <image wx:if="{{activeIndex == index}}" class="icon" src="{{tabs[index].selectedIcon}}"/>
                             <image wx:else class="icon" src="{{tabs[index].icon}}"/>
