@@ -7,29 +7,25 @@ wx.T = T
 
 var config = require('./config');
 //app.js
-App({
-    // globalData: {
-    //   userInfo: {}
-    // },
-    onLaunch: function() {
-        //调用API从本地缓存中获取数据
-        // var logs = wx.getStorageSync('logs') || [];
-        // logs.unshift(Date.now());
-        // wx.setStorageSync('logs', logs);
-        console.info('loading app...');
 
-        // wx.showLoading({
-        //   title: 'Logging in...',
-        //   mask: true
-        // });
+App({
+
+    onLaunch: function() {
+
+        console.info('loading app...');
+        //  wx.showLoading({
+        //    title: 'Logging in...',
+        //    mask: true
+        //  });
     },
+
     onShow: function() {
         this.checkLogin(function() {});
     },
+
     checkLogin: function(cb) {
         console.info('check login...');
         var skey = wx.getStorageSync('skey');
-        console.log('skey is :' + skey);
         if (skey) {
             this.getUserInfo(cb);
         } else {
@@ -64,43 +60,6 @@ App({
         });
     },
 
-    // getUserInfo:function(cb){
-    //   var that = this
-    //   if(this.globalData.userInfo){
-    //     typeof cb == "function" && cb(this.globalData.userInfo)
-    //   }else{
-    //     //调用登录接口
-    //     wx.login({
-    //       success: function () {
-    //         wx.getUserInfo({
-    //           success: function (res) {
-    //             that.globalData.userInfo = res.userInfo
-    //             typeof cb == "function" && cb(that.globalData.userInfo)
-    //           }
-    //         })
-    //       }
-    //     })
-    //     wx.getSetting({
-    //       success: res => {
-    //         if (res.authSetting['scope.userInfo']) {
-    //           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-    //           wx.getUserInfo({
-    //             success: res => {
-    //               // 可以将 res 发送给后台解码出 unionId
-    //               this.globalData.userInfo = res.userInfo
-    //               console.log("userinfo is saved")
-    //               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //               // 所以此处加入 callback 以防止这种情况
-    //               if (this.userInfoReadyCallback) {
-    //                 this.userInfoReadyCallback(res)
-    //               }
-    //             }
-    //           })
-    //         }
-    //       }
-    //     })
-    //   }
-    // },
 
     getUserInfo: function(cb) {
         var that = this;
@@ -113,11 +72,9 @@ App({
                 } else {
                     // 未注册用户
                     if (res.statusCode === 400) {
-                        console.log('Invoke registerUser')
                         that.registerUser(cb);
                     } else {
                         that.globalData.userInfo = res.data;
-                        console.log(that.globalData.userInfo)
                         wx.hideLoading();
                         cb();
                     }
@@ -131,7 +88,6 @@ App({
         wx.getUserInfo({
             success: function(res) {
                 var userInfo = res.userInfo;
-                console.log(userInfo)
                 userInfo = {
                     name: userInfo.nickName,
                     avatar: userInfo.avatarUrl
@@ -191,6 +147,7 @@ App({
     globalData: {
         userInfo: {},
         projects: [],
-        tasks: []
+        tasks: [],
+        new_task: {}
     }
 });

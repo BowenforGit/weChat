@@ -1,4 +1,6 @@
-/* pages/newTask/newTask.wxss */.header {
+/* pages/newTask/newTask.wxss */
+@import "./templates/switch/switch.wxss";
+.header {
   display: flex;
   align-items: center;
   border: 1rpx solid #e0e0e0;
@@ -77,4 +79,106 @@ color: #444;
 .empty .icon
 {
   flex:1;
+}
+
+
+
+.page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: #F0F4F3;
+}
+
+.my {
+    margin: 15rpx 0 0 0;
+}
+
+.my .my-item {
+    width: 750rpx;
+    background: #ffffff;
+    padding: 0
+}
+
+.my .my-item .myitem-icon {
+    flex: 1;
+}
+
+.my .my-item .myitem-icon image {
+    width: 45rpx;
+    height: 45rpx;
+    padding: 37.5rpx 0;
+}
+
+.my .my-item .myitem-name {
+    flex: 4;
+    text-align: left;
+    font-size: 34rpx;
+    color: #6d6d6d;
+    line-height: 60rpx;
+    padding: 30rpx 0;
+    border-bottom: solid 1px #ebebeb;
+}
+
+.my .my-item:last-child .myitem-name {
+    border-bottom: none;
+}
+
+.weui-cell__bd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1
+}
+
+.weui-cell__ft {
+    margin-right: 30rpx;
+    text-align: right;
+    color: #999
+}
+
+.weui-cell {
+    padding: 0 0;
+}
+
+.weui-flex {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.kind-list__item-hd {
+    padding: 0 0;
+}
+
+.member-name {
+    margin-left: 10px;
+}
+
+.weui-cell__ta {
+    margin-top: 20rpx;
+}
+
+.dt {
+    display: flex;
+}
+
+.dt-cell_1 {
+    border-right: solid 1px #ebebeb;
+    flex: 1;
+    margin-right: 15%
+}
+
+.dt-cell_2 {
+    flex: 1
+}
+
+.flex-wrp {
+    display: flex;
+}
+
+.member-cell{
+  padding: 10rpx 0;
 }

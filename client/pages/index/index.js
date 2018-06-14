@@ -8,7 +8,6 @@ Page({
         userInfo: {},
         hasUserInfo: false,
         showDeleteIcon: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
         projects: []
     },
     //事件处理函数
@@ -20,12 +19,7 @@ Page({
 
     onLoad: function() {
         console.info('loading index...');
-        /* uncomment this part when the login function is fixed */
-        // var that = this;
-        // getApp().checkLogin(function() {
-        //   that.load();
-        // });
-        // app.checkLogin(function(){});
+
     },
 
     /*
@@ -203,7 +197,8 @@ Page({
                     console.log('Delete project as leader');
                 }
             });
-        } else {
+        }
+        else {
             //not leader: use quit project api 
             app.request({
                 url: '/project/quit/' + e.currentTarget.dataset.id,
@@ -217,6 +212,7 @@ Page({
             });
         }
     },
+    
     setLang() {
         const _ = wx.T._
         this.setData({
