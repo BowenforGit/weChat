@@ -19,6 +19,7 @@ Page({
         toall: "Assign task to each person",
         task_term: 'I would not be a freerider.',
         Create: "Create",
+        Enable_Subtasks: "Enable Subtasks",
 
         taskName: '',
         types: ["Task", "Meeting", "Activity", "Others"],
@@ -320,6 +321,7 @@ Page({
             des: _('des'),
             Date: _('Date'),
             Time: _('Time'),
+            Enable_Subtasks: _('Enable_Subtasks'),
         })
     }
 });

@@ -36,7 +36,8 @@ export default {
         "Task_Information":"Task_Information",
         "Progress":"Progress",
         "Finish":"Finish My Task!",
-        "Undo":"Undo My Task!"
+        "Undo":"Undo My Task!",
+        "Enable_Subtasks": "Enable_Subtasks"
     },
     "cn": {
         "setting":"设置",
@@ -74,6 +75,7 @@ export default {
         "Task_Information":"任务信息",
         "Progress":"进度",
         "Finish":"完成任务！",
-        "Undo":'重做！'
+        "Undo":'重做！',
+        "Enable_Subtasks":"允许分任务"
     }
 }
