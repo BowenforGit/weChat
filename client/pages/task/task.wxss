@@ -1,7 +1,10 @@
 /* pages/project/task/task.wxss */
-.checkbox{
-  margin-right: 5px;
+
+@import "../newTask/newTask.wxss";
+.checkbox {
+    margin-right: 5px;
 }
-.finish{
-  margin: 10px 10%;
+
+.finish {
+    margin: 10px 10%;
 }

@@ -78,8 +78,3 @@
     padding: 80rpx 0;
     font-size: 28rpx
 }
-
-.level-image {
-    width: 30px;
-    height: 30px;
-}

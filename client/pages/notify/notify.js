@@ -40,16 +40,16 @@ Page({
                             taskName: task.name,
                             taskType: task.task_type,
                             status: task.finish,
-                            due: task.deadline.substring(0, 10),
-                            proName: name
+                            due: task.deadline.substring(5, 7) + '/' + task.deadline.substring(8, 10),
+                            proName: name,
+                            taskLevel: task.importance
                         };
-                        if (name)
-                            console.info(format_task);
+
                         return format_task;
                     });
                     that.setData({ tasks: tasks });
                     app.globalData.tasks = tasks;
-                    console.info(that.data.tasks)
+                    //console.log(that.data.tasks)
                 }
             });
         } else {

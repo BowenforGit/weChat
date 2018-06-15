@@ -2,7 +2,6 @@
 const util = require('../../utils/util.js');
 var app = getApp();
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -13,37 +12,17 @@ Page({
         Date: "Date",
         Time: 'Time',
         Task_Type: "Task Type",
+        Task_Level: 'Importance',
         Progress: "Progress",
         Deadline: "Deadline",
         Finish: 'Finish My Task!',
         Undo: 'Undo My Task!',
+        Choose_Member: "Responsible",
         index: 0,
         projectID: 0,
         task: {},
-        enableButton: false,
-        userInfo: {},
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
-    },
-    save: function() {
-        var key2 = this.data.projectID + '-logs';
-        wx.setStorageSync(key2, this.data.logs);
-    },
-    load: function() {
-        var key1 = this.data.projectID + '-tasks';
-        var key2 = this.data.projectID + '-logs';
-        var tasks = wx.getStorageSync(key1);
-        var logs = wx.getStorageSync(key2);
-        if (tasks) {
-            for (var item in tasks) {
-                if (item.taskID == this.data.taskID)
-                    this.setData({
-                        task: item
-                    });
-            }
-        }
-        if (logs) {
-            this.setData({ logs: logs });
-        }
+        tempTask: {},
+        level: ['Low', 'Medium', 'High'],
     },
 
     // load the task data from the server
@@ -56,6 +35,7 @@ Page({
                 console.info('First');
                 var format_task = {};
                 var task = res.data[0];
+                that.setData({ tempTask: task });
                 var members = res.data[1];
                 var taskMembersId = [];
                 // var subtasks = [];
@@ -67,17 +47,34 @@ Page({
                 // subtasks.push(task.subtask1, task.subtask2, task.subtask3);
                 // subtasks.splice("", 1);
                 // var i = 0;
-                console.info(taskMembersId);
+                //console.info(taskMembersId);
                 for (var i = 0; i < taskMembersId.length; i++) {
                     // console.log("i:", i);
                     // console.info(members);
                     //console.log(item); 
                     var name = members.filter(member => member.open_id === taskMembersId[i])[0].name;
+                    var subtask;
+                    var completed;
+                    switch (i) {
+                        case 0:
+                            completed = task.subtask1.startsWith('_0_') ? true : false;
+                            subtask = task.subtask1.replace('_0_', '');
+                            break;
+                        case 1:
+                            completed = task.subtask2.startsWith('_0_') ? true : false;
+                            subtask = task.subtask2.replace('_0_', '');
+                            break;
+                        case 2:
+                            completed = task.subtask2.startsWith('_0_') ? true : false;
+                            subtask = task.subtask2.replace('_0_', '');
+                            break;
+                    }
                     // console.info("Members", members);
                     // console.log(name);
                     taskMembers.push({
-                        name: name
-                            //task: subtasks[i]
+                        name: name,
+                        task: subtask,
+                        completed: completed
                     });
                 }
                 //  console.info("task members", taskMembers);
@@ -89,13 +86,13 @@ Page({
                 format_task.taskTime = task.deadline.substring(11, 19);
                 format_task.taskMembers = taskMembers;
                 format_task.status = task.finish;
+                format_task.taskLevel = task.importance;
                 that.setData({
                     task: format_task
                 });
                 if (that.data.task !== {}) {
                     //console.info(that.data.task);
                     cb(that.data.task);
-
                 }
                 // console.info("Here!", that.data.task);
             }
@@ -114,8 +111,8 @@ Page({
             for (var i = 0; i < that.data.task.taskMembers.length; i++) {
                 //console.info("2:",app.globalData.userInfo);
                 // console.info(member.name);
-                console.info(that.data.task.taskMembers[i].name);
-                console.info(app.globalData.userInfo.name);
+                //console.info(that.data.task.taskMembers[i].name);
+                //console.info(app.globalData.userInfo.name);
                 if (that.data.task.taskMembers[i].name === app.globalData.userInfo.name) {
                     console.info("Set true~");
                     that.setData({
@@ -125,9 +122,6 @@ Page({
                 }
             }
         });
-
-
-
     },
     onShow: function() {
         this.setLang();
@@ -151,43 +145,65 @@ Page({
             success: function(res) {
                 console.log(res);
                 if (res.confirm) {
-                    console.log("taskID:", that.data.task);
+                    //Complete the Your own Task 
+                    var temp = that.data.tempTask;
+                    var tempMember = that.data.task.taskMembers;
+                    for (var i = 0; i < tempMember.length; i++) {
+                        if (tempMember[i].name === app.globalData.userInfo.name)
+                        //If the user task is not completed
+                            if (!tempMember[i].completed) {
+                                tempMember[i].completed = true;
+                                tempMember[i].task = '_0_' + tempMember[i].task;
+                            } else {
+                                tempMember[i].completed = false;
+                            }
+                        if (i == 0) temp.subtask1 = tempMember[i].task;
+                        else if (i == 1) temp.subtask2 = tempMember[i].task;
+                        else if (i == 2) temp.subtask3 = tempMember[i].task;
+                    }
+                    that.setData({ taskMembers: tempMember });
+                    var allCompleted = true;
+                    for (var i = 0; i < tempMember.length; i++)
+                        allCompleted = allCompleted && tempMember[i].completed;
+                    temp.finish = allCompleted;
+                    //Use edit task API
                     app.request({
-                        url: '/task/toggle/' + that.data.task.taskID,
-                        success: function(res) {
-                            that.setData({
-                                'task.status': res.data.finish
-                            });
-                            console.log(that.data.task.status);
-                        }
-                    });
-                    var arr = getCurrentPages();
-                    var theProject = arr[arr.length - 2];
-
-                    console.log('user click confirm');
-                    // var logs = theProject.data.logs;
-                    // logs.push({ timestamp: util.formatTime(new Date()), action: 'Finish Task', actionInfo: that.data.task.taskName, userInfo: that.data.userInfo });
-                    // theProject.setData({
-                    //   'logs': logs
+                            url: '/task/' + that.data.task.taskID,
+                            method: 'PUT',
+                            data: {
+                                subtask1: temp.subtask1,
+                                subtask2: temp.subtask2,
+                                subtask3: temp.subtask3,
+                                finish: temp.finish
+                            },
+                            success: function(res) {
+                                console.log('edit task ' + that.data.task.taskID + ' success')
+                            },
+                            fail: function(error) {
+                                console.log(error)
+                            }
+                        })
+                    // app.request({
+                    //     url: '/task/toggle/' + that.data.task.taskID,
+                    //     success: function(res) {
+                    //         that.setData({
+                    //             'task.status': res.data.finish
+                    //         });
+                    //         console.log(that.data.task.status);
+                    //     }
                     // });
-                    // theProject.save();
+                    // var arr = getCurrentPages();
+                    // var theProject = arr[arr.length - 2];
+                    console.log('user click confirm');
                     wx.navigateBack();
                 } else {
                     console.log('user click cancel');
                 }
-                //change the status 
-                //Make finish button disable
+
             }
         });
     },
-    bindGetUserInfo: function(e) {
-        console.log("bindinput");
-        this.setData({
-            userInfo: e.detail.userInfo
-        });
-        this.openConfirm();
 
-    },
     setLang() {
         const _ = wx.T._
         this.setData({

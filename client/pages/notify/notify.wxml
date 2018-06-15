@@ -12,25 +12,31 @@
                     <view class="notify-item flex-wrp">
                         <view class="avatar flex-item">
 
-                            <block wx:if="{{item.taskType == 'Presentation'}}">
-                                <image src="../../images/icon/tasks-filled.png"></image>
+                            <block wx:if="{{item.taskType == 'Presentation' || item.taskType == 'Task'}}">
+                                <image src="../../images/icon/document.png"></image>
                             </block>
-                            <block wx:elif="{{item.taskType == 'Report/Paper'}}">
-                                <image src="../../images/icon/people.png"></image>
+                            <block wx:elif="{{item.taskType == 'Report/Paper' || item.taskType == 'Meeting'}}">
+                                <image src="../../images/icon/chat-bubble.png"></image>
                             </block>
-                            <block wx:elif="{{item.taskType == 'Data Collection'}}">
-                                <image src="../../images/icon/safari-hat.png"></image>
-                            </block>
-                            <block wx:elif="{{item.taskType == 'Readings'}}">
-                                <image src="../../images/book.png"></image>
+                            <block wx:elif="{{item.taskType == 'Data Collection' || item.taskType == 'Activity'}}">
+                                <image src="../../images/icon/event.png"></image>
                             </block>
                             <block wx:else>
-                                <image src="../../images/icon/user-groups_blue.png"></image>
+                                <image src="../../images/icon/adventures_blue.png"></image>
                             </block>
                         </view>
                         <view class="notify-content flex-item">
-                            <text class="notify-title">{{item.taskName}}</text>
-                            <text class="notify-source">{{item.proName ? item.proName : 'sample project name'}}</text>
+
+                            <view class="notify-left">
+                                <text class="notify-title">{{item.taskName}}</text>
+                                <text class="notify-source">{{item.proName ? item.proName : 'sample project name'}}</text>
+                            </view>
+                            <view class="notify-right weui-flex">
+                                <text class="notify-date">01/01</text>
+                                <image wx:if="{{item.taskLevel==2 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/high-priority.png"></image>
+                                <image wx:if="{{item.taskLevel==1 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/medium-priority.png"></image>
+                                <image wx:if="{{item.taskLevel==0 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/low-priority.png"></image>
+                            </view>
                         </view>
                     </view>
                 </block>
@@ -42,21 +48,19 @@
             <block wx:if="{{item.status == 0 && item.due < date}}">
                 <view class="notify-item flex-wrp">
                     <view class="avatar flex-item">
-                        <block wx:if="{{item.taskType == 'Presentation'}}">
+
+
+                        <block wx:if="{{item.taskType == 'Presentation' || item.taskType == 'Task'}}">
                             <image src="../../images/icon/document.png"></image>
                         </block>
-
-                        <block wx:elif="{{item.taskType == 'Report/Paper'}}">
+                        <block wx:elif="{{item.taskType == 'Report/Paper' || item.taskType == 'Meeting'}}">
                             <image src="../../images/icon/chat-bubble.png"></image>
                         </block>
-                        <block wx:elif="{{item.taskType == 'Data Collection'}}">
-                            <image src="../../images/icon/safari-hat.png"></image>
-                        </block>
-                        <block wx:elif="{{item.taskType == 'Readings'}}">
-                            <image src="../../images/book.png"></image>
+                        <block wx:elif="{{item.taskType == 'Data Collection' || item.taskType == 'Activity'}}">
+                            <image src="../../images/icon/event.png"></image>
                         </block>
                         <block wx:else>
-                            <image src="../../images/icon/event.png"></image>
+                            <image src="../../images/icon/adventures_blue.png"></image>
                         </block>
                     </view>
                     <view class="notify-content flex-item">
@@ -66,8 +70,10 @@
                             <text class="notify-source">{{item.proName ? item.proName : 'sample project name'}}</text>
                         </view>
                         <view class="notify-right weui-flex">
-                            <text class="notify-date">01/01</text>
-                            <image style="width:50rpx;height:50rpx;" src="../../images/icon/high-priority.png"></image>
+                            <text class="notify-date">{{item.due}}</text>
+                            <image wx:if="{{item.taskLevel==2 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/high-priority.png"></image>
+                            <image wx:if="{{item.taskLevel==1 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/medium-priority.png"></image>
+                            <image wx:if="{{item.taskLevel==0 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/low-priority.png"></image>
                         </view>
                     </view>
                 </view>

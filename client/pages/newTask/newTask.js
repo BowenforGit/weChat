@@ -7,9 +7,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        Task_Name: "Task Name",
-        Task_Type: "Task Type",
-        Task_Description: "Task Description",
+        Task_Name: "Name",
+        Task_Type: "Type",
+        Task_Description: "Description",
         des: "Some information...",
         Deadline: "Deadline",
         Time: "Time",
@@ -19,11 +19,14 @@ Page({
         toall: "Assign task to each person",
         task_term: 'I would not be a freerider.',
         Create: "Create",
-        Enable_Subtasks: "Enable Subtasks",
-
+        Enable_Subtask: "Subtasks",
+        Task_Level: "Importance",
+        Choose_Member: "Responsible",
         taskName: '',
         types: ["Task", "Meeting", "Activity", "Others"],
         typeIndex: 0,
+        levels: ["Low", "Medium", "High"],
+        levelIndex: 0,
         switchData: {
             id: 1,
             color: '#242492',
@@ -31,13 +34,7 @@ Page({
         },
 
         projectID: 0,
-        radioItems: [
-            { name: 'Presentation', value: '0' },
-            { name: 'Report/Paper', value: '1' },
-            { name: 'Data Collection', value: '2' },
-            { name: 'Readings', value: '3' },
-            { name: 'Others', value: '4' }
-        ],
+
         checkboxItems: [],
         date: "2016-01-01",
         time: "23:59",
@@ -46,11 +43,8 @@ Page({
         members: [],
         memberIndex: 0,
 
-        isAgree: false,
-        allotDetail: false,
-
         input: '',
-        todos: [],
+        todos: ['', '', ''],
         logs: [],
         leftCount: 0,
 
@@ -58,19 +52,8 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
 
-    save: function() {
-        var key2 = this.data.projectID + '-logs';
-        wx.setStorageSync(key2, this.data.logs);
-    },
-    load: function() {
-        var key2 = this.data.projectID + '-logs';
-        var logs = wx.getStorageSync(key2);
-        if (logs) {
-            this.setData({ logs: logs });
-        }
-    },
+   
     onLoad: function(options) {
-        this.load();
         this.setData({
             projectID: options.id
         });
@@ -102,48 +85,15 @@ Page({
         this.setData({ input: e.detail.value });
     },
 
-
-    addTodoHandle: function(e) {
-        if (!this.data.input || !this.data.input.trim()) return;
-        var todos = this.data.todos;
-        todos.push({ name: this.data.members[this.data.memberIndex].name, task: this.data.input, completed: false });
-        this.setData({
-            input: '',
-            todos: todos,
-            leftCount: this.data.leftCount + 1,
-        });
-    },
-
-    toggleTodoHandle: function(e) {
-        var index = e.currentTarget.dataset.index;
-        var todos = this.data.todos;
-        todos[index].completed = !todos[index].completed;
-        this.setData({
-            todos: todos,
-            leftCount: this.data.leftCount + (todos[index].completed ? -1 : 1),
-        });
-    },
-
-    removeTodoHandle: function(e) {
-        var index = e.currentTarget.dataset.index;
-        var todos = this.data.todos;
-        var remove = todos.splice(index, 1)[0];
-        this.setData({
-            todos: todos,
-            leftCount: this.data.leftCount - (remove.completed ? 0 : 1),
-        });
-    },
-
-    radioChange: function(e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value);
-
-        var radioItems = this.data.radioItems;
-        for (var i = 0, len = radioItems.length; i < len; ++i) {
-            radioItems[i].checked = radioItems[i].value == e.detail.value;
+    addSubTask: function(e) {
+        if (e.detail.value) {
+            var index = e.currentTarget.dataset.id;
+            var todos = this.data.todos;
+            todos[index] = e.detail.value;
+            this.setData({
+                todos: todos
+            })
         }
-        this.setData({
-            radioItems: radioItems
-        });
     },
 
     checkboxChange: function(e) {
@@ -185,6 +135,13 @@ Page({
             typeIndex: e.detail.value,
         })
     },
+    bindLevelChange: function(e) {
+        console.log('picker level 发生选择改变，携带值为', e.detail.value, '实际值为' + this.data.levels[e.detail.value]);
+        this.setData({
+            levelIndex: e.detail.value,
+        })
+    },
+
 
     bindDateChange: function(e) {
         this.setData({
@@ -210,11 +167,7 @@ Page({
             allotDetail: e.detail.value
         });
     },
-    bindAgreeChange: function(e) {
-        this.setData({
-            isAgree: !!e.detail.value.length
-        });
-    },
+
     //Customized swtich data 
     tapSwitch: function(event) {
         this.data.switchData.isOn = !this.data.switchData.isOn
@@ -234,21 +187,18 @@ Page({
         var type = this.data.radioItems.filter(type => type.checked == true);
         console.info("Type:", type);
         var deadline = this.data.date.replace("-", "").replace("-", "") + this.data.time.replace(":", "") + "00";
-        var todos = this.data.todos.map(function(todo) {
-            if (todo !== undefined) return todo.task;
-        });
         var format_request = {
             project_id: this.data.projectID,
             name: this.data.taskName,
             member_id1: members[0] || '',
             member_id2: members[1] || '',
             member_id3: members[2] || '',
-            subtask1: todos[0] || '',
-            subtask2: todos[1] || '',
-            subtask3: todos[2] || '',
+            subtask1: this.data.todos[0] || '',
+            subtask2: this.data.todos[1] || '',
+            subtask3: this.data.todos[2] || '',
             info: this.data.input,
-            task_type: this.data.types[typeIndex],
-            importance: 1,
+            task_type: this.data.types[this.data.typeIndex],
+            importance: this.data.levelIndex,
             deadline: deadline
         };
         console.info("format:", format_request);
@@ -270,10 +220,11 @@ Page({
                 format_task.taskID = task.task_id;
                 format_task.taskName = task.name;
                 format_task.taskType = task.task_type;
-                format_task.taskStartDate = task.start_date;
+                format_task.taskTime = task.deadline.substring(8, 10) + ':' + task.deadline.substring(10, 12);
                 format_task.taskEndDate = task.deadline.substring(0, 4) + '-' + task.deadline.substring(4, 6) + '-' + task.deadline.substring(6, 8);
                 format_task.taskMembers = members;
                 format_task.taskInfo = task.info;
+                format_task.taskLevel = task.importance;
                 console.info("format", format_task);
                 app.globalData.new_task = format_task;
                 wx.navigateBack();
@@ -282,25 +233,6 @@ Page({
 
     },
 
-    bindGetUserInfo: function(e) {
-        this.setData({
-            userInfo: e.detail.userInfo
-        });
-        wx.showToast({
-            title: 'Success',
-            icon: 'success',
-            duration: 3000
-        });
-        //get the instance of project page 
-        var arr = getCurrentPages();
-        var theProject = arr[arr.length - 2];
-        var logs = theProject.data.logs;
-        logs.push({ timestamp: util.formatTime(new Date()), action: 'Add New Task', actionInfo: this.data.taskName, userInfo: this.data.userInfo });
-        theProject.setData({
-            'project.logs': logs
-        });
-        theProject.save();
-    },
     setLang() {
         const _ = wx.T._
         this.setData({
