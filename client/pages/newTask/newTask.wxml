@@ -5,7 +5,7 @@
             <image src="../../images/icon/paper-plane.png"></image>
         </view>
         <view class="myitem-name flex-item">
-            <input bindinput="bindNameChange" placeholder="{{Task_Name}}" />
+            <input focus="true" bindinput="bindNameChange" placeholder="{{Task_Name}}" />
         </view>
     </view>
     <view class="my-item flex-wrp">
@@ -31,7 +31,7 @@
             <image src="../../images/icon/align-left.png"></image>
         </view>
         <view class="myitem-name flex-item">
-            <textarea class="weui-textarea" value="{{input}}" bindinput="bindInfoChange" placeholder="{{Task_Description}}" style="height: 5em" />
+            <textarea class="weui-textarea" auto-focus value="{{input}}" bindinput="bindInfoChange" placeholder="{{Task_Description}}" style="height: 5em" />
         </view>
     </view>
 
@@ -46,7 +46,7 @@
                         <view class="weui-label">{{Date}}</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{date}}" bindchange="bindDateChange1">
+                        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
                             <view class="weui-input">{{date}}</view>
                         </picker>
                     </view>
@@ -57,12 +57,30 @@
                         <view class="weui-label">{{Time}}</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="time" value="{{time}}" bindchange="bindDateChange">
+                        <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
                             <view class="weui-input">{{time}}</view>
                         </picker>
                     </view>
                 </view>
             </view>
+        </view>
+    </view>
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/connection.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+
+            <picker bindchange="bindLevelChange" value="{{levelIndex}}" range="{{levels}}">
+                <view class="t weui-select_in-select-after">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <text>{{Task_Level}}</text>
+                        </view>
+                        <view class="weui-cell__ft">{{levels[levelIndex]}}</view>
+                    </view>
+                </view>
+            </picker>
         </view>
     </view>
     <view class="my-item flex-wrp">
@@ -88,20 +106,25 @@
             <image src="../../images/icon/user.png"></image>
         </view>
         <view class="myitem-name flex-item" style="position:relative;">
-
+            <text>{{Choose_Member}}</text>
             <checkbox-group bindchange="checkboxChange">
-                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
-                    <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+                <view class="member-list" wx:for="{{checkboxItems}}" wx:key="index">
+                    <label class="weui-cell weui-check__label member-check">
+                            <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+        
+                            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                <icon class="weui-icon-checkbox_circle" style="height:25px;margin:10px 0 10px 0;" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                                <icon class="weui-icon-checkbox_success" style="height:25px;margin:10px 0 10px 0;" type="success" size="23" color="#242492" wx:if="{{item.checked}}"></icon>
+                            </view>
+                            <view class="weui-cell__bd">{{item.name}}</view>
+                    </label>
+                    <view class="subtask-input" wx:if="{{switchData.isOn}}">
+                        <input disabled="{{!item.checked}}" focus="true" bindchange="addSubTask" data-id="{{item.value}}" placeholder="Add Subtasks" />
+                    </view>
 
-                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
-                        <icon class="weui-icon-checkbox_circle" style="height:25px;margin:10px 0 10px 0;" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
-                        <icon class="weui-icon-checkbox_success" style="height:25px;margin:10px 0 10px 0;" type="success" size="23" color="#242492" wx:if="{{item.checked}}"></icon>
-                    </view>
-                    <view class="weui-cell__bd">{{item.name}}</view>
-                    <view wx:if="{{switchData.isOn}}">
-                        <input bindchange="addsubtask" placeholder="subtask" />
-                    </view>
-                </label>
+                </view>
+
+
             </checkbox-group>
         </view>
     </view>

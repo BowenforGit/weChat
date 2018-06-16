@@ -1,70 +1,83 @@
 <!--logs.wxml-->
 <view class="top-tab flex-wrp flex-tab">
-  <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
-    {{itemName}}
-  </view>
+    <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+        {{itemName}}
+    </view>
 </view>
 <scroll-view scroll-y="true" class="container notify withtab" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-  <view class="ctnt0" hidden="{{currentNavtab==0 ? '' : true}}">
-  <block wx:if="{{item.status == 0 && item.due >= date}}">
-  <navigator url="{{'/pages/task/task?id='+item.taskID}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
-  <block wx:if="{{item.status == 0}}">
-    <view class="notify-item flex-wrp">
-      <view class="avatar flex-item">
-      <block wx:if="{{item.taskType == 'Presentation'}}">
-        <image src="../../images/draft.png"></image>
-      </block>
-      
-      <block wx:elif="{{item.taskType == 'Report/Paper'}}">
-        <image src="../../images/chat.png"></image>
-      </block>
-      <block wx:elif="{{item.taskType == 'Data Collection'}}">
-        <image src="../../images/discovery.png"></image>
-      </block>
-      <block wx:elif="{{item.taskType == 'Readings'}}">
-        <image src="../../images/book.png"></image>
-      </block>
-      <block wx:else>
-        <image src="../../images/star.png"></image>
-      </block>  
-      </view>
-      <view class="notify-content flex-item">
-        <text class="notify-title">{{item.taskName}}</text>
-        <text class="notify-source">{{item.proName}}</text>
-      </view>
+    <view class="ctnt0" hidden="{{currentNavtab==0 ? '' : true}}">
+        <block wx:if="{{item.status == 0 && item.due >= date}}">
+            <navigator url="{{'/pages/task/task?id='+item.taskID}}" hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
+                <block wx:if="{{item.status == 0}}">
+                    <view class="notify-item flex-wrp">
+                        <view class="avatar flex-item">
+
+                            <block wx:if="{{item.taskType == 'Presentation' || item.taskType == 'Task'}}">
+                                <image src="../../images/icon/document.png"></image>
+                            </block>
+                            <block wx:elif="{{item.taskType == 'Report/Paper' || item.taskType == 'Meeting'}}">
+                                <image src="../../images/icon/chat-bubble.png"></image>
+                            </block>
+                            <block wx:elif="{{item.taskType == 'Data Collection' || item.taskType == 'Activity'}}">
+                                <image src="../../images/icon/event.png"></image>
+                            </block>
+                            <block wx:else>
+                                <image src="../../images/icon/adventures_blue.png"></image>
+                            </block>
+                        </view>
+                        <view class="notify-content flex-item">
+
+                            <view class="notify-left">
+                                <text class="notify-title">{{item.taskName}}</text>
+                                <text class="notify-source">{{item.proName ? item.proName : 'sample project name'}}</text>
+                            </view>
+                            <view class="notify-right weui-flex">
+                                <text class="notify-date">01/01</text>
+                                <image wx:if="{{item.taskLevel==2 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/high-priority.png"></image>
+                                <image wx:if="{{item.taskLevel==1 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/medium-priority.png"></image>
+                                <image wx:if="{{item.taskLevel==0 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/low-priority.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </navigator>
+        </block>
     </view>
-    </block>
-    </navigator>
-    </block>
-  </view>
-  <view class="ctnt2" hidden="{{currentNavtab==1 ? '' : true}}">
-    <navigator url="{{'/pages/task/task?id='+item.taskID}}"  hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
-    <block wx:if="{{item.status == 0 && item.due < date}}">
-    <view class="notify-item flex-wrp">
-      <view class="avatar flex-item">
-      <block wx:if="{{item.taskType == 'Presentation'}}">
-        <image src="../../images/draft.png"></image>
-      </block>
-      
-      <block wx:elif="{{item.taskType == 'Report/Paper'}}">
-        <image src="../../images/chat.png"></image>
-      </block>
-      <block wx:elif="{{item.taskType == 'Data Collection'}}">
-        <image src="../../images/discovery.png"></image>
-      </block>
-      <block wx:elif="{{item.taskType == 'Readings'}}">
-        <image src="../../images/book.png"></image>
-      </block>
-      <block wx:else>
-        <image src="../../images/star.png"></image>
-      </block>    
-      </view>
-      <view class="notify-content flex-item">
-        <text class="notify-title">{{item.taskName}}</text>
-        <text class="notify-source">{{item.proName}}</text>
-      </view>
+    <view class="ctnt2" hidden="{{currentNavtab==1 ? '' : true}}">
+        <navigator url="{{'/pages/task/task?id='+item.taskID}}" hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
+            <block wx:if="{{item.status == 0 && item.due < date}}">
+                <view class="notify-item flex-wrp">
+                    <view class="avatar flex-item">
+
+
+                        <block wx:if="{{item.taskType == 'Presentation' || item.taskType == 'Task'}}">
+                            <image src="../../images/icon/document.png"></image>
+                        </block>
+                        <block wx:elif="{{item.taskType == 'Report/Paper' || item.taskType == 'Meeting'}}">
+                            <image src="../../images/icon/chat-bubble.png"></image>
+                        </block>
+                        <block wx:elif="{{item.taskType == 'Data Collection' || item.taskType == 'Activity'}}">
+                            <image src="../../images/icon/event.png"></image>
+                        </block>
+                        <block wx:else>
+                            <image src="../../images/icon/adventures_blue.png"></image>
+                        </block>
+                    </view>
+                    <view class="notify-content flex-item">
+
+                        <view class="notify-left">
+                            <text class="notify-title">{{item.taskName}}</text>
+                            <text class="notify-source">{{item.proName ? item.proName : 'sample project name'}}</text>
+                        </view>
+                        <view class="notify-right weui-flex">
+                            <text class="notify-date">{{item.due}}</text>
+                            <image wx:if="{{item.taskLevel==2 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/high-priority.png"></image>
+                            <image wx:if="{{item.taskLevel==1 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/medium-priority.png"></image>
+                            <image wx:if="{{item.taskLevel==0 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/low-priority.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </navigator>
     </view>
-    </block>
-    </navigator>
-  </view>
 </scroll-view>

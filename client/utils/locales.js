@@ -19,9 +19,9 @@ export default {
        "Intern":"Intern",
        "Work":"Work",
        "Others":"Others",
-        "Task_Name":"Task Name",
-        "Task_Type":"Task Type",
-        "Task_Description":"Task Description",
+        "Task_Name":"Name",
+        "Task_Type":"Type",
+        "Task_Description":"Description",
         "Deadline":"Deadline",
         "Presentation":"Presentation",
         "Report/Paper":"Report/Paper",
@@ -37,7 +37,9 @@ export default {
         "Progress":"Progress",
         "Finish":"Finish My Task!",
         "Undo":"Undo My Task!",
-        "Enable_Subtasks": "Enable_Subtasks"
+        "Enable_Subtasks": "Subtasks",
+        "Task_Level":"Importance",
+        "Choose_Member":"Responsible"
     },
     "cn": {
         "setting":"设置",
@@ -59,9 +61,9 @@ export default {
         "Intern":"实习",
         "Work":"工作",
         "Others":"其他",
-        "Task_Name":"任务名称",
-        "Task_Type":"任务类别",
-        "Task_Description":"任务描述",
+        "Task_Name":"名称",
+        "Task_Type":"类别",
+        "Task_Description":"描述",
         "Deadline":"截止日期",
         "Presentation":"汇报展示",
         "Report/Paper":"报告/论文",
@@ -72,10 +74,12 @@ export default {
         "Detailed_Allocation":"具体分配",
         "Who_Takes_Charge":'负责人',
         "task_term":'本人会完成自己的工作。',
-        "Task_Information":"任务信息",
+        "Task_Information":"信息",
         "Progress":"进度",
         "Finish":"完成任务！",
         "Undo":'重做！',
-        "Enable_Subtasks":"允许分任务"
+        "Enable_Subtasks":"分任务",
+        "Task_Level":'重要性',
+        "Choose_Member":"负责人"
     }
 }

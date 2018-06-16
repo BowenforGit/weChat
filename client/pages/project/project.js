@@ -13,8 +13,8 @@ const config = require('../../config.js');
 
 Page({
     data: {
-        index: 3, 
-		opened: !1,
+        index: 3,
+        opened: !1,
         Add: 'Add',
         Members: "Members",
         Tasks: "Tasks",
@@ -338,7 +338,7 @@ Page({
         this.setData({
             'list.members': this.data.project.proMembers
         });
-        
+
         this.setData({
             'list.open': !this.data.list.open
         });
@@ -352,10 +352,10 @@ Page({
         })
     },
     initButton(position = 'bottomRight') {
-      var that = this;
-      this.setData({
-        opened: !1,
-      })
+        var that = this;
+        this.setData({
+            opened: !1,
+        })
 
       this.button = $wuxButton.init('br', {
         position: position,
@@ -381,13 +381,13 @@ Page({
           //create task
           index === 2 && that.createTask();
 
-          return true
-        },
-        callback(vm, opened) {
-          vm.setData({
-            opened,
-          })
-        },
-      })
+                return true
+            },
+            callback(vm, opened) {
+                vm.setData({
+                    opened,
+                })
+            },
+        })
     }
 });
