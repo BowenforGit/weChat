@@ -1,4 +1,4 @@
-/*
+ /*
  * @Date: 2018-06-07 21:51:16 
  * @Last Modified time: 2018-06-07 21:51:16 
  * @Problems: 1. what is e.currentTarget.id; 2. how to fetch the images from the server; 
@@ -375,7 +375,7 @@ Page({
         ],
         buttonClicked(index, item) {
 					//invite
-          index === 0 && onShareAppMessage();
+          index === 0 && that.onShareAppMessage();
           //see members
           index === 1 && that.kindToggle();
           //create task
