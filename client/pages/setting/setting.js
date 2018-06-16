@@ -27,7 +27,14 @@ Page({
         this.setLang()
         event.emit('LangChanged', this.data.langCode[index])
       },
-
+    showThanks() {
+        console.log("enter show thanks")
+        wx.showModal({
+            title: 'Thank you for your support!', 
+            content: 'We are at: https://github.com/BowenforGit/weChat',
+            showCancel: !1, 
+        })
+    },
     setLang() {
         const _ = wx.T._
         this.setData({

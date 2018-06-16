@@ -8,10 +8,6 @@
                         <image src="../../images/flag.png"></image>
                         <text>{{projects.length}}</text>
                     </view>
-                    <view>
-                        <image src="../../images/allread.png"></image>
-                        <text>27</text>
-                    </view>
            </view>
                 <view class="right"  bindtap="createProject">
                     + {{Create_New}}
