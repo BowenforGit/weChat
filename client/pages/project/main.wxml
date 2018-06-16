@@ -3,7 +3,7 @@
  <template is="button" data="{{ ...$wux.button.br }}"/> 
 <view class="container">
     <view class="project-wrp">
-        <view class="project-item" style="background-image:url(../../images/bg1.png);max-width:100%;max-height:100%;background-size:100% 100%;">
+        <view class="project-item bg">
             <view class="pro-title">
                 {{project.proName}}
             </view>
@@ -14,16 +14,6 @@
         <view class="page__bd page__bd_spacing">
                 <view class="kind-list">        
                      <view class="kind-list__item">
-                        <view class="pro-operate flex-wrp">
-                            <button id="{{list.id}}" class="half" style="float:left;" bindtap="kindToggle">
-                                <image style="width:35rpx;height:35rpx;" class="noborder" src="../../images/member.png"></image>
-                                <text>{{Members}}</text>
-                            </button>
-                            <button class="half" bindtap="createTask">
-                                <image style="width:45rpx;height:47rpx;" src="../../images/write.png"></image>
-                                <text>{{Add}}</text>
-                            </button>
-                        </view>
                         <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
                             <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
                                     <view class="weui-grids">
