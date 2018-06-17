@@ -21,6 +21,13 @@ Page({
         console.log('点击删除了')
     },
 
+    //事件处理函数
+    bindProTap: function() {
+        wx.navigateTo({
+            url: '../project/project'
+        });
+    },
+
     onLoad: function() {
         console.info('loading index...');
 
@@ -272,6 +279,8 @@ Page({
                     }
                 }
             });
+
+
         } else {
             //not leader: use quit project api 
 

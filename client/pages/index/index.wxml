@@ -25,6 +25,7 @@
                     <view class="flex-wrp">
                         <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left; font-weight: bold;">{{item.proName}}</view>
                     </view>
+                    
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{item.proType}}</view>
