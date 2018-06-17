@@ -1,3 +1,6 @@
+import { $wuxToptips } from '../../components/wux'
+import WxValidate from '../../assets/plugins/WxValidate'
+
 // pages/projectForm/projectForm.js
 const Toptips = require('../../components/toptips/index');
 const util = require('../../utils/util.js');
@@ -56,18 +59,19 @@ Page({
 
 
     onLoad: function(options) {
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-      if (month <= 9) { month = '0' + month; }
-      if (day <= 9) { day = '0' + day; }
-      //console.log(year + '-' + month + '-' + day)
-      this.setData({
-        date: year + '-' + month + '-' + day
-      })
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month <= 9) { month = '0' + month; }
+        if (day <= 9) { day = '0' + day; }
+        //console.log(year + '-' + month + '-' + day)
+        this.setData({
+            date: year + '-' + month + '-' + day
+        })
         this.setData({
             projectID: options.id
         });
+        this.initValidate();
         //console.log('project is id' + this.data.projectID)
         var arr = getCurrentPages();
         var theProject = arr[arr.length - 2];
@@ -185,32 +189,44 @@ Page({
             switchData: this.data.switchData
         });
     },
-    openToast: function() {
+    openToast: function(e) {
+        console.info('e is', e)
         var members = [];
         console.info('memberIndex:', this.data.memberIndex);
         console.info('members:', this.data.members);
+
         for (var item in this.data.memberIndex) {
             members.push(this.data.members[item].open_id);
         }
+        // console.info('members for this task:', members.length);
+        if (members.length == 0) {
+            console.info("no members for this task!");
+            // inform the user
+            return;
+        }
 
+        if (this.data.taskName == "") {
+            console.info("empty task name!");
+            //inform the user
+            return;
+        }
         console.info("Members:", members);
-        
-        if (this.data.taskName == '')
-        {
-          console.info('no task name yet');
-          Toptips({
-            duration: 1000,
-            content: 'Please input task name!'
-          })
-          return;
+
+        if (this.data.taskName == '') {
+            console.info('no task name yet');
+            Toptips({
+                duration: 1000,
+                content: 'Please input task name!'
+            })
+            return;
         }
         if (members.length == 0) {
-          console.info('no members for this task');
-          Toptips({
-            duration: 1000,
-            content: 'No members for this task'
-          })
-          return;
+            console.info('no members for this task');
+            Toptips({
+                duration: 1000,
+                content: 'No members for this task'
+            })
+            return;
         }
         var type = this.data.radioItems.filter(type => type.checked == true);
         console.info("Type:", type);
@@ -260,6 +276,7 @@ Page({
         });
 
     },
+
 
     setLang() {
         const _ = wx.T._

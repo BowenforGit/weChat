@@ -15,8 +15,8 @@ Page({
         Task_Level: 'Importance',
         Progress: "Progress",
         Deadline: "Deadline",
-        Finish: 'Finish My Task!',
-        Undo: 'Undo My Task!',
+        Finish: 'FINISH MY TASK',
+        Undo: 'UNDO MY TASK',
         Choose_Member: "Responsible",
         index: 0,
         projectID: 0,
@@ -137,6 +137,9 @@ Page({
     },
     openConfirm: function() {
         var that = this;
+        var theTask = app.globalData.tasks.filter(e => e.taskID == that.data.task.taskID);
+        console.log('current Task is')
+        console.log(theTask);
         wx.showModal({
             title: 'Declaration',
             content: 'By clicking the confirm button, I acknowledge that my part of the task is doned',
@@ -178,22 +181,24 @@ Page({
                             },
                             success: function(res) {
                                 console.log('edit task ' + that.data.task.taskID + ' success')
+                                    //edit the change in globalData.tasks
+                                app.globalData.tasks[app.globalData.tasks.findIndex(e => e.taskID == that.data.task.taskID)] = temp;
                             },
                             fail: function(error) {
                                 console.log(error)
                             }
                         })
-                    // app.request({
-                    //     url: '/task/toggle/' + that.data.task.taskID,
-                    //     success: function(res) {
-                    //         that.setData({
-                    //             'task.status': res.data.finish
-                    //         });
-                    //         console.log(that.data.task.status);
-                    //     }
-                    // });
-                    // var arr = getCurrentPages();
-                    // var theProject = arr[arr.length - 2];
+                        // app.request({
+                        //     url: '/task/toggle/' + that.data.task.taskID,
+                        //     success: function(res) {
+                        //         that.setData({
+                        //             'task.status': res.data.finish
+                        //         });
+                        //         console.log(that.data.task.status);
+                        //     }
+                        // });
+                        // var arr = getCurrentPages();
+                        // var theProject = arr[arr.length - 2];
                     console.log('user click confirm');
                     wx.navigateBack();
                 } else {

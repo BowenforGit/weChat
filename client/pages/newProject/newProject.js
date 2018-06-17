@@ -152,7 +152,17 @@ Page({
                 project_detail.proID = res.data[0];
                 project_detail.members = [app.globalData.userInfo.open_id];
                 console.log(project_detail);
-                app.globalData.projects.push(project_detail);
+
+                var arr = getCurrentPages();
+                var indexPage = arr[arr.length - 2];
+                var myProjects = indexPage.data.projects;
+                myProjects.push(project_detail);
+                indexPage.setData({ projects: myProjects });
+
+
+
+                //app.globalData.projects.push(project_detail);
+
                 wx.showToast({
                     title: 'Success',
                     icon: 'success',

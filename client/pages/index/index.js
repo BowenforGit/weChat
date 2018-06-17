@@ -4,35 +4,11 @@ var app = getApp();
 
 Page({
     data: {
-        todoList: [{
-                id: 'a1',
-                text: '你好1'
-            },
-            {
-                id: 'a2',
-                text: '你好2'
-            },
-            {
-                id: 'a3',
-                text: '你好3'
-            },
-            {
-                id: 'a4',
-                text: '你好4'
-            },
-            {
-                id: 'a5',
-                text: '你好5'
-            }, {
-                id: 'a6',
-                text: '你好6'
-            }
-        ],
-
+        feed: [],
+        feed_length: 0,
         Create_New: 'Create New',
         userInfo: {},
         hasUserInfo: false,
-
         projects: []
     },
 
@@ -68,7 +44,6 @@ Page({
                 url: "/project",
                 success: function(res) {
                     wx.hideLoading();
-
                     if (res.statusCode !== 200) {
                         wx.showToast({
                             icon: 'none',
@@ -76,7 +51,6 @@ Page({
                         });
                         return;
                     }
-
                     // formalize each data
                     var projects = res.data.map(function(project) {
                         var format = {};
@@ -101,18 +75,19 @@ Page({
                         format.proLeader = project.leader;
                         return format;
                     });
-
                     that.setData({ projects: projects });
                     // 存入全局数据
-                    app.globalData.projects = projects;
+                    //app.globalData.projects = projects;       
                     wx.hideLoading();
+
                 }
             });
         }
         // 非首次加载
         else {
-            var projects = app.globalData.projects;
-            that.setData({ projects: projects });
+            console.log('非首次加载')
+                //var projects = app.globalData.projects;
+                //that.setData({ projects: projects });
         }
     },
 
@@ -125,67 +100,129 @@ Page({
         this.load();
     },
 
-    upper: function() {
-        wx.showNavigationBarLoading();
-        this.refresh();
-        console.log("upper");
-        setTimeout(function() {
-            wx.hideNavigationBarLoading();
-            wx.stopPullDownRefresh();
-        }, 2000);
-    },
-    lower: function(e) {
-        wx.showNavigationBarLoading();
-        var that = this;
-        setTimeout(function() {
-            wx.hideNavigationBarLoading();
-            that.nextLoad();
-        }, 1000);
-        console.log("lower");
-    },
+    // upper: function() {
+    //     console.log("upper 0")
+    //     wx.showNavigationBarLoading();
+    //     this.refresh();
+    //     console.log("upper");
+    //     setTimeout(function() {
+    //         wx.hideNavigationBarLoading();
+    //         wx.stopPullDownRefresh();
+    //     }, 2000);
+    // },
+    // lower: function(e) {
+    //     wx.showNavigationBarLoading();
+    //     var that = this;
+    //     setTimeout(function() {
+    //         wx.hideNavigationBarLoading();
+    //         that.nextLoad();
+    //     }, 1000);
+    //     console.log("lower");
+    // },
 
-    refresh: function() {
-        wx.showToast({
-            title: '刷新中',
-            icon: 'loading',
-            duration: 3000
-        });
-        var feed = util.getProjectsFake();
-        console.log("refresh get projects");
-        // var feed = feed;
-        this.setData({
-            'user.projects': feed,
-            project_length: feed.length
-        });
-        setTimeout(function() {
-            wx.showToast({
-                title: '刷新成功',
-                icon: 'success',
-                duration: 2000
-            });
-        }, 3000);
-    },
-    //使用本地 fake 数据实现刷新效果
-    getData: function() {
-        var feed = util.getData2();
-        console.log("loaddata");
-        var feed_data = feed.data;
-        this.setData({
-            feed: feed_data,
-            feed_length: feed_data.length
-        });
-    },
+    // refresh: function() {
+    //     wx.showToast({
+    //         title: '刷新中',
+    //         icon: 'loading',
+    //         duration: 3000
+    //     });
+    //     var feed = util.getProjectsFake();
+    //     console.log("refresh get projects");
+    //     // var feed = feed;
+    //     this.setData({
+    //         'user.projects': feed,
+    //         project_length: feed.length
+    //     });
+    //     setTimeout(function() {
+    //         wx.showToast({
+    //             title: '刷新成功',
+    //             icon: 'success',
+    //             duration: 2000
+    //         });
+    //     }, 3000);
+    // },
+    // //使用本地 fake 数据实现刷新效果
+    // getData: function() {
+    //     var feed = util.getData2();
+    //     console.log("loaddata");
+    //     var feed_data = feed.data;
+    //     this.setData({
+    //         feed: feed_data,
+    //         feed_length: feed_data.length
+    //     });
+    // },
+    // upper: function() {
+    //     wx.showNavigationBarLoading()
+    //     this.refresh();
+    //     console.log("upper");
+    //     setTimeout(function() {
+    //         wx.hideNavigationBarLoading();
+    //         wx.stopPullDownRefresh();
+    //     }, 2000);
+    // },
+    // lower: function(e) {
+    //     wx.showNavigationBarLoading();
+    //     var that = this;
+    //     setTimeout(function() {
+    //         wx.hideNavigationBarLoading();
+    //         that.nextLoad();
+    //     }, 1000);
+    //     console.log("lower")
+    // },
+    // //scroll: function (e) {
+    // //  console.log("scroll")
+    // //},
 
-    //使用本地 fake 数据实现继续加载效果
-    nextLoad: function() {
-        wx.showToast({
-            title: '加载中',
-            icon: 'loading',
-            duration: 4000
-        });
-        var next = util.getProjectsFake();
-        console.log("continueload");
-    },
+    // //网络请求数据, 实现首页刷新
+    // refresh0: function() {
+    //     var index_api = '';
+    //     util.getData(index_api)
+    //         .then(function(data) {
+    //             //this.setData({
+    //             //
+    //             //});
+    //             console.log(data);
+    //         });
+    // },
+
+    // //使用本地 fake 数据实现刷新效果
+    // getData: function() {
+    //     var feed = util.getData2();
+    //     console.log("loaddata");
+    //     var feed_data = feed.data;
+    //     this.setData({
+    //         feed: feed_data,
+    //         feed_length: feed_data.length
+    //     });
+    // },
+    // refresh: function() {
+    //     wx.showToast({
+    //         title: '刷新中',
+    //         icon: 'loading',
+    //         duration: 3000
+    //     });
+    //     setTimeout(function() {
+    //         wx.showToast({
+    //             title: '刷新成功',
+    //             icon: 'success',
+    //             duration: 2000
+    //         })
+    //     }, 3000)
+
+    // },
+
+
+    // //使用本地 fake 数据实现继续加载效果
+    // nextLoad: function() {
+    //     wx.showToast({
+    //         title: '加载中',
+    //         icon: 'loading',
+    //         duration: 4000
+    //     });
+    //     var next = util.getProjectsFake();
+    //     console.log("continueload");
+    // },
+
     createProject: function() {
         wx.navigateTo({
             url: '../newProject/newProject'
@@ -201,12 +238,14 @@ Page({
     },
 
     onPullDownRefresh: function() {
+        console.log('Invoke onPullDownRefresh')
         wx.showToast({
             title: '刷新中',
             icon: 'loading',
-            duration: 3000
+            duration: 1000
         });
-        this.load(function() {});
+        this.load(wx.stopPullDownRefresh());
+        console.log('Invoke stopPullDownRefresh')
     },
 
     deletePro: function(e) {
