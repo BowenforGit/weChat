@@ -4,12 +4,47 @@ var app = getApp();
 
 Page({
     data: {
+        todoList: [{
+                id: 'a1',
+                text: '你好1'
+            },
+            {
+                id: 'a2',
+                text: '你好2'
+            },
+            {
+                id: 'a3',
+                text: '你好3'
+            },
+            {
+                id: 'a4',
+                text: '你好4'
+            },
+            {
+                id: 'a5',
+                text: '你好5'
+            }, {
+                id: 'a6',
+                text: '你好6'
+            }
+        ],
+
         Create_New: 'Create New',
         userInfo: {},
         hasUserInfo: false,
-        showDeleteIcon: false,
+
         projects: []
     },
+
+    ////demo slide-left
+    handleChange: function() {
+        console.log('显示/关闭了菜单:')
+    },
+
+    handleDelete: function() {
+        console.log('点击删除了')
+    },
+
     //事件处理函数
     bindProTap: function() {
         wx.navigateTo({
@@ -94,14 +129,18 @@ Page({
         wx.showNavigationBarLoading();
         this.refresh();
         console.log("upper");
-        setTimeout(function() { wx.hideNavigationBarLoading();
-            wx.stopPullDownRefresh(); }, 2000);
+        setTimeout(function() {
+            wx.hideNavigationBarLoading();
+            wx.stopPullDownRefresh();
+        }, 2000);
     },
     lower: function(e) {
         wx.showNavigationBarLoading();
         var that = this;
-        setTimeout(function() { wx.hideNavigationBarLoading();
-            that.nextLoad(); }, 1000);
+        setTimeout(function() {
+            wx.hideNavigationBarLoading();
+            that.nextLoad();
+        }, 1000);
         console.log("lower");
     },
 
@@ -153,23 +192,12 @@ Page({
         });
     },
 
-    showDelete: function(e) {
-        this.setData({
-            showDeleteIcon: true
-        });
-    },
+
     //navigate to the project or hide the delete buttons
     toProject: function(opt) {
-        if (!this.data.showDeleteIcon) {
-            console.log('navigate to' + '/pages/project/project?id=' + opt.currentTarget.id);
-            wx.navigateTo({
-                url: '/pages/project/project?id=' + opt.currentTarget.id
-            });
-        } else {
-            this.setData({
-                showDeleteIcon: false
-            });
-        }
+        wx.navigateTo({
+            url: '/pages/project/project?id=' + opt.currentTarget.id
+        });
     },
 
     onPullDownRefresh: function() {
@@ -183,36 +211,69 @@ Page({
 
     deletePro: function(e) {
         var that = this;
+        console.log(e.currentTarget);
         console.log(app.globalData.userInfo.open_id);
         if (app.globalData.userInfo.open_id === that.data.projects[e.currentTarget.dataset.icon].proLeader) {
             //is Leader: use delete project api
-            app.request({
-                url: '/project/' + e.currentTarget.dataset.id,
-                method: 'DELETE',
+            wx.showModal({
+                title: 'WARING!\nDelete ' + that.data.projects[e.currentTarget.dataset.icon].proName,
+                content: 'By deleting the project as the leader, this project and related tasks will not exist!',
+                confirmText: "Cancel",
+                cancelText: "Confirm",
                 success: function(res) {
-                    that.data.projects.splice(e.currentTarget.dataset.icon, 1);
-                    that.setData({
-                        projects: that.data.projects
-                    });
-                    console.log('Delete project as leader');
+                    console.log(res);
+                    if (res.confirm) {
+                        console.log('用户点击主操作')
+                    } else {
+                        app.request({
+                            url: '/project/' + e.currentTarget.dataset.id,
+                            method: 'DELETE',
+                            success: function(res) {
+                                that.data.projects.splice(e.currentTarget.dataset.icon, 1);
+                                that.setData({
+                                    projects: that.data.projects
+                                });
+                                console.log('Delete project as leader');
+                            }
+                        });
+                        console.log('用户点击辅助操作')
+                    }
                 }
             });
-        }
-        else {
+
+
+        } else {
             //not leader: use quit project api 
-            app.request({
-                url: '/project/quit/' + e.currentTarget.dataset.id,
+
+            wx.showModal({
+                title: 'WARING!\nQuit ' + that.data.projects[e.currentTarget.dataset.icon].proName,
+                content: 'Are you sure to quit project ' + that.data.projects[e.currentTarget.dataset.icon].proName + "?",
+                confirmText: "Cancel",
+                cancelText: "Confirm",
                 success: function(res) {
-                    that.data.projects.splice(e.currentTarget.dataset.icon, 1);
-                    that.setData({
-                        projects: that.data.projects
-                    });
-                    console.log('quit project as member');
+                    console.log(res);
+                    if (res.confirm) {
+                        console.log('用户点击主操作')
+                    } else {
+                        console.log('用户点击辅助操作')
+                        app.request({
+                            url: '/project/quit/' + e.currentTarget.dataset.id,
+                            success: function(res) {
+                                that.data.projects.splice(e.currentTarget.dataset.icon, 1);
+                                that.setData({
+                                    projects: that.data.projects
+                                });
+                                console.log('quit project as member');
+                            }
+                        });
+                    }
                 }
             });
+
+
         }
     },
-    
+
     setLang() {
         const _ = wx.T._
         this.setData({

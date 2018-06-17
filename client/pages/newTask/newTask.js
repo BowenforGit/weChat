@@ -52,7 +52,7 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
 
-   
+
     onLoad: function(options) {
         this.setData({
             projectID: options.id
@@ -124,7 +124,6 @@ Page({
         });
     },
     bindInfoChange: function(e) {
-        console.info("bind success");
         this.setData({
             input: e.detail.value
         });

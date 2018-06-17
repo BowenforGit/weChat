@@ -1,4 +1,5 @@
-
 {
-
+    "usingComponents": {
+        "slider-left": "../../components/slider-left/index"
+    }
 }

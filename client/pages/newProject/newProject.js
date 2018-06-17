@@ -34,7 +34,7 @@ Page({
         term: "I would be responsible for the project.",
         project: {
             proName: '',
-            proType: '',
+            proType: 'Course',
             proInfo: '',
             proStartDate: '2016-01-01',
             proEndDate: '2016-02-01',
@@ -74,7 +74,7 @@ Page({
         console.log('picker type 发生选择改变，携带值为', e.detail.value, '实际值为' + this.data.types[e.detail.value]);
         this.setData({
             typeIndex: e.detail.value,
-            'this.data.project.proType': this.data.types[e.detail.value]
+            'project.proType': this.data.types[e.detail.value]
         })
     },
     bindAgreeChange: function(e) {
@@ -113,16 +113,10 @@ Page({
                 console.info(res.data);
                 wx.hideLoading();
                 app.writeHistory(project_detail, 'create', +new Date());
-                var project = res.data;
-                var format = {};
-                format.proID = project.project_id;
-                format.proInfo = project.info;
-                format.proName = project.name;
-                format.proType = project.project_type;
-                format.proStartDate = project.start_date;
-                format.proEndDate = project.end_date;
-                format.members = [project.leader];
-                app.globalData.projects.push(format);
+                project_detail.proID = res.data[0];
+                project_detail.members = [app.globalData.userInfo.open_id];
+                console.log(project_detail);
+                app.globalData.projects.push(project_detail);
                 wx.showToast({
                     title: 'Success',
                     icon: 'success',

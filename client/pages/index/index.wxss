@@ -1,32 +1,36 @@
 /**index.wxss**/
 
-.project-item .overview{
+.project-item .overview {
     margin: 20rpx;
     height: 68rpx;
 }
-.project-item .overview view{
+
+.project-item .overview view {
     display: inline-block;
     margin: 0 40rpx 0 0;
 }
 
-.project-item .overview image{
+.project-item .overview image {
     width: 50rpx;
     height: 50rpx;
     margin: 0 10rpx 0 0;
     vertical-align: middle;
 }
-.project-item .overview .left{
+
+.project-item .overview .left {
     float: left;
     padding: 10rpx 0;
 }
-.project-item .overview .left text{
+
+.project-item .overview .left text {
     color: #AFAFAF;
     height: 50rpx;
     vertical-align: middle;
     padding: 18rpx 0;
     font-size: 24rpx;
 }
-.project-item .overview .right{
+
+.project-item .overview .right {
     float: right;
     padding: 15rpx 40rpx;
     color: #ffffff;
@@ -34,4 +38,15 @@
     border-radius: 3px;
     font-size: 30rpx;
     margin: 0;
+}
+
+.slider-handle {
+    height: 200rpx;
+}
+
+.btn-area {
+    margin: 60rpx 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 30rpx;
 }
