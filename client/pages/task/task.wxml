@@ -102,10 +102,10 @@
 
 
     <view class="finish" wx:if="{{!task.status}}">
-        <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm">{{Finis}} My Task !</button>
+        <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm" style="background-color:#5b77c4">{{Finish}} </button>
     </view>
 
     <view class="finish" wx:if="{{task.status}}">
-        <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm">{{Undo}}</button>
+        <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm" style="background-color:#5b77c4">{{Undo}}</button>
     </view>
 </view>

@@ -1,4 +1,7 @@
 <import src="./templates/switch/switch.wxml" />
+<import src="../../components/toptips/toptips.wxml"/>
+
+<template is="toptips" data="{{ ...$wux.toptips }}"/>
 <view class="my">
     <view class="my-item flex-wrp">
         <view class="myitem-icon flex-item">

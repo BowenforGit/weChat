@@ -1,6 +1,7 @@
 <!--index.wxml-->
-<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-    <view class="project-wrp">
+<import src="../../components/refresher/refresher.wxml"/>
+<!--scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}"-->
+    <view class="container project-wrp">
         <view class="project-item">
             <view class="overview">
                 <view class="left">
@@ -15,15 +16,15 @@
             </view>
         </view>
     </view>
+    
     <view class="weui-panel">
           <view class="weui-panel__bd">
-                <slider-left   bind:change="handleChange"  wx:for="{{projects}}" wx:key="{{index}}" bind:delete="deletePro" data-icon="{{index}}" data-id="{{item.proID}}">
-                <view class="weui-media-box weui-media-box_text"  hover-class="weui-cell_active" >
-                    
-                    <view class="flex-wrp"  bindtap="toProject" id="{{item.proID}}" >
+         
+                <slider-left wx:for="{{projects}}" wx:key="{{index}}"  bind:change="handleChange" bind:delete="deletePro" data-icon="{{index}}" data-id="{{item.proID}}">
+                <view class="weui-media-box weui-media-box_text"  bindtap="toProject" id="{{item.proID}}" hover-class="weui-cell_active" >
+                    <view class="flex-wrp">
                         <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left; font-weight: bold;">{{item.proName}}</view>
                     </view>
-                    
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{item.proType}}</view>
@@ -38,6 +39,7 @@
                 
                 </view>
                 </slider-left>
+               
     </view>
 </view>
-</scroll-view>
+<!--/scroll-view-->

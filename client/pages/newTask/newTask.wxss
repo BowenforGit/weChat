@@ -2,7 +2,6 @@
 
 @import "./templates/switch/switch.wxss";
 
-
 /* 
 .todos .item .remove {
   cursor: pointer;
@@ -136,13 +135,15 @@
     padding: 10rpx 0;
 }
 
-.member-list{
-  display:flex;
-  align-items: center;
+.member-list {
+    display: flex;
+    align-items: center;
 }
-.member-check{
-  flex:1;
+
+.member-check {
+    flex: 1;
 }
-.subtask-input{
-  flex:2;
+
+.subtask-input {
+    flex: 2;
 }

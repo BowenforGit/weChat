@@ -1,3 +1,6 @@
+import { $wuxToptips } from '../../components/wux'
+import WxValidate from '../../assets/plugins/WxValidate'
+
 // pages/projectForm/projectForm.js
 const util = require('../../utils/util.js');
 var app = getApp();
@@ -57,6 +60,7 @@ Page({
         this.setData({
             projectID: options.id
         });
+        this.initValidate();
         //console.log('project is id' + this.data.projectID)
         var arr = getCurrentPages();
         var theProject = arr[arr.length - 2];
@@ -174,15 +178,31 @@ Page({
             switchData: this.data.switchData
         });
     },
-    openToast: function() {
+    openToast: function(e) {
+      console.info('e is',e)
         var members = [];
         console.info('memberIndex:', this.data.memberIndex);
         console.info('members:', this.data.members);
+                
         for (var item in this.data.memberIndex) {
             members.push(this.data.members[item].open_id);
         }
+        // console.info('members for this task:', members.length);
+        if (members.length == 0) {
+          console.info("no members for this task!");
+          // inform the user
+          return;
+        }
 
+        if (this.data.taskName =="" )
+        {
+          console.info("empty task name!");
+          //inform the user
+          return;
+        }
         console.info("Members:", members);
+
+        
         var type = this.data.radioItems.filter(type => type.checked == true);
         console.info("Type:", type);
         var deadline = this.data.date.replace("-", "").replace("-", "") + this.data.time.replace(":", "") + "00";
@@ -231,6 +251,7 @@ Page({
         });
 
     },
+
 
     setLang() {
         const _ = wx.T._

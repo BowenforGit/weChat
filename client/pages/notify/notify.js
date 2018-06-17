@@ -23,6 +23,12 @@ Page({
             date: year + '-' + month + '-' + day
         });
         console.info(that.data.date);
+
+
+    },
+
+    onShow: function() {
+        var that = this;
         if (app.globalData.tasks.taskName === undefined) {
             app.request({
                 url: '/task',
@@ -57,7 +63,6 @@ Page({
                 tasks: app.globalData.tasks
             });
         }
-
     },
     switchTab: function(e) {
         this.setData({

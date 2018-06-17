@@ -34,7 +34,7 @@
     float: right;
     padding: 15rpx 40rpx;
     color: #ffffff;
-    background: #52C980;
+    background: #00A0E9;
     border-radius: 3px;
     font-size: 30rpx;
     margin: 0;
@@ -49,4 +49,11 @@
     box-sizing: border-box;
     width: 100%;
     padding: 0 30rpx;
+}
+
+.weui-media-box__desc{
+  line-height:1.3;
+}
+.containder{
+  width:100%;
 }
