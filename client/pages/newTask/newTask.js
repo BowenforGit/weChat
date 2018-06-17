@@ -54,7 +54,7 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
 
-   
+
     onLoad: function(options) {
       var day = date.getDate();
       var month = date.getMonth() + 1;
@@ -135,7 +135,6 @@ Page({
         });
     },
     bindInfoChange: function(e) {
-        console.info("bind success");
         this.setData({
             input: e.detail.value
         });
