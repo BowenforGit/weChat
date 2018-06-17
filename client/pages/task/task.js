@@ -183,6 +183,7 @@ Page({
                                 console.log('edit task ' + that.data.task.taskID + ' success')
                                     //edit the change in globalData.tasks
                                 app.globalData.tasks[app.globalData.tasks.findIndex(e => e.taskID == that.data.task.taskID)] = temp;
+
                             },
                             fail: function(error) {
                                 console.log(error)

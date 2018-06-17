@@ -58,3 +58,14 @@
   width:100%;
   display:inline-block;
 }
+
+page {
+  background-color: #f8f8f8;
+}
+.weui-panel{
+  margin-top:0;
+}
+.container{
+  height:2.5rem;
+  background: #f8f8f8;
+}

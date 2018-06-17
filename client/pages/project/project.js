@@ -24,8 +24,8 @@
                  selectedIcon: '../../images/b-allread.png'
              },
              {
-                 icon: '../../images/log.png',
-                 selectedIcon: '../../images/b-log.png'
+                 icon: '../../images/icon/binder.png',
+                 selectedIcon: '../../images/icon/binder-blue.png'
              }
          ],
          activeIndex: 0,
@@ -139,7 +139,9 @@
                      format_task.status = task.finish;
                      return format_task;
                  });
-
+                 tasks.sort(function(a, b) {
+                     return a.taskEndDate > b.taskEndDate ? 1 : -1;
+                 })
                  that.setData({
                      projectID: project.project_id,
                      'project.projectID': project.project_id,

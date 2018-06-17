@@ -198,17 +198,7 @@ Page({
             members.push(this.data.members[item].open_id);
         }
         // console.info('members for this task:', members.length);
-        if (members.length == 0) {
-            console.info("no members for this task!");
-            // inform the user
-            return;
-        }
 
-        if (this.data.taskName == "") {
-            console.info("empty task name!");
-            //inform the user
-            return;
-        }
         console.info("Members:", members);
 
         if (this.data.taskName == '') {

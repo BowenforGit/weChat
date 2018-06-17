@@ -77,7 +77,7 @@ Page({
                     });
                     that.setData({ projects: projects });
                     // 存入全局数据
-                    //app.globalData.projects = projects;       
+                    app.globalData.projects = projects;
                     wx.hideLoading();
 
                 }
@@ -86,8 +86,8 @@ Page({
         // 非首次加载
         else {
             console.log('非首次加载')
-                //var projects = app.globalData.projects;
-                //that.setData({ projects: projects });
+            var projects = app.globalData.projects;
+            that.setData({ projects: projects });
         }
     },
 

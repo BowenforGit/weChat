@@ -78,3 +78,7 @@
     padding: 80rpx 0;
     font-size: 28rpx
 }
+
+.container{
+  display: block;
+}
