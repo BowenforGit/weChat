@@ -1,5 +1,7 @@
 // pages/projectForm/projectForm.js
+const Toptips = require('../../components/toptips/index');
 var app = getApp();
+var date = new Date();
 Page({
 
     /**
@@ -43,6 +45,20 @@ Page({
 
         isAgree: false
     },
+
+  onLoad: function() {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month <= 9) { month = '0' + month; }
+    if (day <= 9) { day = '0' + day; }
+    //console.log(year + '-' + month + '-' + day)
+    this.setData({
+      "project.proStartDate": year + '-' + month + '-' + day,
+      "project.proEndDate": year + '-' + month + '-' + day
+    })
+  },
+
     onShow: function() {
         this.setLang();
     },
@@ -88,10 +104,26 @@ Page({
         //   icon: 'success',
         //   duration: 3000
         // });
-        wx.showLoading({
-            title: '正在创建项目……',
-            mask: true
-        });
+        
+
+        if(this.data.project.proName=='')
+        {
+          console.info('no proname yet!')
+          Toptips({
+            duration: 1000,
+            content: 'Please input project name!'
+          })
+          return;
+        }
+        if(this.data.project.proEndDate<this.data.project.proStartDate)
+        {
+          console.info('end < start, are u kidding?')
+          Toptips({
+            duration: 1000,
+            content: 'End date is later than start date!'
+          })
+          return;
+        }
         // send the request to the server
         var format_start = this.data.project.proStartDate;
         var format_end = this.data.project.proEndDate;
@@ -110,6 +142,10 @@ Page({
             method: 'POST',
             data: project_detail,
             success: function(res) {
+              wx.showLoading({
+                title: '正在创建项目……',
+                mask: true
+              });
                 console.info(res.data);
                 wx.hideLoading();
                 app.writeHistory(project_detail, 'create', +new Date());

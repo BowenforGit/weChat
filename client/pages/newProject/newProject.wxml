@@ -1,3 +1,8 @@
+<zan-toptips
+  id="zan-toptips"
+  content="{{ content }}"
+  is-show="{{ $zanui.toptips.show }}"
+/>
 <view class="my">
     <view class="my-item flex-wrp">
         <view class="myitem-icon flex-item">

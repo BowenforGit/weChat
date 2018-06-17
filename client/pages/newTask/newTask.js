@@ -1,6 +1,8 @@
 // pages/projectForm/projectForm.js
+const Toptips = require('../../components/toptips/index');
 const util = require('../../utils/util.js');
 var app = getApp();
+var date = new Date();
 Page({
 
     /**
@@ -54,6 +56,15 @@ Page({
 
    
     onLoad: function(options) {
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      if (month <= 9) { month = '0' + month; }
+      if (day <= 9) { day = '0' + day; }
+      //console.log(year + '-' + month + '-' + day)
+      this.setData({
+        date: year + '-' + month + '-' + day
+      })
         this.setData({
             projectID: options.id
         });
@@ -184,6 +195,24 @@ Page({
         }
 
         console.info("Members:", members);
+        
+        if (this.data.taskName == '')
+        {
+          console.info('no task name yet');
+          Toptips({
+            duration: 1000,
+            content: 'Please input task name!'
+          })
+          return;
+        }
+        if (members.length == 0) {
+          console.info('no members for this task');
+          Toptips({
+            duration: 1000,
+            content: 'No members for this task'
+          })
+          return;
+        }
         var type = this.data.radioItems.filter(type => type.checked == true);
         console.info("Type:", type);
         var deadline = this.data.date.replace("-", "").replace("-", "") + this.data.time.replace(":", "") + "00";
