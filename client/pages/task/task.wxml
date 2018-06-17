@@ -18,7 +18,10 @@
         <view class="myitem-name flex-item">
             <view class="weui-cell">
                 <view class="weui-cell__bd">{{Task_Type}}</view>
-                <view class="weui-cell__ft">{{task.taskType}}</view>
+                <view class="weui-cell__ft" wx:if="{{task.taskType == 'Task'}}">{{Task}}</view>
+                <view class="weui-cell__ft" wx:elif="{{task.taskType == 'Meeting'}}">{{Meeting}}</view>
+        <view class="weui-cell__ft" wx:elif="{{task.taskType == 'Activity'}}">{{Activity}}</view>        
+        <view class="weui-cell__ft" wx:else>{{Others}}</view>
             </view>
         </view>
     </view>
@@ -81,7 +84,7 @@
             <image src="../../images/icon/user.png"></image>
         </view>
         <view class="myitem-name flex-item" style="position:relative;">
-            <text>{{Choose_Member}}</text>
+            <text>{{Responsible}}</text>
 
             <view class="member-list" wx:for="{{task.taskMembers}}" wx:key="{{index}}">
                 <label class="weui-cell weui-check__label member-check">

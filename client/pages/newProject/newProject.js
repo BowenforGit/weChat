@@ -182,10 +182,10 @@ Page({
             des: _('des'),
             Create: _('Create'),
             term: _('term'),
-            "radioItems[0].name": _('Course'),
-            "radioItems[1].name": _('Intern'),
-            "radioItems[2].name": _('Work'),
-            "radioItems[3].name": _('Others'),
+            "types[0]": _('Course'),
+            "types[1]": _('Intern'),
+            "types[2]": _('Work'),
+            "types[3]": _('Others'),
         })
     }
 });

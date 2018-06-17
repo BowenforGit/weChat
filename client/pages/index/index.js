@@ -7,6 +7,13 @@ Page({
         feed: [],
         feed_length: 0,
         Create_New: 'Create New',
+        Course: 'Course',
+        Intern: 'Intern',
+        Work: 'Work',
+        Others: 'Others',
+        Members: "Member(s)",
+        Delete: "Delete",
+        load: "Loading",
         userInfo: {},
         hasUserInfo: false,
         projects: []
@@ -240,7 +247,7 @@ Page({
     onPullDownRefresh: function() {
         console.log('Invoke onPullDownRefresh')
         wx.showToast({
-            title: '刷新中',
+            title: this.data.load,
             icon: 'loading',
             duration: 1000
         });
@@ -317,6 +324,13 @@ Page({
         const _ = wx.T._
         this.setData({
             Create_New: _('Create_New'),
+            Course: _('Course'),
+            Intern: _('Intern'),
+            Work: _('Work'),
+            Others: _('Others'),
+            Members: _('Member(s)'),
+            Delete: _('Delete'),
+            load: _('load'),
         })
     }
 });

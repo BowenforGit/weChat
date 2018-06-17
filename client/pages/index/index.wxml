@@ -21,7 +21,7 @@
     <view class="weui-panel">
           <view class="weui-panel__bd">
          
-                <slider-left wx:for="{{projects}}" wx:key="{{index}}"  bind:change="handleChange" bind:delete="deletePro" data-icon="{{index}}" data-id="{{item.proID}}">
+                <slider-left wx:for="{{projects}}" wx:key="{{index}}"  bind:change="handleChange" bind:delete="deletePro" data-icon="{{index}}" buttonText="{{Delete}}" data-id="{{item.proID}}">
                 <view class="weui-media-box weui-media-box_text"  bindtap="toProject" id="{{item.proID}}" hover-class="weui-cell_active" >
                     <view class="flex-wrp">
                         <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left; font-weight: bold;">{{item.proName}}</view>
@@ -29,11 +29,14 @@
                     
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
                     <view class="weui-media-box__info">
-                        <view class="weui-media-box__info__meta">{{item.proType}}</view>
+                        <view wx:if="{{item.proType == 'Course'}}" class="weui-media-box__info__meta">{{Course}}</view>
+                        <view wx:elif="{{item.proType == 'Intern'}}" class="weui-media-box__info__meta">{{Intern}}</view>
+                        <view wx:elif="{{item.proType =='Work'}}" class="weui-media-box__info__meta">{{Work}}</view>
+                        <view wx:else class="weui-media-box__info__meta">{{Others}}</view>
                         <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.proEndDate}}</view>
                         <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
                         <block>
-                            {{item.proMembers.length + ' Members(s)'}}
+                            {{item.proMembers.length}} {{Members}}
                         </block>
                         </view>
                      </view>

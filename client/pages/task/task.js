@@ -17,12 +17,16 @@ Page({
         Deadline: "Deadline",
         Finish: 'FINISH MY TASK',
         Undo: 'UNDO MY TASK',
-        Choose_Member: "Responsible",
+        "Responsible": "Responsible",
         index: 0,
         projectID: 0,
         task: {},
         tempTask: {},
         level: ['Low', 'Medium', 'High'],
+        Task: 'Task',
+        Activity: 'Activity',
+        Meeting: "Meeting",
+        Others: "Others"
     },
 
     // load the task data from the server
@@ -223,6 +227,12 @@ Page({
             Progress: _('Progress'),
             Finish: _('Finish'),
             Undo: _('Undo'),
+            Responsible: _('Responsible'),
+            Task_Level: _('task_level'),
+            Task: _('Task'),
+            Meeting: _('Meeting'),
+            Activity: _('Activity'),
+            Others: _('Others'),
         })
     }
 });
