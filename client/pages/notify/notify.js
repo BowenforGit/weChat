@@ -46,6 +46,7 @@ Page({
                             taskName: task.name,
                             taskType: task.task_type,
                             status: task.finish,
+                            deadline: task.deadline.substring(0, 10),
                             due: task.deadline.substring(5, 7) + '/' + task.deadline.substring(8, 10),
                             proName: name,
                             taskLevel: task.importance
@@ -63,6 +64,7 @@ Page({
                 tasks: app.globalData.tasks
             });
         }
+        //console.log(that.data.tasks)
     },
     switchTab: function(e) {
         this.setData({

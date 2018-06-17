@@ -71,7 +71,6 @@ Page({
         this.setData({
             projectID: options.id
         });
-        this.initValidate();
         //console.log('project is id' + this.data.projectID)
         var arr = getCurrentPages();
         var theProject = arr[arr.length - 2];

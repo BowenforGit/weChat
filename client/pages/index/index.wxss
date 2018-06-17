@@ -54,6 +54,7 @@
 .weui-media-box__desc{
   line-height:1.3;
 }
-.containder{
+.container{
   width:100%;
+  display:inline-block;
 }
