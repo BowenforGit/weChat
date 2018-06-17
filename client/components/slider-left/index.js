@@ -13,7 +13,7 @@ exports.default = Component({
 
         buttonText:{
           type:String,
-          value:'Delete'
+          value:''
         },
         // 阈值，往左移动超过则显示菜单项，否则隐藏（一般为菜单宽的40%）
         moveThreshold: {

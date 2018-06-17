@@ -6,6 +6,8 @@ Page({
     data: {
         Lang:"Language",
         setting:"Setting",
+        More: "More",
+        github: "View in github",
         langCode: ['cn', 'en'],
         lang: ['简体中文', 'English'],
         langIndex: 1,
@@ -40,6 +42,8 @@ Page({
         this.setData({
            Lang: _('Lang'),
            setting: _('setting'),
+           More: _('More'),
+           github: _('github'),
         })
       }
 })

@@ -17,9 +17,14 @@ Component({
      */
     data: {
         files: [],
-        files1: [],
+        Shared_Files: "Shared files"
     },
-
+    attached: function() {
+        const _ = wx.T._
+        this.setData({
+            Shared_Files: _('Shared_Files')
+        })
+    },
     /**
      * 组件的方法列表
      */

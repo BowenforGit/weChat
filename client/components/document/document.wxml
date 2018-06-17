@@ -4,7 +4,7 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                            <view class="weui-uploader__title">Shared Files</view>
+                            <view class="weui-uploader__title">{{Shared_Files}}</view>
                             <view class="weui-uploader__info">
                                  <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
                             </view>
