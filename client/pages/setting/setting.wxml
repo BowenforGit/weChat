@@ -1,17 +1,25 @@
 <!--pages/project/task/task.wxml-->
 <view class="weui-cells__title">{{setting}}</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">{{Lang}}</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker mode="selector" value="{{langIndex}}" range="{{ lang }}"  bindchange="langChange">
-                        <view class="weui-input">{{lang[langIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">{{Lang}}</view>
         </view>
+        <view class="weui-cell__bd">
+            <picker mode="selector" value="{{langIndex}}" range="{{ lang }}"  bindchange="langChange">
+                <view class="weui-input">{{lang[langIndex]}}</view>
+            </picker>
+        </view>
+    </view>        
+</view>
+<view class="weui-cells__title">More</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input" bindtap="showThanks">
+        <view class="weui-cell__bd" >
+            <view class="weui-input">View in github</view>
+        </view>
+    </view>
+</view>
 
 
 
