@@ -27,3 +27,35 @@
             </view>
         </view>
     </view>
+
+        <view class="page__bd">
+        <view class="weui-cells">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                            <view class="weui-uploader__title">Get the Image Files</view>
+                            <view class="weui-uploader__info">
+                                 <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+                            </view>
+                        </view>
+                        <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{files1}}" wx:key="{{index}}">
+                                    <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{index}}"  style="position: relative;margin-right: 10px;">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                         <view wx:if="{{showDeleteIcon}}"  class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
+                                    </view>
+                                </block>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="getImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    

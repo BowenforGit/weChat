@@ -6,8 +6,8 @@
                     <include src='main.wxml'/>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                     <!--include src='logs.wxml'/-->
-                     <document></document>
+                     <include src='logs.wxml'/>
+                     <!--document proid="{{projectID}}"></document -->
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
                     <include src='document.wxml'/>

@@ -673,7 +673,7 @@
 }
 .wux-speed-dial--bottom-right {
   right: 30rpx;
-  bottom: 110rpx;
+  bottom: 120rpx;
 }
 .wux-speed-dial--top-left .wux-speed-dial__button[data-label]:after,
 .wux-speed-dial--bottom-left .wux-speed-dial__button[data-label]:after {

@@ -69,7 +69,9 @@
             </view>
         </view>
     </view>
+     
     <view class="weui-btn-area">
         <button class="weui-btn" bindtap="openToast">{{Create}}</button>
     </view>
+    <image src="../../images/img/in_sync.svg" style="width:60%;margin:-100rpx 20% -60rpx 20%"></image>
 </view>

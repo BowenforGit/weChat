@@ -170,6 +170,7 @@
 
                  var logs = res.data;
                  logs = logs.map(function(log) {
+                     log.time = log.date.substring(11, 19);
                      log.date = log.date.substring(0, 10);
                      return log;
                  });

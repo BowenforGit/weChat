@@ -64,14 +64,14 @@ Page({
                     });
                     that.setData({ tasks: tasks });
                     app.globalData.tasks = tasks;
-                    console.log(that.data.tasks)
+                    //console.log(that.data.tasks)
                 }
             });
         } else {
             that.setData({
                 tasks: app.globalData.tasks
             });
-            console.log(that.data.tasks)
+            //console.log(that.data.tasks)
         }
 
     },

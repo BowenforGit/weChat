@@ -1,10 +1,15 @@
 // components/document/document.js
+const app = getApp();
+
 Component({
     /**
      * 组件的属性列表
      */
     properties: {
-
+        proid: {
+            type: Number,
+            value: 0
+        }
     },
 
     /**
@@ -12,6 +17,7 @@ Component({
      */
     data: {
         files: [],
+        files1: [],
     },
 
     /**
@@ -30,19 +36,22 @@ Component({
                     });
                     //上传图片至服务器
                     var tempFilePaths = res.tempFilePaths
-                        /* 上传图片接口
-                        wx.uploadFile({
-                          url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-                          filePath: tempFilePaths[0],
-                          name: 'file',
-                          formData: {
+
+                    wx.uploadFile({
+                        header: {
+                            skey: wx.getStorageSync('skey')
+                        },
+                        url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+                        filePath: tempFilePaths[0],
+                        name: 'file',
+                        formData: {
                             'user': 'test'
-                          },
-                          success: function (res) {
+                        },
+                        success: function(res) {
                             var data = res.data
-                            //do something
-                          }
-                        }) */
+                                //data is the url of the image ?  
+                        }
+                    })
 
                 }
             })
@@ -82,7 +91,28 @@ Component({
             }
         },
 
+        getImage: function(e) {
+            console.log('id is ' + this.properties.proid)
+            app.request({
+                url: '/project/document/' + this.properties.proid,
+                method: 'GET',
+                success: function(res) {
+                    console.log(res.data);
+                }
+            })
 
+            wx.downloadFile({
+                url: '/document/' + this.data.id, //仅为示例，并非真实的资源
+                success: function(res) {
+                    // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+                    if (res.statusCode === 200) {
+                        wx.playVoice({
+                            filePath: res.tempFilePath
+                        })
+                    }
+                }
+            })
+        },
         deleteFile: function(e) {
             console.log(e.currentTarget.id)
             this.data.files.splice(e.currentTarget.id, 1)

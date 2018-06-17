@@ -17,7 +17,7 @@
             </view>
         </view>
     </view>
-    
+    <image src="../../images/img/social_networking.svg" style="width:60%;margin:-100rpx 20% -60rpx 20%"></image>
     <view class="weui-panel">
           <view class="weui-panel__bd">
          
@@ -44,4 +44,5 @@
                
     </view>
 </view>
+
 <!--/scroll-view-->

@@ -232,7 +232,7 @@ Page({
 
     //navigate to the project or hide the delete buttons
     toProject: function(opt) {
-        wx.navigateTo({
+      wx.navigateTo({
             url: '/pages/project/project?id=' + opt.currentTarget.id
         });
     },
