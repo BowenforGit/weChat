@@ -5,6 +5,8 @@ var date = new Date();
 
 Page({
     data: {
+        notodo: "No Todo Yet!",
+        nomiss: "Nothing Missed!",
         navTab: ["Todo", "Missed"],
         currentNavtab: "0",
         tasks: [],
@@ -31,6 +33,7 @@ Page({
     },
 
     onShow: function() {
+        this.setLang();
         var that = this;
         if (app.globalData.tasks.taskName === undefined) {
             //console.log(app.globalData.projects);
@@ -94,5 +97,12 @@ Page({
         this.setData({
             currentNavtab: e.currentTarget.dataset.idx
         });
+    },
+    setLang() {
+      const _ = wx.T._
+      this.setData({
+        notodo: _('notodo'),
+        nomiss: _('nomiss'),
+      })
     }
 })  
