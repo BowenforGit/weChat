@@ -26,9 +26,14 @@
                  selectedIcon: '../../images/b-allread.png'
              },
              {
+                 icon: '../../images/icon/file.png',
+                 selectedIcon: '../../images/icon/file-b.png'
+             },
+             {
                  icon: '../../images/icon/binder.png',
                  selectedIcon: '../../images/icon/binder-blue.png'
              }
+             
          ],
          activeIndex: 0,
          sliderOffset: 0,
@@ -308,14 +313,6 @@
 
      tabClick: function(e) {
          // console.info(typeof e.currentTarget.id);
-         if (e.currentTarget.id === '2') {
-             console.info('hey');
-             wx.switchTab({
-                 url: '../index/index',
-                 fail: function(err) { console.log(err); }
-             });
-             return;
-         }
          this.setData({
              sliderOffset: e.currentTarget.offsetLeft,
              activeIndex: e.currentTarget.id

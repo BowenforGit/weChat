@@ -139,7 +139,7 @@ page,
 
 .timestamp {
     display: block;
-    margin-top: 20rpx;
+    margin-top: 10rpx;
     color: #cccccc;
 }
 
@@ -147,13 +147,14 @@ page,
     display: inline-block;
     width: 30%;
     text-align: right;
-    color: #CCCC99;
+    color: #003366;
 }
 
 .action {
     display: inline-block;
     width: 70%;
     color: #003366;
+    font-size: 0.9rem;
 }
 
 .log-container {

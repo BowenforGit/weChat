@@ -27,7 +27,6 @@
             </view>
         </view>
     </view>
-
         <view class="page__bd">
         <view class="weui-cells">
             <view class="weui-cell">
