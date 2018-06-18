@@ -104,11 +104,11 @@
 
 
 
-    <view class="finish" wx:if="{{!task.status}}">
+    <view class="finish" wx:if="{{!myCompleted}}">
         <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm" style="background-color:#5b77c4">{{Finish}} </button>
     </view>
 
-    <view class="finish" wx:if="{{task.status}}">
+    <view class="finish" wx:if="{{myCompleted}}">
         <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm" style="background-color:#5b77c4">{{Undo}}</button>
     </view>
     <image src="../../images/img/superhero.svg" style="width:50%;margin:-1.5rem 25% 0 25%  "></image>
