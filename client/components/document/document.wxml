@@ -6,10 +6,10 @@
                 <view class="weui-uploader__hd">
                     <view class="weui-uploader__title">{{Shared_Files}}</view>
                     <view class="weui-uploader__info">
-                         <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+                         <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" style="background-color:#1976d3;margin-right:5px;" size="mini">{{cancel}}</button>
                     </view>
                     <view class="weui-uploader__info">
-                         <button wx:if="{{showUpload}}" bindtap="uploadImage" class="weui-btn mini-btn" type="primary" size="mini">Upload</button>
+                         <button wx:if="{{showUpload}}" bindtap="uploadImage" class="weui-btn mini-btn" type="primary" style="background-color:#1976d3;" size="mini">{{upload}}</button>
                     </view>
                 </view>
                 <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
@@ -37,9 +37,9 @@
         <view class="weui-cell__bd">
             <view class="weui-uploader">
                 <view class="weui-uploader__hd">
-                    <view class="weui-uploader__title">All images</view>
+                    <view class="weui-uploader__title">{{allimg}}</view>
                     <view class="weui-uploader__info">
-                         <button wx:if="{{showDeleteIcon1}}" bindtap="hideDelete1" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+                         <button wx:if="{{showDeleteIcon1}}" bindtap="hideDelete1" class="weui-btn mini-btn" type="primary" style="background-color:#1976d3;" size="mini">{{cancel}}</button>
                     </view>
                 </view>
                 <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">

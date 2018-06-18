@@ -26,12 +26,18 @@ Component({
         showDeleteIcon1: false,
         showUpload: false,
         uploading: true,
-        Shared_Files: "Shared files"
+        Shared_Files: "Shared files",
+        allimg: "All Images",
+        cancel: "Cancel",
+        upload: "Upload"
     },
     attached: function() {
         const _ = wx.T._;
         this.setData({
-            Shared_Files: _('Shared_Files')
+            Shared_Files: _('Shared_Files'),
+            allimg: _('allimg'),
+            cancel: _('cancel'),
+            upload: _('upload'),
         });
     },
     /**
