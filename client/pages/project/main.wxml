@@ -2,7 +2,8 @@
  <import src="../../components/button/button.wxml"/> 
  <template is="button" data="{{ ...$wux.button.br }}"/> 
 <view class="container">
-    <view class="project-wrp bg">
+    <view class="project-wrp ">
+       <image src="../../images/img/specs2.svg" style="width:80%;margin:-50rpx 35% -400rpx"></image>
         <view class="project-item ">
             <view class="pro-title">
                 {{project.proName}}
@@ -11,8 +12,9 @@
                 {{project.proDes}}
             </view>
         </view>
+       
     </view>
-
+   
     <view class="page__bd page__bd_spacing">
         <view class="kind-list">        
              <view class="kind-list__item">
@@ -47,6 +49,5 @@
         </zan-cell>
     </zan-panel>
 
-    <image src="../../images/img/segmentation.svg" style="width:60%;margin:-10rpx 20% -60rpx 20%"></image>
 </view>
 

@@ -3,6 +3,7 @@
   content="{{ content }}"
   is-show="{{ $zanui.toptips.show }}"
 />
+  <image src="../../images/img/in_sync.svg" style="width:70%;margin:-70px  30% -20px"></image>
 <view class="my">
     <view class="my-item flex-wrp">
         <view class="myitem-icon flex-item">
@@ -73,5 +74,5 @@
     <view class="weui-btn-area">
         <button class="weui-btn" bindtap="openToast">{{Create}}</button>
     </view>
-    <image src="../../images/img/in_sync.svg" style="width:5  0%;margin:-40px 25% -40px 25%"></image>
+  
 </view>
