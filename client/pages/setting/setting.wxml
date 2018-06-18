@@ -31,5 +31,13 @@
     </view>
 </view>
 
+<navigator class="weui-cells weui-cells_after-title" style="margin-top: 10px;" open-type="navigate" hover-class="navigator-hover" url="./aboutus">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd" >
+            <view class="weui-input">{{aboutus}}</view>
+        </view>
+    </view>
+</navigator>
+
 
 

@@ -6,7 +6,8 @@
     "pages/project/project",
     "pages/newProject/newProject",
     "pages/newTask/newTask",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/setting/aboutus"
   ],
   "window":{
     "backgroundTextStyle":"light",

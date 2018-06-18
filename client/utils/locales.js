@@ -1,5 +1,6 @@
 export default {
     "en": {
+      "aboutus":'About Us',
         "Welcome":'welcome to DeadlineFighter.',
         "may": 'May the force be with you!',
         "setting":"Setting",
@@ -56,6 +57,7 @@ export default {
         "nomiss":"Nothing Missed!"
     },
     "cn": {
+      "aboutus":'关于我们',
       "Welcome":"欢迎使用死线战士。",
       "may":"愿力量与你同在！",
         "setting":"设置",

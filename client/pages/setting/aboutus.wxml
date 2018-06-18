@@ -1,0 +1,8 @@
+<view>
+        <image src="../../images/img/dog.svg" style="width:60%;margin:3rem 35% -30px 5%"></image>
+        <view style="text-align:center;color:#999;margin-top:1rem;">
+            <view>Bowen</view>
+            <view>夹心</view>
+            <view>千秋桑</view>
+        </view>
+</view>
