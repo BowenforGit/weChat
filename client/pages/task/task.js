@@ -93,6 +93,7 @@ Page({
                 format_task.taskMembers = taskMembers;
                 format_task.status = task.finish;
                 format_task.taskLevel = task.importance;
+                format_task.proID = task.project_id;
                 that.setData({
                     task: format_task
                 });
@@ -129,7 +130,7 @@ Page({
                 }
             }
         });
-        
+
     },
     onShow: function() {
         this.setLang();
@@ -168,10 +169,10 @@ Page({
                             } else {
                                 tempMember[i].completed = false;
                             }
-                            else{
-                                if(tempMember[i].completed)
+                        else {
+                            if (tempMember[i].completed)
                                 tempMember[i].task = '_0_' + tempMember[i].task;
-                            }
+                        }
                         if (i == 0) temp.subtask1 = tempMember[i].task;
                         else if (i == 1) temp.subtask2 = tempMember[i].task;
                         else if (i == 2) temp.subtask3 = tempMember[i].task;
@@ -190,7 +191,9 @@ Page({
                                 subtask1: temp.subtask1,
                                 subtask2: temp.subtask2,
                                 subtask3: temp.subtask3,
-                                finish: temp.finish
+                                finish: temp.finish,
+                                project_id: that.data.task.proID,
+                                name: that.data.task.taskName,
                             },
                             success: function(res) {
                                 console.log('edit task ' + that.data.task.taskID + ' success')
@@ -199,12 +202,12 @@ Page({
 
                                 //upload status to project page 
                                 var arr = getCurrentPages();
-                                var projectPage = arr[arr.length-1];
-                                if(projectPage.route == 'pages/project/project'){
+                                var projectPage = arr[arr.length - 1];
+                                if (projectPage.route == 'pages/project/project') {
                                     console.log('projectPage.load()')
-                                    projectPage.load(function(){});
+                                    projectPage.load(function() {});
                                 }
-                                
+
 
                             },
                             fail: function(error) {
