@@ -56,7 +56,7 @@ Component({
                             'user': 'test'
                         },
                         success: function(res) {
-                            console.log('success! ')
+                            console.log('success!')
                         },
                         fail: function(re){
                             console.log('failed!')

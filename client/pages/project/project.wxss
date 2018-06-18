@@ -148,7 +148,7 @@ page,
 .name {
     display: inline-block;
     width: 30%;
-    text-align: right;
+    text-align: center;
     color: #CCCC99;
 }
 

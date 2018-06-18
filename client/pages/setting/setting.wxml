@@ -1,4 +1,16 @@
 <!--pages/project/task/task.wxml-->
+
+
+<view class="user flex-wrp">
+    <view class="avatar flex-item">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    </view>
+    <view class="user-info flex-item">
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="edit">查看或编辑个人主页</text>
+    </view>
+</view>
+
 <view class="weui-cells__title">{{setting}}</view>
 <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">

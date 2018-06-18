@@ -80,4 +80,4 @@ Page({
             currentNavtab: e.currentTarget.dataset.idx
         });
     }
-})
+})  

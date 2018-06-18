@@ -17,7 +17,7 @@ Page({
         Deadline: "Deadline",
         Finish: 'FINISH MY TASK',
         Undo: 'UNDO MY TASK',
-        "Responsible": "Responsible",
+        Responsible: "Responsible",
         index: 0,
         projectID: 0,
         task: {},
@@ -26,7 +26,9 @@ Page({
         Task: 'Task',
         Activity: 'Activity',
         Meeting: "Meeting",
-        Others: "Others"
+        Others: "Others",
+
+        myCompleted: true,
     },
 
     // load the task data from the server
@@ -116,11 +118,12 @@ Page({
                 //console.info("2:",app.globalData.userInfo);
                 // console.info(member.name);
                 //console.info(that.data.task.taskMembers[i].name);
-                //console.info(app.globalData.userInfo.name);
+                //console.info(app.globalData.userIn    fo.name);
                 if (that.data.task.taskMembers[i].name === app.globalData.userInfo.name) {
                     console.info("Set true~");
                     that.setData({
-                        enableButton: true
+                        enableButton: true,
+                        myCompleted: that.data.task.taskMembers[i].completed
                     });
                     break;
                 }
@@ -190,12 +193,19 @@ Page({
                                 finish: temp.finish
                             },
                             success: function(res) {
-                                console.log(temp);
                                 console.log('edit task ' + that.data.task.taskID + ' success')
                                     //edit the change in globalData.tasks
                                 app.globalData.tasks[app.globalData.tasks.findIndex(e => e.taskID == that.data.task.taskID)] = temp;
-                                console.log('temp')
-                                console.log(temp)
+
+                                //upload status to project page 
+                                var arr = getCurrentPages();
+                                var projectPage = arr[arr.length-1];
+                                if(projectPage.route == 'pages/project/project'){
+                                    console.log('projectPage.load()')
+                                    projectPage.load(function(){});
+                                }
+                                
+
                             },
                             fail: function(error) {
                                 console.log(error)
