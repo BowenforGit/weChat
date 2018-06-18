@@ -6,11 +6,10 @@
                     <include src='main.wxml'/>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                     <!-- <include src='logs.wxml'/> -->
-                     <document proid="{{projectID}}"></document>
+                     <document proid="{{projectID}}" file_urls="{{files}}"></document>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-                    <include src='document.wxml'/>
+                    <include src='logs.wxml'/>
                 </view>
 
             </view>

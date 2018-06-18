@@ -283,7 +283,7 @@ module.exports = {
     mysql(imageTable).where({
       project_id: req.params.id
     })
-      .select('url')
+      .select('url', 'image_id')
       .then(function(result) {
         res.send(result);
       });
@@ -299,6 +299,11 @@ module.exports = {
   },
 
   deleteImage: function(req, res, next) {
-    mysql(imageTable).where({ image_id: req.params.id }).delete();
+    console.log("Deleting");
+    mysql(imageTable).where({ image_id: req.params.id })
+      .delete()
+      .then(function() {
+        res.status(204).json();
+      });
   }
 };

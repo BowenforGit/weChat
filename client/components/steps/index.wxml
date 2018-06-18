@@ -5,7 +5,10 @@
             <view class="zan-steps__title">{{ step.taskEndDate }}</view>
             <view class="zan-steps__title  zan-steps__title--desc">{{ step.taskInfo }}</view>
             <view class="zan-steps__icons">
-                <view class="zan-steps__circle"></view>
+                <!-- <view class="zan-steps__circle"> -->
+                    <icon wx:if="{{step.status}}"type="success" size="14" color="#1565C0"/>
+                    <view wx:if="{{!step.status}}"class="zan-steps__circle"> </view>
+                <!-- </view> -->
             </view>
             <view class="zan-steps__line"></view>
         </navigator>

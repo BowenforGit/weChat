@@ -53,8 +53,8 @@ Page({
                     wx.hideLoading();
                     if (res.statusCode !== 200) {
                         wx.showToast({
-                            icon: 'none',
-                            title: 'Wrong Request!'
+                            icon: 'info',
+                            title: 'Pull to Refresh!'
                         });
                         return;
                     }
@@ -239,7 +239,7 @@ Page({
 
     //navigate to the project or hide the delete buttons
     toProject: function(opt) {
-      wx.navigateTo({
+        wx.navigateTo({
             url: '/pages/project/project?id=' + opt.currentTarget.id
         });
     },
@@ -262,7 +262,7 @@ Page({
         if (app.globalData.userInfo.open_id === that.data.projects[e.currentTarget.dataset.icon].proLeader) {
             //is Leader: use delete project api
             wx.showModal({
-                title: 'WARING!\nDelete ' + that.data.projects[e.currentTarget.dataset.icon].proName,
+                title: 'WARNING!\nDelete ' + that.data.projects[e.currentTarget.dataset.icon].proName,
                 content: 'By deleting the project as the leader, this project and related tasks will not exist!',
                 confirmText: "Cancel",
                 cancelText: "Confirm",
@@ -292,7 +292,7 @@ Page({
             //not leader: use quit project api 
 
             wx.showModal({
-                title: 'WARING!\nQuit ' + that.data.projects[e.currentTarget.dataset.icon].proName,
+                title: 'WARNING!\nQuit ' + that.data.projects[e.currentTarget.dataset.icon].proName,
                 content: 'Are you sure to quit project ' + that.data.projects[e.currentTarget.dataset.icon].proName + "?",
                 confirmText: "Cancel",
                 cancelText: "Confirm",

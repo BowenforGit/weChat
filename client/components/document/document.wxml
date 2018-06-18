@@ -1,64 +1,60 @@
-    <view class="page__bd">
-        <view class="weui-cells">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <view class="weui-uploader">
-                        <view class="weui-uploader__hd">
-                            <view class="weui-uploader__title">{{Shared_Files}}</view>
-                            <view class="weui-uploader__info">
-                                 <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+<view class="page__bd">
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">{{Shared_Files}}</view>
+                    <view class="weui-uploader__info">
+                         <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+                    </view>
+                    <view class="weui-uploader__info">
+                         <button wx:if="{{showUpload}}" bindtap="uploadImage" class="weui-btn mini-btn" type="primary" size="mini">Upload</button>
+                    </view>
+                </view>
+                <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
+                    <view wx:if="{{uploading}}" class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{files}}" wx:key="{{index}}">
+                            <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{index}}"  style="position: relative;margin-right: 10px;">
+                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                 <view wx:if="{{showDeleteIcon}}"  class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
                             </view>
-                            <view class="weui-uploader__info">
-                                 <button wx:if="{{showUpload}}" bindtap="uploadImage" class="weui-btn mini-btn" type="primary" size="mini">Upload</button>
-                            </view>
-                        </view>
-                        <view wx:if="{{uploading}}" class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
-                            <view class="weui-uploader__files" id="uploaderFiles">
-                                <block wx:for="{{files}}" wx:key="{{index}}">
-                                    <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{index}}"  style="position: relative;margin-right: 10px;">
-                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                                         <view wx:if="{{showDeleteIcon}}"  class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
-                                    </view>
-                                </block>
-                            </view>
-                            <view class="weui-uploader__input-box">
-                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                            </view>
-                        </view>
+                        </block>
+                    </view>
+                    <view class="weui-uploader__input-box">
+                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
                     </view>
                 </view>
             </view>
         </view>
     </view>
+</view>
+</view>
 
-        <view class="page__bd">
-        <view class="weui-cells">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <view class="weui-uploader">
-                        <view class="weui-uploader__hd">
-                            <view class="weui-uploader__title">Get the Image Files</view>
-                            <view class="weui-uploader__info">
-                                 <button wx:if="{{showDeleteIcon}}" bindtap="hideDelete" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+<view class="page__bd">
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">All images</view>
+                    <view class="weui-uploader__info">
+                         <button wx:if="{{showDeleteIcon1}}" bindtap="hideDelete1" class="weui-btn mini-btn" type="primary" size="mini">Cancel</button>
+                    </view>
+                </view>
+                <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{file_urls}}" wx:key="{{index}}">
+                            <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete1" id="{{index}}"  style="position: relative;margin-right: 10px;">
+                                <image class="weui-uploader__img" src="{{item.url}}" mode="aspectFill" />
+                                 <view wx:if="{{showDeleteIcon1}}"  class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
                             </view>
-                        </view>
-                        <view class="weui-uploader__bd"style="position: relative;margin-right: 10px;padding-top:10px;">
-                            <view class="weui-uploader__files" id="uploaderFiles">
-                                <block wx:for="{{files1}}" wx:key="{{index}}">
-                                    <view class="weui-uploader__file" bindtap="previewImage" bindlongpress="showDelete" id="{{index}}"  style="position: relative;margin-right: 10px;">
-                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                                         <view wx:if="{{showDeleteIcon}}"  class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">X</view>
-                                    </view>
-                                </block>
-                            </view>
-                            <view class="weui-uploader__input-box">
-                                <view class="weui-uploader__input" bindtap="getImage"></view>
-                            </view>
-                        </view>
+                        </block>
                     </view>
                 </view>
             </view>
         </view>
     </view>
+</view>
+</view>
 
-    

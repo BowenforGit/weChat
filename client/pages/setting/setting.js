@@ -4,16 +4,23 @@ const app = getApp();
 
 Page({
     data: {
+        Welcome: "welcome to DeadlineFighter.",
+        may: "May the force be with you!",
         Lang:"Language",
         setting:"Setting",
         More: "More",
         github: "View in github",
+        aboutus:"About Us",
         langCode: ['cn', 'en'],
         lang: ['简体中文', 'English'],
         langIndex: 1,
+        userInfo:{}
     },
     onLoad: function(options) {
         this.setLang();
+        this.setData({
+            userInfo:app.globalData.userInfo
+        })
 
     },
     onShow: function(){
@@ -40,10 +47,13 @@ Page({
     setLang() {
         const _ = wx.T._
         this.setData({
+          Welcome: _('Welcome'),
+          may: _('may'),
            Lang: _('Lang'),
            setting: _('setting'),
            More: _('More'),
            github: _('github'),
+           aboutus: _('aboutus'),
         })
       }
 })

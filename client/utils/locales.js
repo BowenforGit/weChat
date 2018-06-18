@@ -1,5 +1,8 @@
 export default {
     "en": {
+      "aboutus":'About Us',
+        "Welcome":'welcome to DeadlineFighter.',
+        "may": 'May the force be with you!',
         "setting":"Setting",
         "Lang":"Language",
        "Create_New":"Create New",
@@ -40,7 +43,7 @@ export default {
         "Enable_Subtasks": "Subtasks",
         "Add_Subtasks": "Add Subtasks",
         "Task_Level":"Importance",
-        "Shared_Files":"Shared files",
+        "Shared_Files":"Share files",
         "Low":"Low",
         "Medium": "Medium",
         "High": "High",
@@ -49,9 +52,14 @@ export default {
         "github": "View in github",
         "Delete": "Delete",
         "load": "Loading...",
-        "loadok": "Successful load"
+        "loadok": "Successful load",
+        "notodo":"No Todo Yet!",
+        "nomiss":"Nothing Missed!"
     },
     "cn": {
+      "aboutus":'关于我们',
+      "Welcome":"欢迎使用死线战士。",
+      "may":"愿力量与你同在！",
         "setting":"设置",
         "Lang":"语言",
         "Create_New":"新建项目",
@@ -91,7 +99,7 @@ export default {
         "Enable_Subtasks":"分任务",
         "Add_Subtasks": "添加分任务",
         "Task_Level":'重要性',
-        "Shared_Files":"分享的文件",
+        "Shared_Files":"分享文件",
         "Low": "低",
         "Medium": "中",
         "High": "高",
@@ -100,6 +108,8 @@ export default {
         "github": "在github查看",
         "Delete": "删除",
         "load": "刷新中...",
-        "loadok": "刷新成功"
+        "loadok": "刷新成功",
+        "notodo":"没有待完成的任务！",
+        "nomiss":"没有过期的任务！"
     }
 }

@@ -3,5 +3,6 @@
     "zan-button": "../../components/btn/index",
     "zan-toptips": "../../components/toptips/index",
     "doc-page": "../../components/doc-page/index"
-  }
+  },
+  "navigationBarTitleText": "Create Task"
 }

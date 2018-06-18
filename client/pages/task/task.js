@@ -17,7 +17,7 @@ Page({
         Deadline: "Deadline",
         Finish: 'FINISH MY TASK',
         Undo: 'UNDO MY TASK',
-        "Responsible": "Responsible",
+        Responsible: "Responsible",
         index: 0,
         projectID: 0,
         task: {},
@@ -26,7 +26,9 @@ Page({
         Task: 'Task',
         Activity: 'Activity',
         Meeting: "Meeting",
-        Others: "Others"
+        Others: "Others",
+
+        myCompleted: true,
     },
 
     // load the task data from the server
@@ -69,8 +71,8 @@ Page({
                             subtask = task.subtask2.replace('_0_', '');
                             break;
                         case 2:
-                            completed = task.subtask2.startsWith('_0_') ? true : false;
-                            subtask = task.subtask2.replace('_0_', '');
+                            completed = task.subtask3.startsWith('_0_') ? true : false;
+                            subtask = task.subtask3.replace('_0_', '');
                             break;
                     }
                     // console.info("Members", members);
@@ -98,7 +100,7 @@ Page({
                     //console.info(that.data.task);
                     cb(that.data.task);
                 }
-                // console.info("Here!", that.data.task);
+                console.info("Here!", that.data.task);
             }
         });
     },
@@ -116,16 +118,18 @@ Page({
                 //console.info("2:",app.globalData.userInfo);
                 // console.info(member.name);
                 //console.info(that.data.task.taskMembers[i].name);
-                //console.info(app.globalData.userInfo.name);
+                //console.info(app.globalData.userIn    fo.name);
                 if (that.data.task.taskMembers[i].name === app.globalData.userInfo.name) {
                     console.info("Set true~");
                     that.setData({
-                        enableButton: true
+                        enableButton: true,
+                        myCompleted: that.data.task.taskMembers[i].completed
                     });
                     break;
                 }
             }
         });
+        
     },
     onShow: function() {
         this.setLang();
@@ -164,11 +168,16 @@ Page({
                             } else {
                                 tempMember[i].completed = false;
                             }
+                            else{
+                                if(tempMember[i].completed)
+                                tempMember[i].task = '_0_' + tempMember[i].task;
+                            }
                         if (i == 0) temp.subtask1 = tempMember[i].task;
                         else if (i == 1) temp.subtask2 = tempMember[i].task;
                         else if (i == 2) temp.subtask3 = tempMember[i].task;
                     }
                     that.setData({ taskMembers: tempMember });
+                    console.log(that.data.taskMembers);
                     var allCompleted = true;
                     for (var i = 0; i < tempMember.length; i++)
                         allCompleted = allCompleted && tempMember[i].completed;
@@ -187,6 +196,15 @@ Page({
                                 console.log('edit task ' + that.data.task.taskID + ' success')
                                     //edit the change in globalData.tasks
                                 app.globalData.tasks[app.globalData.tasks.findIndex(e => e.taskID == that.data.task.taskID)] = temp;
+
+                                //upload status to project page 
+                                var arr = getCurrentPages();
+                                var projectPage = arr[arr.length-1];
+                                if(projectPage.route == 'pages/project/project'){
+                                    console.log('projectPage.load()')
+                                    projectPage.load(function(){});
+                                }
+                                
 
                             },
                             fail: function(error) {

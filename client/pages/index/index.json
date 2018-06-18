@@ -1,5 +1,6 @@
 {
     "usingComponents": {
         "slider-left": "../../components/slider-left/index"
-    }
+    },
+    "navigationBarTitleText": "My Projects"
 }

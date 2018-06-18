@@ -6,7 +6,8 @@
     "pages/project/project",
     "pages/newProject/newProject",
     "pages/newTask/newTask",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/setting/aboutus"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -33,8 +34,8 @@
     },{
     "pagePath": "pages/setting/setting",
       "text": "",
-      "iconPath": "images/discovery.png",
-      "selectedIconPath": "images/discovery_focus.png"
+      "iconPath": "images/icon/setting.png",
+      "selectedIconPath": "images/icon/setting-b.png"
     }]
   },
   "networkTimeout": {

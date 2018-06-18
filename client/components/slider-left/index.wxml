@@ -1,4 +1,4 @@
-<movable-area class="slider-left-item" style="width:{{openWidth * 2 + 750}}rpx;margin-left:-{{openWidth * 2}}rpx;">
+<movable-area class="slider-left-item" style="width:{{openWidth * 2 + 750}}rpx;margin-left:-{{openWidth * 2 - 15}}rpx;">
   <movable-view class="slider-left-content"
     damping="100"
     x="{{x}}"

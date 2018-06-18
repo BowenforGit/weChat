@@ -5,6 +5,7 @@
   is-show="{{ $zanui.toptips.show }}"
 />
 <view class="my">
+    <image src="../../images/img/time_management.svg" style="width:40%;margin:-2rem 30% -3rem 30%  "></image>
     <view class="my-item flex-wrp">
         <view class="myitem-icon flex-item">
             <image src="../../images/icon/paper-plane.png"></image>
@@ -136,6 +137,7 @@
 
 
     <view class="weui-btn-area">
-        <button class="weui-btn" bindtap="openToast">{{Create}}</button>
+        <button class="weui-btn" bindtap="openToast" style="background-color: #1976d3;color: #fff;">{{Create}}</button>
     </view>
+    
 </view>

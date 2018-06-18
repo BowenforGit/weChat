@@ -26,6 +26,10 @@
                  selectedIcon: '../../images/b-allread.png'
              },
              {
+                 icon: '../../images/icon/file.png',
+                 selectedIcon: '../../images/icon/file-b.png'
+             },
+             {
                  icon: '../../images/icon/binder.png',
                  selectedIcon: '../../images/icon/binder-blue.png'
              }
@@ -308,18 +312,11 @@
 
      tabClick: function(e) {
          // console.info(typeof e.currentTarget.id);
-         if (e.currentTarget.id === '2') {
-             console.info('hey');
-             wx.switchTab({
-                 url: '../index/index',
-                 fail: function(err) { console.log(err); }
-             });
-             return;
-         }
          this.setData({
              sliderOffset: e.currentTarget.offsetLeft,
              activeIndex: e.currentTarget.id
          });
+         if(e.currentTarget.id == 1) this.getImage();
      },
 
      createTask: function() {
@@ -335,7 +332,8 @@
              icon: 'loading',
              duration: 3000
          });
-         this.load(function() {});
+         if(this.data.activeIndex == 1) this.getImage();
+         else this.load(function() {});
      },
 
      kindToggle: function() {
@@ -403,5 +401,19 @@
                  })
              },
          })
+     },
+
+     getImage: function() {
+        var that = this; 
+        console.log("getting image!");
+        app.request({
+             url: "/project/document/" + this.data.projectID,
+             success: function(res) {
+                 that.setData({
+                     files: res.data
+                 });
+                 console.info(that.data.files);
+             }
+         });
      }
  });
