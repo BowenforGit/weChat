@@ -195,7 +195,7 @@ Page({
         console.info('members:', this.data.members);
 
         for (var item in this.data.memberIndex) {
-            members.push(this.data.members[item].open_id);
+            members.push(this.data.members[this.data.memberIndex[item]].open_id);
         }
         // console.info('members for this task:', members.length);
 
@@ -220,15 +220,22 @@ Page({
         //var type = this.data.radioItems.filter(type => type.checked == true);
         //console.info("Type:", type);
         var deadline = this.data.date.replace("-", "").replace("-", "") + this.data.time.replace(":", "") + "00";
+        var todoPush = [];
+        for (var item in this.data.todos)
+            if (this.data.todos[item])
+                todoPush.push(this.data.todos[item]);
+
+        console.log('todoPush')
+        console.log(todoPush)
         var format_request = {
             project_id: this.data.projectID,
             name: this.data.taskName,
             member_id1: members[0] || '',
             member_id2: members[1] || '',
             member_id3: members[2] || '',
-            subtask1: this.data.todos[0] || '',
-            subtask2: this.data.todos[1] || '',
-            subtask3: this.data.todos[2] || '',
+            subtask1: todoPush[0] || '',
+            subtask2: todoPush[1] || '',
+            subtask3: todoPush[2] || '',
             info: this.data.input,
             task_type: this.data.types[this.data.typeIndex],
             importance: this.data.levelIndex,
