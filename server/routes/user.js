@@ -102,17 +102,18 @@ router.patch('/', function (req, res, next) {
 });
 
 router.post('/image/:id', function (req, res, next) {
-
+    //res.send('Hello').end();
     var form = new multiparty.Form({
         encoding: 'utf8',
         autoFiles: true,
         uploadDir: '/tmp'
     });
 
+    console.log("Form OK!");
     form.parse(req, function (err, fields, files) {
-        if (err) { next(err); }
+        if (err) { console.log("there is an error"); next(err); }
         else {
-            var imageFile = files.image[0];
+            var imageFile = files.file[0];
             var fileExtension = imageFile.path.split('.').pop();
             var fileKey = parseInt(Math.random()*10000000) + '_' + (+new Date()) + '.' + fileExtension;
 
@@ -121,21 +122,28 @@ router.post('/image/:id', function (req, res, next) {
                 Region: config.cos.region,
                 Key: fileKey,
                 Body: fs.readFileSync(imageFile.path),
-                contentLength: avatarFile.size
+                contentLength: imageFile.size
             };
 
+            console.log("I am parsing the project!");
             cos.putObject(params, function (err, data) {
                 fs.unlink(imageFile.path);
                 if (err) {
+                    console.log("there is another error!");
                     next(err);
                     return;
                 }
+                console.log("ready to insert into the sql");
                 mysql(imageTable)
                     .insert({
                         project_id: req.params.id,
                         url: data.Location
+                    })
+                    .then(function(result){
+                        console.log("Success?");
+                        console.log(result);
                     });
-                res.end(data.Location);
+                res.send(data.Location);
             });
         }
     });

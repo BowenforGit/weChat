@@ -1,6 +1,13 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
 @import 'style/zanui.wxss';
+@import 'components/wux.wxss';
+
+.page{
+    background-color: #F8F8F8;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
 
 .container {
   height: 100%;
@@ -33,16 +40,31 @@
   width: 750rpx;
   height: 100rpx;
   background: #FBFBFB;
+  color: #42A5F5;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  box-shadow: 0 2px 2px #bebebe;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+}
+.toptab.active{
+  color: #0D47A1;
+  border-bottom: solid 2px #64B5F6;
+}
+.bottom-tab{
+  width: 750rpx;
+  height: 100rpx;
+  background: #FBFBFB;
   color: #9FF781;
   font-size: 28rpx;
   line-height: 100rpx;
   box-shadow: 0 2px 2px #bebebe;
-  margin: 0 0 8rpx 0;
   position: fixed;
   bottom: 0;
   z-index: 9999;
 }
-.toptab.active{
+.bottomtab.active{
   color: #fff;
   border-bottom: solid 2px #ffffff;
 }

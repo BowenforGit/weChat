@@ -2,7 +2,7 @@ module.exports = {
   serverPort: '5757',
   expireTime: 24 * 3600,
   appId: 'wx1c12411a8b7b2076',
-  appSecret: 'ba9780053ca3dfcc66503c4663fa17d4',
+  appSecret: '80d354a6fb2d3048640dbb1775d521c2',
 
   mysql: {
     host: 'localhost',

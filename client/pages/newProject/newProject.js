@@ -1,121 +1,191 @@
 // pages/projectForm/projectForm.js
+const Toptips = require('../../components/toptips/index');
 var app = getApp();
+var date = new Date();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        types: ["Course", "Intern", "Work", "Others"],
+        typeIndex: 0,
+        list: {
+            id: 'form',
+            name: '描述',
+            open: false,
+            members: []
+        },
+        input: '',
+        date: "2016-01-01",
+        time: "24:00",
+        switchData: {
+            id: 1,
+            color: '#242492',
+            isOn: false
+        },
 
-    project:{
-        proName: '',
-        proType: '',
-        proInfo: '',
-        proStartDate: '',
-        proEndDate: '',
-        proMembers:[],
+        Project_Name: "Project Name",
+        Project_Type: "Project Type",
+        Project_Description: "Project Description",
+        Period: "Period",
+        Start_Date: "Start Date",
+        End_Date: "End Date",
+        des: "Some information of this project",
+        Create: "Create",
+        term: "I would be responsible for the project.",
+        project: {
+            proName: '',
+            proType: 'Course',
+            proInfo: '',
+            proStartDate: '2016-01-01',
+            proEndDate: '2016-02-01',
+            proMembers: [],
+        },
+
+        isAgree: false
     },
-    radioItems: [
-      { name: 'Course', value: '0' },
-      { name: 'Intern', value: '1' },
-      { name: 'Work', value: '2' },
-      { name: 'Others', value: '3' }
-    ],
-    date: "2018-01-01",
-    date2: "2017-05-04",
-    isAgree: false
-  },
-  onShareAppMessage: function () {
 
-  },
-  bindNameChange: function (e) {
-    this.setData({
-      'project.proName': e.detail.value
-    });
-  },
-  bindInfoChange: function (e) {
-    this.setData({
-      'project.proInfo': e.detail.value
-    });
-  },
-  radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    onLoad: function() {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month <= 9) { month = '0' + month; }
+        if (day <= 9) { day = '0' + day; }
+        //console.log(year + '-' + month + '-' + day)
+        this.setData({
+            "project.proStartDate": year + '-' + month + '-' + day,
+            "project.proEndDate": year + '-' + month + '-' + day
+        })
+    },
 
-    var radioItems = this.data.radioItems;
-    var index;
-    for (var i = 0, len = radioItems.length; i < len; ++i) {
-      radioItems[i].checked = radioItems[i].value == e.detail.value;
-      if(radioItems[i].checked)
-        index = i;
-    }
-    this.setData({
-      radioItems: radioItems,
-      'project.proType': radioItems[index]
-    });
-  },
-  bindDateChange1: function (e) {
-    this.setData({
-      'project.proStartDate': e.detail.value
-    });
-  },
-  bindDateChange2: function (e) {
-    this.setData({
-      'project.proEndDate': e.detail.value
-    });
-  },
-  bindAgreeChange: function (e) {
-    this.setData({
-      isAgree: !!e.detail.value.length
-    });
-  },
-  openToast: function () {
-    // wx.showToast({
-    //   title: 'Success',
-    //   icon: 'success',
-    //   duration: 3000
-    // });
-    wx.showLoading({
-      title: '正在创建项目……',
-      mask: true
-    });
-    // send the request to the server
-    var format_start = this.data.project.proStartDate;
-    var format_end = this.data.project.proEndDate;
+    onShow: function() {
+        this.setLang();
+    },
 
-    var project_detail = {
-      name: this.data.project.proName,
-      info: this.data.project.proInfo || '',
-      start_date: format_start || '',
-      end_date: format_end || '',
-      project_type: this.data.project.proType.name
-    };
+    onShareAppMessage: function() {
 
-    console.info(project_detail);
-    app.request({
-      url: '/project',
-      method: 'POST',
-      data: project_detail,
-      success: function (res) {
-        console.info(res.data);
-        wx.hideLoading();
-        app.writeHistory(project_detail, 'create', +new Date());
-        var project = res.data;
-        var format = {};
-        format.proID = project.project_id;
-        format.proInfo = project.info;
-        format.proName= project.name;
-        format.proType = project.project_type;
-        format.proStartDate = project.start_date;
-        format.proEndDate = project.end_date;
-        format.members = [project.leader];
-        app.globalData.projects.push(format);
-        wx.showToast({
-        title: 'Success',
-        icon: 'success',
-        duration: 1500
+    },
+    bindNameChange: function(e) {
+        this.setData({
+            'project.proName': e.detail.value
         });
-        wx.navigateBack();
-      }
-    });
-  },
+    },
+    bindInfoChange: function(e) {
+        this.setData({
+            'project.proInfo': e.detail.value
+        });
+    },
+    bindDateChange1: function(e) {
+        this.setData({
+            'project.proStartDate': e.detail.value
+        });
+    },
+    bindDateChange2: function(e) {
+        this.setData({
+            'project.proEndDate': e.detail.value
+        });
+    },
+    bindTypeChange: function(e) {
+        console.log('picker type 发生选择改变，携带值为', e.detail.value, '实际值为' + this.data.types[e.detail.value]);
+        this.setData({
+            typeIndex: e.detail.value,
+            'project.proType': this.data.types[e.detail.value]
+        })
+    },
+    bindAgreeChange: function(e) {
+        this.setData({
+            isAgree: !!e.detail.value.length
+        });
+    },
+    openToast: function() {
+        // wx.showToast({
+        //   title: 'Success',
+        //   icon: 'success',
+        //   duration: 3000
+        // });
+
+
+        if (this.data.project.proName == '') {
+            console.info('no proname yet!')
+            Toptips({
+                duration: 1000,
+                content: 'Please input project name!'
+            })
+            return;
+        }
+        if (this.data.project.proEndDate < this.data.project.proStartDate) {
+            console.info('end < start, are u kidding?')
+            Toptips({
+                duration: 1000,
+                content: 'End date is later than start date!'
+            })
+            return;
+        }
+        // send the request to the server
+        var format_start = this.data.project.proStartDate;
+        var format_end = this.data.project.proEndDate;
+
+        var project_detail = {
+            name: this.data.project.proName,
+            info: this.data.project.proInfo || '',
+            start_date: format_start || '',
+            end_date: format_end || '',
+            project_type: this.data.project.proType
+        };
+
+        console.info(project_detail);
+        app.request({
+            url: '/project',
+            method: 'POST',
+            data: project_detail,
+            success: function(res) {
+                wx.showLoading({
+                    title: '正在创建项目……',
+                    mask: true
+                });
+                console.info(res.data);
+                wx.hideLoading();
+                app.writeHistory(project_detail, 'create', +new Date());
+                project_detail.proID = res.data[0];
+                project_detail.members = [app.globalData.userInfo.open_id];
+                console.log(project_detail);
+
+                var arr = getCurrentPages();
+                var indexPage = arr[arr.length - 2];
+                var myProjects = indexPage.data.projects;
+                myProjects.push(project_detail);
+                indexPage.setData({ projects: myProjects });
+                app.globalData.projects = myProjects;
+
+
+                //app.globalData.projects.push(project_detail);
+
+                wx.showToast({
+                    title: 'Success',
+                    icon: 'success',
+                    duration: 1500
+                });
+                wx.navigateBack();
+            }
+        });
+    },
+    setLang() {
+        const _ = wx.T._
+        this.setData({
+            Project_Name: _('Project_Name'),
+            Project_Type: _('Project_Type'),
+            Project_Description: _('Project_Description'),
+            Period: _('Period'),
+            Start_Date: _('Start_Date'),
+            End_Date: _('End_Date'),
+            des: _('des'),
+            Create: _('Create'),
+            term: _('term'),
+            "types[0]": _('Course'),
+            "types[1]": _('Intern'),
+            "types[2]": _('Work'),
+            "types[3]": _('Others'),
+        })
+    }
 });

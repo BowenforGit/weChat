@@ -283,6 +283,7 @@ module.exports = {
     mysql(imageTable).where({
       project_id: req.params.id
     })
+      .select('url')
       .then(function(result) {
         res.send(result);
       });

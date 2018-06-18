@@ -16,6 +16,6 @@ router.get('/:id', TC.checkOneTask); // check one single task of a specific user
 router.get('/toggle/:id', TC.toggleTask); // toggle the status of a specific task
 
 router.post('/', TC.addTask); // add one task
-router.patch('/:id', TC.editTask); // edit one task, id for task_id
+router.put('/:id', TC.editTask); // edit one task, id for task_id
 
 module.exports = router;

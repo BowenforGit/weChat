@@ -1,77 +1,77 @@
-<!--pages/projectForm/projectForm.wxml-->
-<view class="page">
-    <view class="page__bd">
-    <view class="weui-cells__title">Project Name</view>
-        <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell weui-cell_input">
-                    <view class="weui-cell__bd">
-                        <input class="weui-input" bindinput="bindNameChange" placeholder="CSCI 3100" />
-                </view>
+<zan-toptips
+  id="zan-toptips"
+  content="{{ content }}"
+  is-show="{{ $zanui.toptips.show }}"
+/>
+<view class="my">
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/paper-plane.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+            <input bindinput="bindNameChange" placeholder="{{Project_Name}}" />
         </view>
     </view>
-    
-     <view class="weui-cells__title">Project Type</view>
-            <view class="weui-cells weui-cells_after-title">
-                <radio-group bindchange="radioChange">
-                    <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
-                        <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
-    
-                        <view class="weui-cell__bd">{{item.name}}</view>
-                        <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
-                            <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/tag-window.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+
+            <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{types}}">
+                <view class="t weui-select_in-select-after">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <text>{{Project_Type}}</text>
                         </view>
-                    </label>
-                </radio-group>
-      </view>
-    
-    <view class="weui-cells__title">Project Description</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                      <textarea class="weui-textarea" bindinput="bindInfoChange" placeholder="Some information of this project" style="height: 3.3em" />
-                <view class="weui-textarea-counter">0/50</view>
-            </view>
-       </view>
+                        <view class="weui-cell__ft">{{types[typeIndex]}}</view>
+                    </view>
+                </view>
+            </picker>
+        </view>
     </view>
-    
-            <view class="weui-cells__title">Period</view>
-            <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell weui-cell_input">
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/align-left.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+            <textarea class="weui-textarea" value="{{input}}" bindinput="bindInfoChange" placeholder="{{Project_Description}}" style="height: 5em" />
+        </view>
+    </view>
+
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/clock.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+            <view class='dt'>
+                <view class="dt-cell_1">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">Start Date</view>
+                        <view class="weui-label">{{Start_Date}}</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{project.proStartDate}}"  bindchange="bindDateChange1">
+                        <picker mode="date" value="{{project.proStartDate}}" bindchange="bindDateChange1">
                             <view class="weui-input">{{project.proStartDate}}</view>
                         </picker>
                     </view>
                 </view>
-                 <view class="weui-cell weui-cell_input">
+
+                <view class="dt-cell_2">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">End Date</view>
+                        <view class="weui-label">{{End_Date}}</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{project.proEtartDate}}"  bindchange="bindDateChange2">
+                        <picker mode="date" value="{{project.proEndDate}}" bindchange="bindDateChange2">
                             <view class="weui-input">{{project.proEndDate}}</view>
                         </picker>
                     </view>
                 </view>
             </view>
-    
-             <checkbox-group bindchange="bindAgreeChange">
-                <label class="weui-agree" for="weuiAgree">
-                    <view class="weui-agree__text">
-                        <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
-                        <view class="weui-agree__checkbox-icon">
-                            <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
-                        </view>
-                         I agree to the <navigator url="" class="weui-agree__link">Terms and Conditions</navigator>
-                    </view>
-                </label>
-            </checkbox-group>
-            
-            <view class="weui-btn-area">
-                <button class="weui-btn"  bindtap="openToast">Create</button>
-            </view>
-      </view>
+        </view>
     </view>
+     
+    <view class="weui-btn-area">
+        <button class="weui-btn" bindtap="openToast">{{Create}}</button>
+    </view>
+    <image src="../../images/img/in_sync.svg" style="width:60%;margin:-100rpx 20% -60rpx 20%"></image>
+</view>

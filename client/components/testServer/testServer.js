@@ -41,35 +41,35 @@ Component({
         },
         getOpenID: function() {
             var that = app
-           
-                    wx.login({
-  
-                            success: function(res) {
-                                wx.request({
-                                    url: config.host + '/login',
-                                    data: {
-                                        code: res.code
-                                    },
-                                    success: function(res) {
 
-                                        var skey = res.data.skey;
-                                        app.globalData.skey = skey
-                                        console.info('already login, skey is', skey);
+            wx.login({
 
-                                        //如果获取不到skey，则重试
-                                        if (!skey) {
-                                            that.login(cb);
-                                            console.info('Wrong!');
-                                            return;
-                                        }
+                success: function(res) {
+                    wx.request({
+                        url: config.host + '/login',
+                        data: {
+                            code: res.code
+                        },
+                        success: function(res) {
 
-                                        wx.setStorageSync('skey', skey);
-                                        that.getUserInfo(cb);
-                                    }
-                                });
+                            var skey = res.data.skey;
+                            app.globalData.skey = skey
+                            console.info('already login, skey is', skey);
+
+                            //如果获取不到skey，则重试
+                            if (!skey) {
+                                that.login(cb);
+                                console.info('Wrong!');
+                                return;
                             }
-                        }) 
-          
+
+                            wx.setStorageSync('skey', skey);
+                            that.getUserInfo(cb);
+                        }
+                    });
+                }
+            })
+
         }
     }
 })

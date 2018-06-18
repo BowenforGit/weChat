@@ -5,7 +5,8 @@
     "pages/task/task",
     "pages/project/project",
     "pages/newProject/newProject",
-    "pages/newTask/newTask"
+    "pages/newTask/newTask",
+    "pages/setting/setting"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -29,6 +30,11 @@
       "text": "",
       "iconPath": "images/ring.png",
       "selectedIconPath": "images/ring_focus.png"
+    },{
+    "pagePath": "pages/setting/setting",
+      "text": "",
+      "iconPath": "images/discovery.png",
+      "selectedIconPath": "images/discovery_focus.png"
     }]
   },
   "networkTimeout": {

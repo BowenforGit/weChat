@@ -23,6 +23,6 @@ router.delete('/image/:id', PC.deleteImage);
 // POST
 router.post('/', PC.createProject); // create one project
 router.post('/invite/:id', PC.inviteMembers); // invite one member
-router.patch('/:id', PC.editProject); // edit the info of a project
+router.put('/:id', PC.editProject); // edit the info of a project
 
 module.exports = router;

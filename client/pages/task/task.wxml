@@ -1,51 +1,114 @@
-<!--pages/project/task/task.wxml-->
-<view class="weui-cells__title">Task Information</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">Task Name</view>
-                <view class="weui-cell__ft">{{task.taskName}}</view>
-             </view>
-              <view class="weui-cell">
-                <view class="weui-cell__bd">Task Type</view>
-                <view class="weui-cell__ft">{{task.taskType}}</view>
-             </view>
+<!-- The newTask -->
+<view class="my">
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/paper-plane.png"></image>
         </view>
- <view class="weui-panel weui-panel_access">
-            <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">Task Description</view>
-                    <view class="weui-media-box__desc">{{task.taskInfo}}</view>
+        <view class="myitem-name flex-item">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">{{Task_Name}}</view>
+                <view class="weui-cell__ft">{{task.taskName}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/tag-window.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">{{Task_Type}}</view>
+                <view class="weui-cell__ft" wx:if="{{task.taskType == 'Task'}}">{{Task}}</view>
+                <view class="weui-cell__ft" wx:elif="{{task.taskType == 'Meeting'}}">{{Meeting}}</view>
+        <view class="weui-cell__ft" wx:elif="{{task.taskType == 'Activity'}}">{{Activity}}</view>        
+        <view class="weui-cell__ft" wx:else>{{Others}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/align-left.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+            <view class="weui-media-box__title weui-media-box__title_in-text">{{Task_Description}}</view>
+            <view class="weui-media-box__desc">{{task.taskInfo}}</view>
+        </view>
+    </view>
+
+
+
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/clock.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
+            <view class='dt'>
+                <view class="dt-cell_1">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">{{Date}}</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        {{task.taskDate}}
+                    </view>
+                </view>
+
+                <view class="dt-cell_2">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">{{Time}}</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        {{task.taskTime}}
+                    </view>
                 </view>
             </view>
         </view>
-
-  <view class="weui-cells__title">Deadline</view>
-        <view class="weui-cells weui-cells_after-title">
+    </view>
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/connection.png"></image>
+        </view>
+        <view class="myitem-name flex-item">
             <view class="weui-cell">
-                <view class="weui-cell__bd">Date</view>
-                <view class="weui-cell__ft">{{task.taskDate}}</view>
-             </view>
-              <view class="weui-cell">
-                <view class="weui-cell__bd">Time</view>
-                <view class="weui-cell__ft">{{task.taskTime}}</view>
-             </view>
+                <view class="weui-cell__bd">{{Task_Level}}</view>
+                <view class="weui-cell__ft">
+                    <image wx:if="{{task.taskLevel==2 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/high-priority.png"></image>
+                    <image wx:if="{{task.taskLevel==1 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/medium-priority.png"></image>
+                    <image wx:if="{{task.taskLevel==0 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/low-priority.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="my-item flex-wrp">
+        <view class="myitem-icon flex-item">
+            <image src="../../images/icon/user.png"></image>
+        </view>
+        <view class="myitem-name flex-item" style="position:relative;">
+            <text>{{Responsible}}</text>
+
+            <view class="member-list" wx:for="{{task.taskMembers}}" wx:key="{{index}}">
+                <label class="weui-cell weui-check__label member-check">
+        
+                                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                        <icon class="weui-icon-checkbox_circle" style="height:25px;margin:10px 0 10px 0;" type="circle" size="23" wx:if="{{!item.completed}}"></icon>
+                                        <icon class="weui-icon-checkbox_success" style="height:25px;margin:10px 0 10px 0;" type="success" size="23" color="#242492" wx:if="{{item.completed}}"></icon>
+                                    </view>
+                                    <view class="weui-cell__bd">{{item.name}}</view>
+                            </label>
+                <view class="subtask-input">
+                    <view class="weui-cell__ft">{{item.task}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+
+    <view class="finish" wx:if="{{!task.status}}">
+        <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm" style="background-color:#5b77c4">{{Finish}} </button>
+    </view>
+
+    <view class="finish" wx:if="{{task.status}}">
+        <button class="weui-btn" type="primary" disabled="{{!enableButton}}" bindtap="openConfirm" style="background-color:#5b77c4">{{Undo}}</button>
+    </view>
 </view>
-
-<view class="weui-cells__title">Progress</view>
-        <view class="weui-cells weui-cells_after-title"  wx:for="{{ task.taskMembers }}" wx:key="{{ index }}">
-            <view class="weui-cell">
-              <icon class="checkbox" type="{{ item.status ? 'success' : 'circle' }}"/>
-                <view class="weui-cell__bd">{{item.name}}</view>
-                <view class="weui-cell__ft">{{item.task}}</view>    
-             </view>
-</view>
-
-
-<view class="finish" wx:if="{{!task.status}}">
-    <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Finish My Task !</button>
-</view>
-
-<view class="finish" wx:if="{{task.status}}">
-    <button wx:if="{{canIUse}}" class="weui-btn" type="primary" disabled="{{!enableButton}}" bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo">Undo My Task !</button>
-</view>
-
