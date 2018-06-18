@@ -11,7 +11,6 @@
                 {{project.proDes}}
             </view>
         </view>
-  
 
         <view class="page__bd page__bd_spacing">
                 <view class="kind-list">        
@@ -47,5 +46,7 @@
             <zan-steps type="vertical" steps="{{tasks}}"></zan-steps>
         </zan-cell>
     </zan-panel>
+
+    <image src="../../images/img/segmentation.svg" style="width:60%;margin:-10rpx 20% -60rpx 20%"></image>
 </view>
 

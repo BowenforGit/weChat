@@ -142,23 +142,38 @@ page,
 .timestamp {
     display: block;
     margin-top: 20rpx;
+    color: #cccccc;
 }
 
 .name {
     display: inline-block;
     width: 30%;
     text-align: right;
-    color: #92925B;
+    color: #CCCC99;
 }
 
 .action {
     display: inline-block;
     width: 70%;
-    color: #CFDC28;
+    color: #003366;
 }
 
 .log-container {
+    background-color:#fff;
     display: block;
+}
+
+.testCard {
+    width: 90%;
+    left: 5%;
+    background-color: #00188F;
+    padding: 10rpx;
+}
+
+.cardTitle {
+    margin: 10rpx;
+    height: 100rpx;
+    border: solid 2px #fff;
 }
 
 

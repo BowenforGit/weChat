@@ -31,6 +31,7 @@ Component({
     methods: {
         chooseImage: function(e) {
             var that = this;
+            console.log('id is ' + this.properties.proid)
             wx.chooseImage({
                 sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -41,20 +42,24 @@ Component({
                     });
                     //上传图片至服务器
                     var tempFilePaths = res.tempFilePaths
+                    
+                    console.log('skey'+ wx.getStorageSync('skey'));
 
                     wx.uploadFile({
                         header: {
                             skey: wx.getStorageSync('skey')
                         },
-                        url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+                        url: 'https://5xjlqtmz.qcloud.la/user/image/'+that.properties.proid, 
                         filePath: tempFilePaths[0],
                         name: 'file',
                         formData: {
                             'user': 'test'
                         },
                         success: function(res) {
-                            var data = res.data
-                                //data is the url of the image ?  
+                            console.log('success! ')
+                        },
+                        fail: function(re){
+                            console.log('failed!')
                         }
                     })
 
@@ -103,18 +108,6 @@ Component({
                 method: 'GET',
                 success: function(res) {
                     console.log(res.data);
-                }
-            })
-
-            wx.downloadFile({
-                url: '/document/' + this.data.id, //仅为示例，并非真实的资源
-                success: function(res) {
-                    // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-                    if (res.statusCode === 200) {
-                        wx.playVoice({
-                            filePath: res.tempFilePath
-                        })
-                    }
                 }
             })
         },
