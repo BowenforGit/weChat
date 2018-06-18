@@ -353,6 +353,7 @@
              Add: _('Add'),
              Tasks: _('Tasks'),
              Shared_Files: _('Shared_Files'),
+             allimg: _('allimg'),
              load: _('load'),
              loadok: _('loadok'),
          })

@@ -54,7 +54,10 @@ export default {
         "load": "Loading...",
         "loadok": "Successful load",
         "notodo":"No Todo Yet!",
-        "nomiss":"Nothing Missed!"
+        "nomiss":"Nothing Missed!",
+        "allimg":"All Images",
+        "cancel":'Cancel',
+        "upload":"Upload"
     },
     "cn": {
       "aboutus":'关于我们',
@@ -110,6 +113,9 @@ export default {
         "load": "刷新中...",
         "loadok": "刷新成功",
         "notodo":"没有待完成的任务！",
-        "nomiss":"没有过期的任务！"
+        "nomiss":"没有过期的任务！",
+        "allimg":"共享文件",
+        "cancel":"取消",
+        "upload":"上传"
     }
 }
