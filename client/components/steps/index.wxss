@@ -138,11 +138,11 @@
 
 .zan-steps--vsteps .zan-steps__step {
     position: relative;
-    padding: 15px 0
+    padding: 15px 0;
 }
 
 .zan-steps--vsteps .zan-steps__step--done {
-    color: #4b0
+    color: #1565C0;
 }
 
 .zan-steps--vsteps .zan-steps__line {

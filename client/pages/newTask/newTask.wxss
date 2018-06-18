@@ -86,7 +86,7 @@
 }
 
 .weui-cell__ft {
-    margin-right: 30rpx;
+    margin-right: 60rpx;
     text-align: right;
     color: #999
 }

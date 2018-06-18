@@ -24,7 +24,7 @@
                 <slider-left wx:for="{{projects}}" wx:key="{{index}}"  bind:change="handleChange" bind:delete="deletePro" data-icon="{{index}}" buttonText="{{Delete}}" data-id="{{item.proID}}">
                 <view class="weui-media-box weui-media-box_text"  bindtap="toProject" id="{{item.proID}}" hover-class="weui-cell_active" >
                     <view class="flex-wrp">
-                        <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left; font-weight: bold;">{{item.proName}}</view>
+                        <view class="flex-item weui-media-box__title weui-media-box__title_in-text" style="text-align: left; font-weight: bold; font-size:0.8rem;">{{item.proName}}</view>
                     </view>
                     
                     <view class="weui-media-box__desc">{{item.proInfo}}</view>
