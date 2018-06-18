@@ -10,7 +10,7 @@
                 <view style="background-color: #fff;">
                     <image src="../../images/img/messenger.svg" style="width:70%;margin:5rem 15% 0 15%"></image>
                     <view style="text-align:center; font-size:1rem; color:#999;">
-                        No todo yet!
+                        {{notodo}}
                     </view>                 
                 </view>               
             </block>
@@ -55,7 +55,7 @@
             <view style="background-color: #fff;">
                 <image src="../../images/img/cleanup.svg" style="width:70%;margin:5rem 15% 0 15%"></image>
                 <view style="text-align:center; font-size:1rem; color:#999;">
-                    Nothing Missed!
+                    {{nomiss}}
                 </view>                 
             </view>
         </block>

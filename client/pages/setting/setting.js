@@ -10,6 +10,7 @@ Page({
         setting:"Setting",
         More: "More",
         github: "View in github",
+        aboutus:"About Us",
         langCode: ['cn', 'en'],
         lang: ['简体中文', 'English'],
         langIndex: 1,
@@ -52,6 +53,7 @@ Page({
            setting: _('setting'),
            More: _('More'),
            github: _('github'),
+           aboutus: _('aboutus'),
         })
       }
 })

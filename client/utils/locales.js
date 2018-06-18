@@ -1,5 +1,6 @@
 export default {
     "en": {
+      "aboutus":'About Us',
         "Welcome":'welcome to DeadlineFighter.',
         "may": 'May the force be with you!',
         "setting":"Setting",
@@ -51,9 +52,12 @@ export default {
         "github": "View in github",
         "Delete": "Delete",
         "load": "Loading...",
-        "loadok": "Successful load"
+        "loadok": "Successful load",
+        "notodo":"No Todo Yet!",
+        "nomiss":"Nothing Missed!"
     },
     "cn": {
+      "aboutus":'关于我们',
       "Welcome":"欢迎使用死线战士。",
       "may":"愿力量与你同在！",
         "setting":"设置",
@@ -104,6 +108,8 @@ export default {
         "github": "在github查看",
         "Delete": "删除",
         "load": "刷新中...",
-        "loadok": "刷新成功"
+        "loadok": "刷新成功",
+        "notodo":"没有待完成的任务！",
+        "nomiss":"没有过期的任务！"
     }
 }
