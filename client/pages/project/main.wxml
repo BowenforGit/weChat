@@ -2,8 +2,8 @@
  <import src="../../components/button/button.wxml"/> 
  <template is="button" data="{{ ...$wux.button.br }}"/> 
 <view class="container">
-    <view class="project-wrp">
-        <view class="project-item bg">
+    <view class="project-wrp bg">
+        <view class="project-item ">
             <view class="pro-title">
                 {{project.proName}}
             </view>
@@ -11,36 +11,35 @@
                 {{project.proDes}}
             </view>
         </view>
-  
-
-        <view class="page__bd page__bd_spacing">
-                <view class="kind-list">        
-                     <view class="kind-list__item">
-                        <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
-                            <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
-                                    <view class="weui-grids">
-                        <block wx:for="{{list.members}}" wx:key="{{index}}">
-                            <view url="" class="weui-grid" hover-class="weui-grid_active">
-                                <block wx:if="{{item.avatar}}">
-                                    <image style='border-radius: 80rpx ;width: 100rpx; height: 100rpx' class="weui-grid__icon" src="{{item.avatar}}" />
-                                </block>
-                                <block wx:else>
-                                <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
-                                </block>
-                                <view class="weui-grid__label">{{item.name}}</view>
-                            </view>
-                        </block>
-                        <view class="weui-grid" hover-class="weui-grid_active" bindtab="onShareAppMessage">
-                            
-                            <button class="noborder" open-type="share" style="background:none;color:#fff;"><image style="height:113rpx;width:100rpx;" src="../../images/invite.png" /></button>
-                        </view>
-                    </view>
-                            </view>
-                        </view>
-                        </view>        
-                </view>
-        </view>
     </view>
+
+    <view class="page__bd page__bd_spacing">
+        <view class="kind-list">        
+             <view class="kind-list__item">
+                <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
+                    <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
+                            <view class="weui-grids">
+                <block wx:for="{{list.members}}" wx:key="{{index}}">
+                    <view url="" class="weui-grid" hover-class="weui-grid_active">
+                        <block wx:if="{{item.avatar}}">
+                            <image style='border-radius: 80rpx ;width: 100rpx; height: 100rpx' class="weui-grid__icon" src="{{item.avatar}}" />
+                        </block>
+                        <block wx:else>
+                        <image class="weui-grid__icon" src="../../images/fakeImage.jpg" />
+                        </block>
+                        <view class="weui-grid__label">{{item.name}}</view>
+                    </view>
+                </block>
+                <view class="weui-grid" hover-class="weui-grid_active" bindtab="onShareAppMessage">
+                    
+                    <button class="noborder" open-type="share" style="background:none;color:#fff;"><image style="height:113rpx;width:100rpx;" src="../../images/invite.png" /></button>
+                </view>
+            </view>
+                    </view>
+                </view>
+                </view>        
+        </view>
+</view>
 
     <zan-panel title="{{Tasks}}" style="width:90%">
         <zan-cell>

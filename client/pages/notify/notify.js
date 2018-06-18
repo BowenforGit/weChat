@@ -8,6 +8,8 @@ Page({
         navTab: ["Todo", "Missed"],
         currentNavtab: "0",
         tasks: [],
+        todo: [],
+        missed: [],
         date: ''
     },
 
@@ -56,15 +58,28 @@ Page({
                     });
 
                     //sort by deadline 
-                    tasks.sort(function(a, b) {
+                    
+                    that.setData({ tasks: tasks,
+                                    missed: tasks.filter(t => t.status == 0 && t.deadline < that.data.date),
+                                    todo: tasks.filter(t => t.status == 0 && t.deadline >= that.data.date) });
+                                    //console.log(">>>>>todo",that.data.todo)
+                                    //console.log(">>>>>miss",that.data.missed)
+                    that.data.todo.sort(function(a, b) {
                         if (a.deadline == b.deadline)
                             return a.taskLevel < b.taskLevel ? 1 : -1;
                         else
                             return a.deadline > b.deadline ? 1 : -1;
                     });
-                    that.setData({ tasks: tasks });
+                    that.data.missed.sort(function(a, b) {
+                        if (a.deadline == b.deadline)
+                            return a.taskLevel < b.taskLevel ? 1 : -1;
+                        else
+                            return a.deadline > b.deadline ? 1 : -1;
+                    });
                     app.globalData.tasks = tasks;
-                    //console.log(that.data.tasks)
+                    app.globalData.todo= that.data.todo;
+                    app.globalData.missed = that.data.missed;
+                    //console.log(">>>>>",that.data.missed.length)
                 }
             });
         } else {

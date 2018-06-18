@@ -1,4 +1,14 @@
 <!--pages/project/task/task.wxml-->
+<view class="user flex-wrp">
+  <view class="avatar flex-item">
+    <image class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
+    </view>
+    <view class="user-info flex-item">
+    <text class="userinfo-nickname">{{userInfo.name}}, {{Welcome}}</text>
+    <text class="edit">{{may}}</text>
+  </view>
+</view>
+<image src="../../images/img/may.svg" style="width:70%;margin:-1rem 15% -2rem 15%"></image>
 <view class="weui-cells__title">{{setting}}</view>
 <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">

@@ -1,5 +1,7 @@
 export default {
     "en": {
+        "Welcome":'welcome to DeadlineFighter.',
+        "may": 'May the force be with you!',
         "setting":"Setting",
         "Lang":"Language",
        "Create_New":"Create New",
@@ -52,6 +54,8 @@ export default {
         "loadok": "Successful load"
     },
     "cn": {
+      "Welcome":"欢迎使用死线战士。",
+      "may":"愿力量与你同在！",
         "setting":"设置",
         "Lang":"语言",
         "Create_New":"新建项目",
