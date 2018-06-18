@@ -53,8 +53,8 @@ Page({
                     wx.hideLoading();
                     if (res.statusCode !== 200) {
                         wx.showToast({
-                            icon: 'none',
-                            title: 'Wrong Request!'
+                            icon: 'info',
+                            title: 'Pull to Refresh!'
                         });
                         return;
                     }
@@ -239,7 +239,7 @@ Page({
 
     //navigate to the project or hide the delete buttons
     toProject: function(opt) {
-      wx.navigateTo({
+        wx.navigateTo({
             url: '/pages/project/project?id=' + opt.currentTarget.id
         });
     },
