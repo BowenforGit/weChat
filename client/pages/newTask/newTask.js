@@ -217,8 +217,8 @@ Page({
             })
             return;
         }
-        var type = this.data.radioItems.filter(type => type.checked == true);
-        console.info("Type:", type);
+        //var type = this.data.radioItems.filter(type => type.checked == true);
+        //console.info("Type:", type);
         var deadline = this.data.date.replace("-", "").replace("-", "") + this.data.time.replace(":", "") + "00";
         var format_request = {
             project_id: this.data.projectID,

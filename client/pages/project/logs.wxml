@@ -3,8 +3,8 @@
     <view class="item" wx:for="{{ logs }}" wx:key="{{ index }}">
       <text class="action">{{ item.action+': ' + item.item}}</text>
       <text class="name">{{ item.name }}</text>
-      <text class="timestamp">[{{ item.date +' '+ item.time }}]</text>
+      <text class="timestamp">{{ item.date +' '+ item.time }}</text>
     </view>
   </view>
-  <image src="../../images/img/events.png" />
 </view>
+  <image src="../../images/img/wall_post.svg" style="width:60%;margin:-30rpx 20% -100rpx 20%  "></image>

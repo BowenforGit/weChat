@@ -69,8 +69,8 @@ Page({
                             subtask = task.subtask2.replace('_0_', '');
                             break;
                         case 2:
-                            completed = task.subtask2.startsWith('_0_') ? true : false;
-                            subtask = task.subtask2.replace('_0_', '');
+                            completed = task.subtask3.startsWith('_0_') ? true : false;
+                            subtask = task.subtask3.replace('_0_', '');
                             break;
                     }
                     // console.info("Members", members);
@@ -98,7 +98,7 @@ Page({
                     //console.info(that.data.task);
                     cb(that.data.task);
                 }
-                // console.info("Here!", that.data.task);
+                console.info("Here!", that.data.task);
             }
         });
     },
@@ -126,6 +126,7 @@ Page({
                 }
             }
         });
+        
     },
     onShow: function() {
         this.setLang();
@@ -164,11 +165,16 @@ Page({
                             } else {
                                 tempMember[i].completed = false;
                             }
+                            else{
+                                if(tempMember[i].completed)
+                                tempMember[i].task = '_0_' + tempMember[i].task;
+                            }
                         if (i == 0) temp.subtask1 = tempMember[i].task;
                         else if (i == 1) temp.subtask2 = tempMember[i].task;
                         else if (i == 2) temp.subtask3 = tempMember[i].task;
                     }
                     that.setData({ taskMembers: tempMember });
+                    console.log(that.data.taskMembers);
                     var allCompleted = true;
                     for (var i = 0; i < tempMember.length; i++)
                         allCompleted = allCompleted && tempMember[i].completed;
@@ -184,10 +190,12 @@ Page({
                                 finish: temp.finish
                             },
                             success: function(res) {
+                                console.log(temp);
                                 console.log('edit task ' + that.data.task.taskID + ' success')
                                     //edit the change in globalData.tasks
                                 app.globalData.tasks[app.globalData.tasks.findIndex(e => e.taskID == that.data.task.taskID)] = temp;
-
+                                console.log('temp')
+                                console.log(temp)
                             },
                             fail: function(error) {
                                 console.log(error)
