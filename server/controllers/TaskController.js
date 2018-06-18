@@ -56,7 +56,22 @@ module.exports = {
       .select('*')
       .update(changedAttrs)
       .then(function () {
-        res.json(changedAttrs);
+        mysql(userTable).where({ open_id: req.session.open_id })
+        .select('*')  
+        .then(function(result) {
+          var item = {
+            name: result[0].name,
+            project_id: req.body.project_id,
+            action: 'Edit task',
+            item: req.body.name
+          };
+          console.log(item);
+          mysql(logsTable).insert(item)
+          .then(function(result){
+            console.log(result);
+            res.json(changedAttrs);
+          });
+        });
       });
   },
 
