@@ -6,9 +6,16 @@
 </view>
 <view class="container notify withtab">
     <view class="ctnt0" hidden="{{currentNavtab==0 ? '' : true}}">
-        <!--block wx:if="{{ item.deadline > date}}"--> <block>
-            <navigator url="{{'/pages/task/task?id='+item.taskID}}" hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
-                <!--block wx:if="{{item.status == 0}}"--> <block wx:if="{{ item.deadline >= date && item.status == 0}}">
+            <block wx:if="{{todo.length == 0}}">
+                <view style="background-color: #fff;">
+                    <image src="../../images/img/messenger.svg" style="width:70%;margin:5rem 15% 0 15%"></image>
+                    <view style="text-align:center; font-size:1rem; color:#999;">
+                        No todo yet!
+                    </view>                 
+                </view>               
+            </block>
+            <block wx:else>  
+                <navigator url="{{'/pages/task/task?id='+item.taskID}}" hover-class="weui-cell_active" wx:for="{{todo}}" wx:key="{{index}}">            
                     <view class="notify-item flex-wrp">
                         <view class="avatar flex-item">
 
@@ -40,18 +47,22 @@
                             </view>
                         </view>
                     </view>
-                </block>
             </navigator>
         </block>
     </view>
     <view class="ctnt2" hidden="{{currentNavtab==1 ? '' : true}}">
-        <navigator url="{{'/pages/task/task?id='+item.taskID}}" hover-class="weui-cell_active" wx:for="{{tasks}}" wx:key="{{index}}">
-            <!--block wx:if="{{item.status == 0 && item.deadline < date}}"--><block wx:if="{{item.status == 0 && item.deadline < date}}">
-            
-                <view class="notify-item flex-wrp">
+        <block wx:if="{{missed.length == 0}}">
+            <view style="background-color: #fff;">
+                <image src="../../images/img/cleanup.svg" style="width:70%;margin:5rem 15% 0 15%"></image>
+                <view style="text-align:center; font-size:1rem; color:#999;">
+                    Nothing Missed!
+                </view>                 
+            </view>
+        </block>
+        <block wx:else>
+        <navigator url="{{'/pages/task/task?id='+item.taskID}}" hover-class="weui-cell_active" wx:for="{{missed}}" wx:key="{{index}}">        
+            <view class="notify-item flex-wrp">
                     <view class="avatar flex-item">
-
-
                         <block wx:if="{{item.taskType == 'Presentation' || item.taskType == 'Task'}}">
                             <image src="../../images/icon/document.png"></image>
                         </block>
@@ -79,8 +90,8 @@
                             <image wx:if="{{item.taskLevel==0 }}" style="width:50rpx;height:50rpx;" src="../../images/icon/low-priority.png"></image>
                         </view>
                     </view>
-                </view>
-            </block>
-        </navigator>
+                </view>           
+            </navigator>
+        </block>
     </view>
 </view>
