@@ -85,9 +85,11 @@ App({
 
     registerUser: function(cb) {
         var that = this;
+        console.info('jajajajaja');
         wx.getUserInfo({
             success: function(res) {
                 var userInfo = res.userInfo;
+                console.info("user info", userInfo);
                 userInfo = {
                     name: userInfo.nickName,
                     avatar: userInfo.avatarUrl
@@ -104,7 +106,9 @@ App({
                 });
             },
             //授权失败，用默认值注册
-            fail: function() {
+            fail: function(e) {
+                console.info(e);
+                console.info('NONONO', that.globalData.userInfo);
                 that.request({
                     url: '/user',
                     method: 'post',
@@ -146,6 +150,7 @@ App({
 
     globalData: {
         userInfo: {},
+        getInfo: false,
         projects: [],
         tasks: [],
         new_task: {}

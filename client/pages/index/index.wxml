@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <import src="../../components/refresher/refresher.wxml"/>
 <!--scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}"-->
-
+<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
     <view class="container project-wrp">
         <view class="project-item">
             <view class="overview">

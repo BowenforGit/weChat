@@ -5,6 +5,8 @@ var moment = require('moment');
 var config = require('../config');
 var mysql = require('../util').mysql;
 var sessionTable = 'session';
+var projectTable = 'project';
+var taskTable = 'task';
 
 function sha1(message) {
   return crypto.createHash('sha1').update(message, 'utf8').digest('hex');
@@ -25,10 +27,13 @@ module.exports = {
         js_code: code
       }
     }, function (err, response, data) {
+      console.log(err);
       if (response.statusCode === 200) {
+        console.info(200);
         var sessionKey = data.session_key;
         var openId = data.openid;
         var skey = sha1(sessionKey);
+        console.log(skey);
         var sessionData = {
           skey: skey,
           create_time: curTime,
@@ -42,6 +47,7 @@ module.exports = {
           .then(function (res) {
             // 如果存在用户就更新session
             if (res[0].hasUser) {
+              console.info('hasUser');
               return mysql(sessionTable).update(sessionData).where({
                 open_id: openId
               });
@@ -49,7 +55,36 @@ module.exports = {
             // 如果不存在用户就新建session
             else {
               sessionData.open_id = openId;
-              return mysql(sessionTable).insert(sessionData);
+              var project_demo = {
+                name: "My First Project",
+                leader: openId,
+                info: "Welcome to Deadline Fighter!"
+              };
+              mysql(projectTable).insert(project_demo)
+                .then(function(result) {
+                  console.info("new project", result);
+                  var task_demo1 = {
+                    project_id: result[0],
+                    name: 'Your first task!',
+                    member_id1: openId,
+                    info: 'Try to add a new task!',
+                    importance: 1,
+                    deadline: curTime
+                  };
+                  var task_demo2 = {
+                    project_id: result[0],
+                    name: 'Your second task!',
+                    member_id1: openId,
+                    info: 'Try to finish a new task!',
+                    importance: 2,
+                    deadline: '20180705000000'
+                  };
+                  mysql(taskTable).insert(task_demo1);
+                  mysql(taskTable).insert(task_demo2)
+                  .then(function() {
+                    return mysql(sessionTable).insert(sessionData);
+                  });
+                });
             }
           })
           .then(function () {
@@ -58,12 +93,14 @@ module.exports = {
             });
           })
           .catch(function(e) {
+            console.info('error1');
             res.json({
               skey: null
             });
           });
 
       } else {
+        console.info('error2');        
         res.json({
           skey: null
         });

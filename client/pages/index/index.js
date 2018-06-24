@@ -107,6 +107,9 @@ Page({
         this.load();
     },
 
+    onGotUserInfo: function(e) {
+        console.log(e.detail.userInfo);
+    },
     // upper: function() {
     //     console.log("upper 0")
     //     wx.showNavigationBarLoading();
