@@ -37,7 +37,6 @@ Page({
 
     onLoad: function() {
         console.info('loading index...');
-
     },
 
     /*
@@ -108,7 +107,16 @@ Page({
     },
 
     onGotUserInfo: function(e) {
-        console.log(e.detail.userInfo);
+        var that = this
+        wx.getSetting({
+            success: function(res) {
+                that.setData({ hasUserInfo: true })
+            },
+            fail: function(res) {
+                that.setData({ hasUserInfo: false });
+            }
+        })
+
     },
     // upper: function() {
     //     console.log("upper 0")
