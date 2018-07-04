@@ -52,8 +52,8 @@ Page({
                     wx.hideLoading();
                     if (res.statusCode !== 200) {
                         wx.showToast({
-                            icon: 'info',
-                            title: 'Pull to Refresh!'
+                            icon: 'warn',
+                            title: 'Click Start!'
                         });
                         return;
                     }

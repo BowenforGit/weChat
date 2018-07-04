@@ -5,14 +5,15 @@
 
 
 <block wx:if="{{!hasUserInfo}}">
-    <image src="../../images/img/Astronaut.svg" style="width:60%;margin-left:20%;margin-top:20%"></image>
-    <view style="color:#6b6f6d;text-align: center;">
-        <view style="color:#558ed5; font-size:25rpx;">The World is Yours</view>
-        <view style="font-size:60rpx;letter-spacing:5rpx;">DEADLINE</view>
-        <view style="font-size:40rpx;">FIGHTER</view>
+    <image src="../../images/img/Astronaut.svg" style="width:50%;margin-left:25%;margin-top:10%"></image>
+    <view class="welcome">
+        <view class="welcome-text">The World is Yours</view>
+        <view class="welcome-title-up">DEADLINE</view>
+        <view clas="welcome-title-down">FIGHTER</view>
     </view>
-    <view style="width:50%; margin-left:25%; margin-top:60rpx"> <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" style="color:#ffffff;background-color:#4285f4;">START</button></view>
-
+    <view style="justify-content:center">
+        <view class="welcome-bd-1"> <button size="mini" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" style="color: #ffffff;background-color: #4285f4;font-size: 15px;padding: 0 2.5em;" >START</button></view>
+    </view>
 </block>
 
 

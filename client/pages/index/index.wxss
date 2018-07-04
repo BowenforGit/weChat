@@ -51,21 +51,53 @@
     padding: 0 30rpx;
 }
 
-.weui-media-box__desc{
-  line-height:1.3;
+.weui-media-box__desc {
+    line-height: 1.3;
 }
-.container{
-  width:100%;
-  display:inline-block;
+
+.container {
+    width: 100%;
+    display: inline-block;
 }
 
 page {
-  background-color: #f8f8f8;
+    background-color: #f8f8f8;
 }
-.weui-panel{
-  margin-top:0;
+
+.weui-panel {
+    margin-top: 0;
 }
-.container{
-  height:2.5rem;
-  background: #f8f8f8;
+
+.container {
+    height: 2.5rem;
+    background: #f8f8f8;
 }
+
+.welcome {
+    color: #6b6f6d;
+    text-align: center;
+}
+
+.welcome-text {
+    color: #558ed5;
+    font-size: 25rpx;
+}
+
+.welcome-title-up {
+    font-size: 60rpx;
+    letter-spacing: 5rpx;
+}
+
+.welcome-title-down {
+    font-size: 40rpx;
+}
+
+.welcome-bd {
+    justify-content: center
+}
+
+.welcome-bd-1 {
+    display: flex;
+    margin-top: 60rpx
+}
+
